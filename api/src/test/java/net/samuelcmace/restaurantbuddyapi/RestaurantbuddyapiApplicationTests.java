@@ -1,10 +1,10 @@
-package net.samuelcmace.restaurantbuddy;
+package net.samuelcmace.restaurantbuddyapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class RestaurantbuddyApplicationTests {
+class RestaurantbuddyapiApplicationTests {
 
 	@Test
 	void contextLoads() {

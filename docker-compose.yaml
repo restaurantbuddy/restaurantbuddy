@@ -1,0 +1,32 @@
+version: "0.0.1-dev"
+
+services:
+  api:
+    build: ./api
+    ports:
+      - "8080:8080"
+    networks:
+      - frontend
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+    networks:
+      - frontend
+      - backend
+  database:
+    image: "mariadb:10"
+    environment:
+      MARIADB_USER: restaurantbuddy
+      MARIADB_PASSWORD: restaurantbuddy
+      MARIADB_ROOT_PASSWORD: restaurantbuddy
+    networks:
+      - backend
+
+networks:
+  frontend:
+    name: frontend
+    external: true
+  backend:
+    name: backend
+    external: false
