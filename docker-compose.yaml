@@ -3,30 +3,25 @@ version: "0.0.1-dev"
 services:
   api:
     build: ./api
+    restart: always
     ports:
-      - "8080:8080"
-    networks:
-      - frontend
+      - "8888:8888"
   frontend:
     build: ./frontend
+    restart: always
     ports:
       - "80:80"
-    networks:
-      - frontend
-      - backend
   database:
-    image: "mariadb:10"
+    image: "mariadb:latest"
+    restart: always
     environment:
       MARIADB_USER: restaurantbuddy
       MARIADB_PASSWORD: restaurantbuddy
       MARIADB_ROOT_PASSWORD: restaurantbuddy
-    networks:
-      - backend
-
-networks:
-  frontend:
-    name: frontend
-    external: true
-  backend:
-    name: backend
-    external: false
+  phpmyadmin:
+    image: "phpmyadmin:latest"
+    restart: always
+    environment:
+      PMA_ARBITRARY: 1
+    ports:
+      - "8080:80"
