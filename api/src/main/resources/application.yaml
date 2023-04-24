@@ -1,0 +1,11 @@
+server:
+  port: 8888
+spring:
+  jpa:
+    hibernate:
+      dll-auto: verify
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    password: restaurantbuddy
+    url: jdbc:mariadb://localhost:3306/restaurantbuddy

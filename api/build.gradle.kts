@@ -13,11 +13,19 @@ repositories {
 }
 
 dependencies {
-//	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-//	implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.boot:spring-boot-starter-websocket")
+    implementation("org.springframework.security:spring-security-core")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
     runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
+    implementation("org.json:json:20230227")
+
+    compileOnly("org.projectlombok:lombok:1.18.26")
+    annotationProcessor("org.projectlombok:lombok:1.18.26")
+
+    testCompileOnly("org.projectlombok:lombok:1.18.26")
+    testAnnotationProcessor("org.projectlombok:lombok:1.18.26")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
@@ -26,5 +34,5 @@ tasks.withType<Test> {
 }
 
 tasks.getByName<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
-	this.archiveFileName.set("server.jar");
+    this.archiveFileName.set("server.jar")
 }

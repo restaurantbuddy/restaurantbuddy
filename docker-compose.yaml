@@ -17,6 +17,7 @@ services:
     environment:
       MARIADB_USER: restaurantbuddy
       MARIADB_PASSWORD: restaurantbuddy
+      MARIADB_DATABASE: restaurantbuddy
       MARIADB_ROOT_PASSWORD: restaurantbuddy
   phpmyadmin:
     image: "phpmyadmin:latest"

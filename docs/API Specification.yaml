@@ -1,0 +1,30 @@
+openapi: 3.0.3
+info:
+  title: RestaurantBuddy API
+  description: Backend API for the RestaurantBuddy Full-Stack Web Application
+  version: 0.0.1-dev
+servers:
+  - url: 'http://localhost:8888/'
+paths:
+  /auth:
+    get:
+      description: Returns test
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items: "test"
+  /pets:
+    get:
+      description: Returns test
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items: "test"
