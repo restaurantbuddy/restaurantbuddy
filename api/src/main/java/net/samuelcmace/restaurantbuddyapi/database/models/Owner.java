@@ -21,9 +21,9 @@ public class Owner {
      * Field representing the primary key of the database.
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "OWNER_ID")
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     /**
      * Field representing the user associated with the user object (non-nullable from this direction).

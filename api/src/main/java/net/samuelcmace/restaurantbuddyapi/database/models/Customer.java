@@ -22,7 +22,8 @@ public class Customer {
      */
     @Id
     @Column(name = "CUSTOMER_ID")
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     /**
      * Field representing the user associated with the given customer (non-nullable from this direction).

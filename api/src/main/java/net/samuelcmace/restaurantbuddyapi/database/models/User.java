@@ -22,8 +22,8 @@ public class User {
      */
     @Id
     @Column(name = "USER_ID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     /**
      * Field representing the user's first name.

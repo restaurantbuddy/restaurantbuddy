@@ -25,8 +25,8 @@ public class Login {
      */
     @Id
     @Column(name = "LOGIN_ID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     /**
      * Field representing the username of the login.

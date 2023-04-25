@@ -25,7 +25,8 @@ public class Menu {
      */
     @Id
     @Column(name = "MENU_ID")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     /**
      * Field representing the name of the given menu (for example: breakfast, lunch, dinner, specialty, etc.)

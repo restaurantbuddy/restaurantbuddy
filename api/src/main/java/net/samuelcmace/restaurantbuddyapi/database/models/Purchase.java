@@ -25,9 +25,9 @@ public class Purchase {
      * The primary key for the table.
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "PURCHASE_ID")
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     /**
      * Field representing the time the purchase was made.

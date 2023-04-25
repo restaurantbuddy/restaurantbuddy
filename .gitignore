@@ -1,2 +1,4 @@
 # IntelliJ Project Files
 *.idea
+
+.DS_Store

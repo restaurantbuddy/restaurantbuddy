@@ -22,7 +22,8 @@ public class Employee {
      */
     @Id
     @Column(name = "EMPLOYEE_ID")
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     /**
      * Field representing the salary of the employee.
