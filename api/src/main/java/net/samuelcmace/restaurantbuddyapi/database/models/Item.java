@@ -24,20 +24,20 @@ public class Item {
      * Field representing the primary key of the table.
      */
     @Id
-    @Column(name = "ITEM_ID")
+    @Column(name = "ITEM_ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
      * Field representing the name of the item.
      */
-    @Column(name = "ITEM_NAME")
+    @Column(name = "ITEM_NAME", nullable = false)
     private String name;
 
     /**
      * Field representing the cost to the user (before tax) of the item in question.
      */
-    @Column(name = "ITEM_COST")
+    @Column(name = "ITEM_COST", nullable = false)
     private Double cost;
 
     /**
@@ -62,6 +62,7 @@ public class Item {
             )
     )
     private List<Menu> menus;
+
     /**
      * Field containing a collection of all the transactions in which the item was purchased.
      */

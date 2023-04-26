@@ -24,14 +24,14 @@ public class Menu {
      * Field representing the primary key of the table.
      */
     @Id
-    @Column(name = "MENU_ID")
+    @Column(name = "MENU_ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
      * Field representing the name of the given menu (for example: breakfast, lunch, dinner, specialty, etc.)
      */
-    @Column(name = "MENU_NAME")
+    @Column(name = "MENU_NAME", nullable = false)
     private String name;
 
     /**

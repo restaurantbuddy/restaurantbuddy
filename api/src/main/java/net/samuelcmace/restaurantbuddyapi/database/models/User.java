@@ -21,26 +21,26 @@ public class User {
      * Field representing the primary key of the table.
      */
     @Id
-    @Column(name = "USER_ID")
+    @Column(name = "USER_ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
      * Field representing the user's first name.
      */
-    @Column(name = "USER_FIRST_NAME")
+    @Column(name = "USER_FIRST_NAME", nullable = false)
     private String firstName;
 
     /**
      * Field representing the user's last name (or surname).
      */
-    @Column(name = "USER_LAST_NAME")
+    @Column(name = "USER_LAST_NAME", nullable = false)
     private String lastName;
 
     /**
      * Field representing the user's email address.
      */
-    @Column(name = "USER_EMAIL")
+    @Column(name = "USER_EMAIL", nullable = false)
     private String email;
 
     /**
@@ -49,19 +49,19 @@ public class User {
      * The phone number assumes a USA/Canadian country code (+1) and that only the digits of the phone number are stored
      * in the database (no spaces, dashes, or parenthesis).
      */
-    @Column(name = "USER_PHONE")
+    @Column(name = "USER_PHONE", nullable = false)
     private String phone;
 
     /**
      * Field representing the address at which the user lives.
      */
-    @Column(name = "USER_ADDRESS")
+    @Column(name = "USER_ADDRESS", nullable = false)
     private String address;
 
     /**
      * Field representing the city in which the user lives.
      */
-    @Column(name = "USER_CITY")
+    @Column(name = "USER_CITY", nullable = false)
     private String city;
 
     /**
@@ -70,7 +70,7 @@ public class User {
      * The database assumes the user lives at a US-based address. The format is the standard for US addresses
      * (for example, "AL" is the abbreviation for the state of Alabama).
      */
-    @Column(name = "USER_STATE")
+    @Column(name = "USER_STATE", nullable = false)
     private String state;
 
     /**
@@ -78,14 +78,14 @@ public class User {
      * <br>
      * The database assumes the user lives at a US address. The zip code length is only 5 digits in length.
      */
-    @Column(name = "USER_ZIP")
+    @Column(name = "USER_ZIP", nullable = false)
     private String zip;
 
     /**
      * Field representing the login associated with the user.
      */
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "LOGIN_ID", referencedColumnName = "LOGIN_ID")
+    @JoinColumn(name = "LOGIN_ID", referencedColumnName = "LOGIN_ID", nullable = false)
     private Login login;
 
     /**

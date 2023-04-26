@@ -25,21 +25,21 @@ public class Purchase {
      * The primary key for the table.
      */
     @Id
-    @Column(name = "PURCHASE_ID")
+    @Column(name = "PURCHASE_ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
      * Field representing the time the purchase was made.
      */
-    @Column(name = "PURCHASE_TIMESTAMP")
+    @Column(name = "PURCHASE_TIMESTAMP", nullable = false)
     private Time timestamp;
 
     /**
      * Field representing the customer who placed the order.
      */
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "CUSTOMER_ID", referencedColumnName = "CUSTOMER_ID")
+    @JoinColumn(name = "CUSTOMER_ID", referencedColumnName = "CUSTOMER_ID", nullable = false)
     private Customer customer;
 
     /**

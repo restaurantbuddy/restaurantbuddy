@@ -21,7 +21,7 @@ public class Owner {
      * Field representing the primary key of the database.
      */
     @Id
-    @Column(name = "OWNER_ID")
+    @Column(name = "OWNER_ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -29,7 +29,7 @@ public class Owner {
      * Field representing the user associated with the user object (non-nullable from this direction).
      */
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")
+    @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", nullable = false)
     private User user;
 
 }
