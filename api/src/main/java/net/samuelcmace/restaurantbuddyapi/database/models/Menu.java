@@ -37,7 +37,7 @@ public class Menu {
     /**
      * Collection representing the items being offered on the menu.
      */
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "MENU_ITEM",
             joinColumns = @JoinColumn(

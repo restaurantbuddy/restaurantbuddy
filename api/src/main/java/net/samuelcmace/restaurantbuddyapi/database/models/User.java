@@ -84,28 +84,28 @@ public class User {
     /**
      * Field representing the login associated with the user.
      */
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "LOGIN_ID", referencedColumnName = "LOGIN_ID")
     private Login login;
 
     /**
      * Field representing the possible owner associated with the user (if the user is an owner; this field could be null).
      */
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")
     private Owner owner;
 
     /**
      * Field representing the possible employee associated with the user (if the user is an employee; this field could be null).
      */
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")
     private Employee employee;
 
     /**
      * Field representing the possible customer associated with the user (if the user is an customer; this field could be null).
      */
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")
     private Customer customer;
 

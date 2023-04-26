@@ -43,7 +43,7 @@ public class Role {
     /**
      * JPA entity mapper representing the logins associated with the given role in question.
      */
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "LOGIN_ROLE",
             joinColumns = @JoinColumn(

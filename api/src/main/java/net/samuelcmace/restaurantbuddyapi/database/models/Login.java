@@ -43,7 +43,7 @@ public class Login {
     /**
      * JPA mapper representing the roles associated with the login in question.
      */
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "LOGIN_ROLE",
             joinColumns = @JoinColumn(
@@ -60,7 +60,7 @@ public class Login {
     /**
      * Field that represents the user associated with the login.
      */
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "LOGIN_ID", referencedColumnName = "LOGIN_ID")
     private User user;
 

@@ -6,7 +6,7 @@ spring:
     hibernate:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-      ddlAuto: create-drop
+    ddlAuto:
   datasource:
     driverClassName: org.mariadb.jdbc.Driver
     username: root

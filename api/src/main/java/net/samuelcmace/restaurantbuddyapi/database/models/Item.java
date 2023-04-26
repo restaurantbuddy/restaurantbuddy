@@ -49,7 +49,7 @@ public class Item {
     /**
      * Field representing a collection containing the menus which contain the item in question.
      */
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "MENU_ITEM",
             joinColumns = @JoinColumn(
@@ -65,7 +65,7 @@ public class Item {
     /**
      * Field containing a collection of all the transactions in which the item was purchased.
      */
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "PURCHASE_ITEM",
             joinColumns = @JoinColumn(

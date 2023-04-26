@@ -28,7 +28,7 @@ public class Owner {
     /**
      * Field representing the user associated with the user object (non-nullable from this direction).
      */
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")
     private User user;
 
