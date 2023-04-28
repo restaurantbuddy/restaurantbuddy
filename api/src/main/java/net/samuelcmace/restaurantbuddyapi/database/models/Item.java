@@ -17,14 +17,19 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "ITEM")
+@Table(name = Item.TABLE_NAME)
 public class Item {
+
+    /**
+     * Field identifying the name of the table in the relational database.
+     */
+    public static final String TABLE_NAME = "ITEM";
 
     /**
      * Field representing the primary key of the table.
      */
     @Id
-    @Column(name = "ITEM_ID", nullable = false)
+    @Column(name = "ITEM_ID", nullable = false, unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

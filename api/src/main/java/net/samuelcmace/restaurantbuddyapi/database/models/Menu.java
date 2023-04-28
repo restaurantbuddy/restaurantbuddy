@@ -17,14 +17,19 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "MENU")
+@Table(name = Menu.TABLE_NAME)
 public class Menu {
+
+    /**
+     * Field identifying the name of the table in the relational database.
+     */
+    public static final String TABLE_NAME = "MENU";
 
     /**
      * Field representing the primary key of the table.
      */
     @Id
-    @Column(name = "MENU_ID", nullable = false)
+    @Column(name = "MENU_ID", nullable = false, unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

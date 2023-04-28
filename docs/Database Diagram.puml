@@ -1,0 +1,92 @@
+@startuml
+
+Entity CUSTOMER {
+    * CUSTOMER_ID: bigint <<generated>>
+    --
+    USER_ID: bigint
+}
+
+Entity EMPLOYEE {
+    * EMPLOYEE_ID: bigint <<generated>>
+    --
+    USER_ID: bigint
+    EMPLOYEE_SALARY: double
+}
+
+Entity ITEM {
+    * ITEM_ID: bigint <<generated>>
+    --
+    ITEM_NAME: varchar(225)
+    ITEM_DESCRIPTION: varchar(225)
+    ITEM_COST: double
+}
+
+Entity LOGIN {
+    * LOGIN_ID: bigint <<generated>>
+    --
+    LOGIN_USERNAME: varchar(225)
+    LOGIN_PASSWORD_HASH: varchar(225)
+}
+
+Entity MENU {
+    * MENU_ID: bigint <<generated>>
+    --
+    MENU_NAME: varchar(225)
+}
+
+Entity MENU_ITEM {
+    * MENU_ID: bigint
+    * ITEM_ID: bigint
+}
+
+Entity OWNER {
+    * OWNER_ID: bigint <<generated>>
+    --
+    USER_ID: bigint
+}
+
+Entity PURCHASE {
+    * PURCHASE_ID: bigint <<generated>>
+    --
+    CUSTOMER_ID: bigint
+    PURCHASE_TIMESTAMP: time
+}
+
+Entity PURCHASE_ITEM {
+    * PURCHASE_ID: bigint
+    * ITEM_ID: bigint
+}
+
+Entity USER {
+    * USER_ID: bigint <<generated>>
+    --
+    USER_FIRST_NAME: varchar(225)
+    USER_LAST_NAME: varchar(225)
+    USER_ADDRESS: varchar(225)
+    USER_CITY: varchar(225)
+    USER_STATE: varchar(225)
+    USER_ZIP: varchar(225)
+    USER_EMAIL: varchar(225)
+    USER_PHONE: varchar(225)
+    LOGIN_ID: bigint
+}
+
+CUSTOMER |o--|| USER
+
+EMPLOYEE |o--|| USER
+
+OWNER |o--|| USER
+
+LOGIN ||--|| USER
+
+USER ||--o{ PURCHASE
+
+PURCHASE ||--|{ PURCHASE_ITEM
+
+ITEM ||--|{ PURCHASE_ITEM
+
+MENU ||--|{ MENU_ITEM
+
+ITEM ||--|{ MENU_ITEM
+
+@enduml

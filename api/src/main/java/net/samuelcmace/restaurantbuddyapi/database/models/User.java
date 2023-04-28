@@ -14,14 +14,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "USER")
+@Table(name = User.TABLE_NAME)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User {
+
+    /**
+     * Field identifying the name of the table in the relational database.
+     */
+    public static final String TABLE_NAME = "USER";
 
     /**
      * Field representing the primary key of the table.
      */
     @Id
-    @Column(name = "USER_ID", nullable = false)
+    @Column(name = "USER_ID", nullable = false, unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -85,28 +91,31 @@ public class User {
      * Field representing the login associated with the user.
      */
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "LOGIN_ID", referencedColumnName = "LOGIN_ID", nullable = false)
+    @JoinColumn(name = "LOGIN_ID", referencedColumnName = "LOGIN_ID", nullable = false, unique = true)
     private Login login;
 
     /**
-     * Field representing the possible owner associated with the user (if the user is an owner; this field could be null).
+     * Field representing the possible owner associated with the user
+     * (if the user is an owner, this field could be null).
      */
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")
+    @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", unique = true)
     private Owner owner;
 
     /**
-     * Field representing the possible employee associated with the user (if the user is an employee; this field could be null).
+     * Field representing the possible employee associated with the user
+     * (if the user is an employee; this field could be null).
      */
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")
+    @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", unique = true)
     private Employee employee;
 
     /**
-     * Field representing the possible customer associated with the user (if the user is an customer; this field could be null).
+     * Field representing the possible customer associated with the user
+     * (if the user is a customer, this field could be null).
      */
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")
+    @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", unique = true)
     private Customer customer;
 
 }

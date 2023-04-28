@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * MVC model for an authentication request to the server.
+ * MVC model associated with an authentication request.
  */
 @Data
 @Builder
@@ -15,13 +15,10 @@ import lombok.NoArgsConstructor;
 public class AuthenticationResponse {
 
     /**
-     * The username associated with the request.
+     * The newly-created JWT token to be used by the client in all subsequent API requests.
+     * <br>
+     * The API will then determine the user's privileges based on the JWT token.
      */
-    private String username;
-
-    /**
-     * The password to be sent to the server (before hashing).
-     */
-    private String password;
+    private String jwtToken;
 
 }

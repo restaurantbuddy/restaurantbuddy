@@ -18,14 +18,19 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "PURCHASE")
+@Table(name = Purchase.TABLE_NAME)
 public class Purchase {
+
+    /**
+     * Field identifying the name of the table in the relational database.
+     */
+    public static final String TABLE_NAME = "PURCHASE";
 
     /**
      * The primary key for the table.
      */
     @Id
-    @Column(name = "PURCHASE_ID", nullable = false)
+    @Column(name = "PURCHASE_ID", nullable = false, unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
