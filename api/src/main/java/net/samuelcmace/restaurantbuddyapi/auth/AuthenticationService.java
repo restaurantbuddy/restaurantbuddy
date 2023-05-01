@@ -23,21 +23,55 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+/**
+ * The MVC Service called by the AuthenticationController in all of it's requests.
+ */
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
 
+    /**
+     * The LoginRepository instance associated with the service.
+     */
     private final LoginRepository loginRepository;
 
+    /**
+     * The CustomerRepository instance associated with the service.
+     */
     private final CustomerRepository customerRepository;
+
+    /**
+     * The EmployeeRepository instance associated with the service.
+     */
     private final EmployeeRepository employeeRepository;
+
+    /**
+     * The OwnerRepository instance associated with the service.
+     */
     private final OwnerRepository ownerRepository;
 
+    /**
+     * The JwtService instance associated with the service.
+     */
     private final JwtService jwtService;
 
+    /**
+     * The PasswordEncoder instance associated with the service.
+     */
     private final PasswordEncoder passwordEncoder;
+
+    /**
+     * The AuthenticationManager instance associated with the service.
+     */
     private final AuthenticationManager authenticationManager;
 
+    /**
+     * Method called by the MVC controller to register a new user.
+     *
+     * @param request The request sent from the client.
+     * @return A new response object containing the JWT token.
+     * @throws UsernameAlreadyExistsException Thrown if the given username already exists in the database.
+     */
     public AuthenticationResponse register(RegisterRequest request) throws UsernameAlreadyExistsException {
 
         Optional<Login> login = loginRepository.findByUsername(request.getUsername());
@@ -106,6 +140,12 @@ public class AuthenticationService {
         }
     }
 
+    /**
+     * Method called by the MVC controller to authenticate an existing user.
+     *
+     * @param request The request sent by the client.
+     * @return A new response object containing the JWT token.
+     */
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
 
         authenticationManager.authenticate(

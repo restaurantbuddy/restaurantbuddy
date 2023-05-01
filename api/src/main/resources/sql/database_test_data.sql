@@ -23,5 +23,3 @@ VALUES (1, 'John', 'Doe', 'john.doe@example.com', '1234567890', '1234 Main St.',
 
 INSERT INTO EMPLOYEE (EMPLOYEE_ID, EMPLOYEE_SALARY, USER_ID)
 VALUES (1, 5000.00, 1);
-
-
