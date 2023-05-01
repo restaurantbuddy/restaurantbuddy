@@ -23,12 +23,12 @@ public class SecurityConfiguration {
         http
                 .csrf()
                 .disable()
-                .authorizeHttpRequests()
-                .requestMatchers("/auth/**")
-                .permitAll()
-                .anyRequest()
-                .authenticated()
-                .and()
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/customer/**").hasAuthority("CUSTOMER")
+                        .requestMatchers("/employee/**").hasAuthority("EMPLOYEE")
+                        .requestMatchers("/owner/**").hasAuthority("OWNER")
+                        .anyRequest().denyAll())
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
