@@ -19,12 +19,16 @@ dependencies {
     implementation("org.springframework.security:spring-security-core")
     implementation("org.springframework.security:spring-security-web")
     implementation("org.springframework.security:spring-security-config")
+    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
     implementation("io.jsonwebtoken:jjwt-api:0.11.5")
     implementation("io.jsonwebtoken:jjwt-impl:0.11.5")
     implementation("io.jsonwebtoken:jjwt-jackson:0.11.5")
 
+
     runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
+    implementation("io.minio:minio:8.5.2")
+
     implementation("org.json:json:20230227")
 
     compileOnly("org.projectlombok:lombok:1.18.26")

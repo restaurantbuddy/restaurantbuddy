@@ -96,6 +96,10 @@ nav li a {
 
 /* Inner Content (View-Specific) */
 
+.error-message {
+    text-align: center;
+}
+
 .image-card {
     display: inline-block;
     list-style: none;

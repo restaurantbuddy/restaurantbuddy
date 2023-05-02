@@ -42,7 +42,9 @@ public class SecurityConfiguration {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/auth/authenticate/**").permitAll()
+                        .requestMatchers("/auth/register/employee/**").hasAuthority("OWNER")
+                        .requestMatchers("/auth/register/owner/**").hasAuthority("OWNER")
                         .requestMatchers("/customer/**").hasAuthority("CUSTOMER")
                         .requestMatchers("/employee/**").hasAuthority("EMPLOYEE")
                         .requestMatchers("/owner/**").hasAuthority("OWNER")

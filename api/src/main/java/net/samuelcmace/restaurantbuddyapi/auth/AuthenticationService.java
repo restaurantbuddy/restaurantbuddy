@@ -1,23 +1,24 @@
 package net.samuelcmace.restaurantbuddyapi.auth;
 
 import lombok.RequiredArgsConstructor;
-import net.samuelcmace.restaurantbuddyapi.auth.models.AuthenticationResponse;
-import net.samuelcmace.restaurantbuddyapi.auth.models.authentication.AuthenticateCustomerRequest;
-import net.samuelcmace.restaurantbuddyapi.auth.models.authentication.AuthenticateEmployeeRequest;
-import net.samuelcmace.restaurantbuddyapi.auth.models.authentication.AuthenticateOwnerRequest;
+import net.samuelcmace.restaurantbuddyapi.auth.exception.UsernameAlreadyExistsException;
+import net.samuelcmace.restaurantbuddyapi.auth.exception.UsernameDoesNotExistException;
 import net.samuelcmace.restaurantbuddyapi.auth.models.authentication.AuthenticationRequest;
-import net.samuelcmace.restaurantbuddyapi.auth.models.registration.NewCustomerRequest;
-import net.samuelcmace.restaurantbuddyapi.auth.models.registration.NewEmployeeRequest;
-import net.samuelcmace.restaurantbuddyapi.auth.models.registration.NewOwnerRequest;
-import net.samuelcmace.restaurantbuddyapi.auth.models.registration.RegisterRequest;
+import net.samuelcmace.restaurantbuddyapi.auth.models.registration.AuthenticationResponse;
+import net.samuelcmace.restaurantbuddyapi.auth.models.registration.existinguser.RegisterExistingCustomerRequest;
+import net.samuelcmace.restaurantbuddyapi.auth.models.registration.existinguser.RegisterExistingEmployeeRequest;
+import net.samuelcmace.restaurantbuddyapi.auth.models.registration.existinguser.RegisterExistingOwnerRequest;
+import net.samuelcmace.restaurantbuddyapi.auth.models.registration.existinguser.RegisterExistingRequest;
+import net.samuelcmace.restaurantbuddyapi.auth.models.registration.newuser.RegisterNewCustomerRequest;
+import net.samuelcmace.restaurantbuddyapi.auth.models.registration.newuser.RegisterNewEmployeeRequest;
+import net.samuelcmace.restaurantbuddyapi.auth.models.registration.newuser.RegisterNewOwnerRequest;
+import net.samuelcmace.restaurantbuddyapi.auth.models.registration.newuser.RegisterNewRequest;
 import net.samuelcmace.restaurantbuddyapi.config.JwtService;
-import net.samuelcmace.restaurantbuddyapi.database.models.*;
-import net.samuelcmace.restaurantbuddyapi.database.repositories.CustomerRepository;
-import net.samuelcmace.restaurantbuddyapi.database.repositories.EmployeeRepository;
-import net.samuelcmace.restaurantbuddyapi.database.repositories.LoginRepository;
-import net.samuelcmace.restaurantbuddyapi.database.repositories.OwnerRepository;
+import net.samuelcmace.restaurantbuddyapi.storage.database.models.*;
+import net.samuelcmace.restaurantbuddyapi.storage.database.repositories.*;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +35,11 @@ public class AuthenticationService {
      * The LoginRepository instance associated with the service.
      */
     private final LoginRepository loginRepository;
+
+    /**
+     * The UserRepository instance associated with the service.
+     */
+    private final UserRepository userRepository;
 
     /**
      * The CustomerRepository instance associated with the service.
@@ -72,64 +78,34 @@ public class AuthenticationService {
      * @return A new response object containing the JWT token.
      * @throws UsernameAlreadyExistsException Thrown if the given username already exists in the database.
      */
-    public AuthenticationResponse register(RegisterRequest request) throws UsernameAlreadyExistsException {
+    public AuthenticationResponse registerNew(RegisterNewRequest request) throws UsernameAlreadyExistsException {
 
         Optional<Login> login = loginRepository.findByUsername(request.getUsername());
 
         if (login.isPresent()) {
             throw new UsernameAlreadyExistsException("The requested username already exists!");
         } else {
-            Login newLogin = Login
-                    .builder()
-                    .username(request.getUsername())
-                    .passwordHash(passwordEncoder.encode(request.getPassword()))
-                    .build();
 
-            User newUser = User.builder()
-                    .firstName(request.getFirstName())
-                    .lastName(request.getLastName())
-                    .email(request.getEmail())
-                    .phone(request.getPhone())
-                    .address(request.getAddress())
-                    .city(request.getCity())
-                    .state(request.getState())
-                    .zip(request.getZip())
-                    .login(newLogin)
-                    .build();
+            User newUser = registerNewUser(request);
 
-            if (request.getClass() == NewCustomerRequest.class) {
+            if (request.getClass() == RegisterNewCustomerRequest.class) {
 
-                Customer newCustomer = Customer
-                        .builder()
-                        .user(newUser)
-                        .build();
-
-                customerRepository.save(newCustomer);
+                Customer newCustomer = addCustomerRole(newUser);
 
                 var jwtToken = jwtService.generateToken(newCustomer);
                 return AuthenticationResponse.builder().jwtToken(jwtToken).build();
 
-            } else if (request.getClass() == NewEmployeeRequest.class) {
+            } else if (request.getClass() == RegisterNewEmployeeRequest.class) {
 
-                Employee newEmployee = Employee
-                        .builder()
-                        .user(newUser)
-                        .salary(((NewEmployeeRequest) request).getSalary())
-                        .build();
-
-                employeeRepository.save(newEmployee);
+                Double salary = ((RegisterNewEmployeeRequest) request).getSalary();
+                Employee newEmployee = addEmployeeRole(newUser, salary);
 
                 var jwtToken = jwtService.generateToken(newEmployee);
                 return AuthenticationResponse.builder().jwtToken(jwtToken).build();
 
-            } else if (request.getClass() == NewOwnerRequest.class) {
+            } else if (request.getClass() == RegisterNewOwnerRequest.class) {
 
-                Owner newOwner = Owner
-                        .builder()
-                        .user(newUser)
-                        .build();
-
-                ownerRepository.save(newOwner);
+                Owner newOwner = addOwnerRole(newUser);
 
                 var jwtToken = jwtService.generateToken(newOwner);
                 return AuthenticationResponse.builder().jwtToken(jwtToken).build();
@@ -137,6 +113,51 @@ public class AuthenticationService {
             } else {
                 return null;
             }
+        }
+    }
+
+    /**
+     * Method used to register an existing user with a new role.
+     *
+     * @param request
+     * @return
+     * @throws UsernameDoesNotExistException
+     */
+    public AuthenticationResponse registerExisting(RegisterExistingRequest request) {
+
+        Optional<Login> login = loginRepository.findByUsername(request.getUsername());
+
+        if (login.isPresent()) {
+
+            User existingUser = login.get().getUser();
+
+            if (request.getClass() == RegisterExistingCustomerRequest.class) {
+
+                Customer newCustomer = addCustomerRole(existingUser);
+
+                var jwtToken = jwtService.generateToken(newCustomer);
+                return AuthenticationResponse.builder().jwtToken(jwtToken).build();
+
+            } else if (request.getClass() == RegisterExistingEmployeeRequest.class) {
+
+                Double salary = ((RegisterExistingEmployeeRequest) request).getSalary();
+                Employee newEmployee = addEmployeeRole(existingUser, salary);
+
+                var jwtToken = jwtService.generateToken(newEmployee);
+                return AuthenticationResponse.builder().jwtToken(jwtToken).build();
+
+            } else if (request.getClass() == RegisterExistingOwnerRequest.class) {
+
+                Owner newOwner = addOwnerRole(existingUser);
+
+                var jwtToken = jwtService.generateToken(newOwner);
+                return AuthenticationResponse.builder().jwtToken(jwtToken).build();
+
+            } else {
+                return null;
+            }
+        } else {
+            return null;
         }
     }
 
@@ -155,28 +176,112 @@ public class AuthenticationService {
                 )
         );
 
-        var login = loginRepository.findByUsername(request.getUsername()).orElseThrow();
+        var login = loginRepository
+                .findByUsername(request.getUsername())
+                .orElseThrow(
+                        () -> new UsernameNotFoundException("The requested username was not found!")
+                );
 
-        if (request.getClass() == AuthenticateCustomerRequest.class) {
+        var jwtToken = jwtService.generateToken(login.getUser().getCustomer());
+        return AuthenticationResponse.builder().jwtToken(jwtToken).build();
 
-            var jwtToken = jwtService.generateToken(login.getUser().getCustomer());
-            return AuthenticationResponse.builder().jwtToken(jwtToken).build();
+    }
 
+    /**
+     * Private method to register a new user.
+     *
+     * @param registerNewRequest The JSON model associated with the registration request.
+     * @return The newly-created and persisted user object.
+     */
+    private User registerNewUser(RegisterNewRequest registerNewRequest) {
+        Login newLogin = Login
+                .builder()
+                .username(registerNewRequest.getUsername())
+                .passwordHash(passwordEncoder.encode(registerNewRequest.getPassword()))
+                .build();
 
-        } else if (request.getClass() == AuthenticateEmployeeRequest.class) {
+        loginRepository.save(newLogin);
 
-            var jwtToken = jwtService.generateToken(login.getUser().getEmployee());
-            return AuthenticationResponse.builder().jwtToken(jwtToken).build();
+        User newUser = User.builder()
+                .firstName(registerNewRequest.getFirstName())
+                .lastName(registerNewRequest.getLastName())
+                .email(registerNewRequest.getEmail())
+                .phone(registerNewRequest.getPhone())
+                .address(registerNewRequest.getAddress())
+                .city(registerNewRequest.getCity())
+                .state(registerNewRequest.getState())
+                .zip(registerNewRequest.getZip())
+                .login(newLogin)
+                .build();
 
-        } else if (request.getClass() == AuthenticateOwnerRequest.class) {
+        userRepository.save(newUser);
 
-            var jwtToken = jwtService.generateToken(login.getUser().getOwner());
-            return AuthenticationResponse.builder().jwtToken(jwtToken).build();
+        return newUser;
+    }
 
+    /**
+     * Method to add the role of Customer to an existing User.
+     *
+     * @param existingUser The user for which the customer role should be added.
+     * @return The new (or existing) Customer object associated with the User in question.
+     */
+    private Customer addCustomerRole(User existingUser) {
+        if (existingUser.getCustomer() == null) {
+            Customer newCustomer = Customer
+                    .builder()
+                    .user(existingUser)
+                    .build();
+
+            customerRepository.save(newCustomer);
+
+            return newCustomer;
         } else {
-            return null;
+            return existingUser.getCustomer();
         }
+    }
 
+    /**
+     * Method to add the role of Employee to an existing User.
+     *
+     * @param existingUser   The user for which the customer role should be added.
+     * @param employeeSalary The Employee's salary passed through the JSON model.
+     * @return The new (or existing) Employee object associated with the User in question.
+     */
+    private Employee addEmployeeRole(User existingUser, Double employeeSalary) {
+        if (existingUser.getEmployee() == null) {
+            Employee newEmployee = Employee
+                    .builder()
+                    .user(existingUser)
+                    .salary(employeeSalary)
+                    .build();
+
+            employeeRepository.save(newEmployee);
+
+            return newEmployee;
+        } else {
+            return existingUser.getEmployee();
+        }
+    }
+
+    /**
+     * Method to add the role of Owner to an existing User.
+     *
+     * @param existingUser The user for which the customer role should be added.
+     * @return The new (or existing) Owner object associated with the User in question.
+     */
+    private Owner addOwnerRole(User existingUser) {
+        if (existingUser.getOwner() == null) {
+            Owner newOwner = Owner
+                    .builder()
+                    .user(existingUser)
+                    .build();
+
+            ownerRepository.save(newOwner);
+
+            return newOwner;
+        } else {
+            return existingUser.getOwner();
+        }
     }
 
 }
