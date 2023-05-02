@@ -1,16 +1,18 @@
-package net.samuelcmace.restaurantbuddyapi.auth.models.authentication;
+package net.samuelcmace.restaurantbuddyapi.auth.models;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
  * Abstract MVC model for an authentication request to the server.
  */
+@Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public abstract class AuthenticationRequest {
+public class AuthenticationRequest {
 
     /**
      * The username associated with the request.

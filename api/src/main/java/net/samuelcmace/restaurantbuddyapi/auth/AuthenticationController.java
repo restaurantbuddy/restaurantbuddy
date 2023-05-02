@@ -1,11 +1,8 @@
 package net.samuelcmace.restaurantbuddyapi.auth;
 
 import lombok.RequiredArgsConstructor;
-import net.samuelcmace.restaurantbuddyapi.auth.exception.UsernameAlreadyExistsException;
-import net.samuelcmace.restaurantbuddyapi.auth.models.authentication.AuthenticateCustomerRequest;
-import net.samuelcmace.restaurantbuddyapi.auth.models.authentication.AuthenticateEmployeeRequest;
-import net.samuelcmace.restaurantbuddyapi.auth.models.authentication.AuthenticateOwnerRequest;
-import net.samuelcmace.restaurantbuddyapi.auth.models.registration.AuthenticationResponse;
+import net.samuelcmace.restaurantbuddyapi.auth.models.AuthenticationRequest;
+import net.samuelcmace.restaurantbuddyapi.auth.models.AuthenticationResponse;
 import net.samuelcmace.restaurantbuddyapi.auth.models.registration.existinguser.RegisterExistingCustomerRequest;
 import net.samuelcmace.restaurantbuddyapi.auth.models.registration.existinguser.RegisterExistingEmployeeRequest;
 import net.samuelcmace.restaurantbuddyapi.auth.models.registration.existinguser.RegisterExistingOwnerRequest;
@@ -32,11 +29,11 @@ public class AuthenticationController {
     private final AuthenticationService authenticationService;
 
     /**
-     * MVC route called to register a new customer.
+     * Method to register a new user and assign it to the customer role.
      *
-     * @param request The request used to authenticate a new customer.
-     * @return A new response object that will, if successful, contain a newly-instantiated (JWT) login token.
-     * @throws UsernameAlreadyExistsException Thrown if the given username already exists.
+     * @param request The JSON request from the client.
+     * @return A JSON response object that will (if successful) contain the JWT token.
+     * @throws UsernameAlreadyExistsException Thrown if the username already exists.
      */
     @PostMapping("/register/customer/new")
     public ResponseEntity<AuthenticationResponse> registerNewCustomer(
@@ -46,10 +43,10 @@ public class AuthenticationController {
     }
 
     /**
-     * MVC route called to assign the Customer role to an existing User.
+     * Method to assign an existing user to the customer role.
      *
-     * @param request The request used to assign the role.
-     * @return A new response object that will, if successful, contain a newly-instantiated (JWT) login token.
+     * @param request The JSON request from the client.
+     * @return A JSON response object that will (if successful) contain the JWT token.
      */
     @PostMapping("/register/customer/existing")
     public ResponseEntity<AuthenticationResponse> registerExistingCustomer(
@@ -59,11 +56,11 @@ public class AuthenticationController {
     }
 
     /**
-     * MVC route called to register a new employee.
+     * Method to register a new user and assign it to the employee role.
      *
-     * @param request The request used to authenticate a new employee.
-     * @return A new response object that will, if successful, contain a newly-instantiated (JWT) login token.
-     * @throws UsernameAlreadyExistsException Thrown if the given username already exists.
+     * @param request The JSON request from the client.
+     * @return A JSON response object that will (if successful) contain the JWT token.
+     * @throws UsernameAlreadyExistsException Thrown if the username already exists.
      */
     @PostMapping("/register/employee/new")
     public ResponseEntity<AuthenticationResponse> registerNewEmployee(
@@ -73,10 +70,10 @@ public class AuthenticationController {
     }
 
     /**
-     * MVC route called to assign the role of Employee to an existing User.
+     * Method to assign an existing user to the employee role.
      *
-     * @param request The request used to assign the role.
-     * @return A new response object that will, if successful, contain a newly-instantiated (JWT) login token.
+     * @param request The JSON request from the client.
+     * @return A JSON response object that will (if successful) contain the JWT token.
      */
     @PostMapping("/register/employee/existing")
     public ResponseEntity<AuthenticationResponse> registerExistingEmployee(
@@ -86,11 +83,11 @@ public class AuthenticationController {
     }
 
     /**
-     * MVC route called to register a new owner.
+     * Method to register a new user and assign it to the owner role.
      *
-     * @param request The request used to authenticate a new owner.
-     * @return A new response object that will, if successful, contain a newly-instantiated (JWT) login token.
-     * @throws UsernameAlreadyExistsException Thrown if the given username already exists.
+     * @param request The JSON request from the client.
+     * @return A JSON response object that will (if successful) contain the JWT token.
+     * @throws UsernameAlreadyExistsException Thrown if the username already exists.
      */
     @PostMapping("/register/owner/new")
     public ResponseEntity<AuthenticationResponse> registerNewOwner(
@@ -100,11 +97,10 @@ public class AuthenticationController {
     }
 
     /**
-     * MVC route called to register a new owner.
+     * Method to assign an existing user to the pwmer role.
      *
-     * @param request The request used to authenticate a new owner.
-     * @return A new response object that will, if successful, contain a newly-instantiated (JWT) login token.
-     * @throws UsernameAlreadyExistsException Thrown if the given username already exists.
+     * @param request The JSON request from the client.
+     * @return A JSON response object that will (if successful) contain the JWT token.
      */
     @PostMapping("/register/owner/existing")
     public ResponseEntity<AuthenticationResponse> registerExistingOwner(
@@ -114,39 +110,15 @@ public class AuthenticationController {
     }
 
     /**
-     * MVC route called to authenticate an existing customer.
+     * Method to authenticate a user in the system.
      *
-     * @param request The request used to authenticate an existing customer.
-     * @return A new response object that will, if successful, contain a newly-instantiated (JWT) login token.
+     * @param request The JSON request from the client.
+     * @return A JSON response object that will (if successful) contain the JWT token.
      */
-    @PostMapping("/authenticate/customer/new")
-    public ResponseEntity<AuthenticationResponse> authenticateCustomer(
-            @RequestBody AuthenticateCustomerRequest request
+    @PostMapping("/authenticate")
+    public ResponseEntity<AuthenticationResponse> authenticate(
+            @RequestBody AuthenticationRequest request
     ) {
-        return ResponseEntity.ok(authenticationService.authenticate(request));
-    }
-
-    /**
-     * MVC route called to authenticate an existing employee.
-     *
-     * @param request The request used to authenticate an existing employee.
-     * @return A new response object that will, if successful, contain a newly-instantiated (JWT) login token.
-     */
-    @PostMapping("/authenticate/employee/new")
-    public ResponseEntity<AuthenticationResponse> authenticateEmployee(
-            @RequestBody AuthenticateEmployeeRequest request) {
-        return ResponseEntity.ok(authenticationService.authenticate(request));
-    }
-
-    /**
-     * MVC route called to authenticate an existing owner.
-     *
-     * @param request The request used to authenticate an existing owner.
-     * @return A new response object that will, if successful, contain a newly-instantiated (JWT) login token.
-     */
-    @PostMapping("/authenticate/owner/new")
-    public ResponseEntity<AuthenticationResponse> authenticateOwner(
-            @RequestBody AuthenticateOwnerRequest request) {
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }
 

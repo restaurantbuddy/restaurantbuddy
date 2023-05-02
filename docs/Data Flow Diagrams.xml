@@ -1,283 +1,284 @@
 <mxfile
-    agent="5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.102 Safari/537.36"
-    etag="RpBdR0493UJMlAGh4KMW" host="drawio-plugin" modified="2023-04-22T15:35:19.794Z" pages="2" type="embed"
-    version="20.5.3">
+        agent="5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.102 Safari/537.36"
+        etag="RpBdR0493UJMlAGh4KMW" host="drawio-plugin" modified="2023-04-22T15:35:19.794Z" pages="2" type="embed"
+        version="20.5.3">
     <diagram name="Authentication Process" id="gt_DXB-pbqNWv2HVG0Ub">
         <mxGraphModel arrows="1" connect="1" dx="924" dy="771" fold="1" grid="1" gridSize="10" guides="1" math="0"
-            page="1" pageHeight="1100" pageScale="1" pageWidth="850" shadow="0" tooltips="1">
+                      page="1" pageHeight="1100" pageScale="1" pageWidth="850" shadow="0" tooltips="1">
             <root>
-                <mxCell id="0" />
-                <mxCell id="1" parent="0" />
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
                 <mxCell
-                    style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0;entryDx=0;entryDy=0;"
-                    edge="1" id="KjXTeLB7kf_rAEjumU_H-11" parent="1" source="KjXTeLB7kf_rAEjumU_H-2"
-                    target="KjXTeLB7kf_rAEjumU_H-4">
-                    <mxGeometry as="geometry" relative="1" />
+                        style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0;entryDx=0;entryDy=0;"
+                        edge="1" id="KjXTeLB7kf_rAEjumU_H-11" parent="1" source="KjXTeLB7kf_rAEjumU_H-2"
+                        target="KjXTeLB7kf_rAEjumU_H-4">
+                    <mxGeometry as="geometry" relative="1"/>
                 </mxCell>
                 <mxCell style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];"
-                    connectable="0" id="KjXTeLB7kf_rAEjumU_H-12" parent="KjXTeLB7kf_rAEjumU_H-11"
-                    value="If a valid token exists, it will&lt;br&gt;be used for authentication.&lt;br&gt;Otherwise, the API Client will&lt;br&gt;supply a valid username&lt;br&gt;and password."
-                    vertex="1">
+                        connectable="0" id="KjXTeLB7kf_rAEjumU_H-12" parent="KjXTeLB7kf_rAEjumU_H-11"
+                        value="If a valid token exists, it will&lt;br&gt;be used for authentication.&lt;br&gt;Otherwise, the API Client will&lt;br&gt;supply a valid username&lt;br&gt;and password."
+                        vertex="1">
                     <mxGeometry as="geometry" relative="1" x="0.2266" y="2">
-                        <mxPoint as="offset" x="22" y="13" />
+                        <mxPoint as="offset" x="22" y="13"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell
-                    style="html=1;dashed=0;whiteSpace=wrap;shape=mxgraph.dfd.dataStoreID;align=left;spacingLeft=3;points=[[0,0],[0.5,0],[1,0],[0,0.5],[1,0.5],[0,1],[0.5,1],[1,1]];fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;"
-                    id="KjXTeLB7kf_rAEjumU_H-2" parent="1"
-                    value="1&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;Client Cache" vertex="1">
-                    <mxGeometry as="geometry" height="30" width="150" x="355" y="10" />
+                        style="html=1;dashed=0;whiteSpace=wrap;shape=mxgraph.dfd.dataStoreID;align=left;spacingLeft=3;points=[[0,0],[0.5,0],[1,0],[0,0.5],[1,0.5],[0,1],[0.5,1],[1,1]];fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;"
+                        id="KjXTeLB7kf_rAEjumU_H-2" parent="1"
+                        value="1&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;Client Cache" vertex="1">
+                    <mxGeometry as="geometry" height="30" width="150" x="355" y="10"/>
                 </mxCell>
                 <mxCell
-                    style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;"
-                    edge="1" id="KjXTeLB7kf_rAEjumU_H-7" parent="1" source="KjXTeLB7kf_rAEjumU_H-3"
-                    target="KjXTeLB7kf_rAEjumU_H-4">
-                    <mxGeometry as="geometry" relative="1" />
+                        style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;"
+                        edge="1" id="KjXTeLB7kf_rAEjumU_H-7" parent="1" source="KjXTeLB7kf_rAEjumU_H-3"
+                        target="KjXTeLB7kf_rAEjumU_H-4">
+                    <mxGeometry as="geometry" relative="1"/>
                 </mxCell>
                 <mxCell style="html=1;dashed=0;whiteSpace=wrap;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;"
-                    id="KjXTeLB7kf_rAEjumU_H-3" parent="1" value="Web Browser&lt;br&gt;(JavaScript)" vertex="1">
-                    <mxGeometry as="geometry" height="40" width="100" x="115" y="10" />
+                        id="KjXTeLB7kf_rAEjumU_H-3" parent="1" value="Web Browser&lt;br&gt;(JavaScript)" vertex="1">
+                    <mxGeometry as="geometry" height="40" width="100" x="115" y="10"/>
                 </mxCell>
                 <mxCell
-                    style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"
-                    edge="1" id="KjXTeLB7kf_rAEjumU_H-8" parent="1" source="KjXTeLB7kf_rAEjumU_H-4"
-                    target="KjXTeLB7kf_rAEjumU_H-2">
-                    <mxGeometry as="geometry" relative="1" />
+                        style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"
+                        edge="1" id="KjXTeLB7kf_rAEjumU_H-8" parent="1" source="KjXTeLB7kf_rAEjumU_H-4"
+                        target="KjXTeLB7kf_rAEjumU_H-2">
+                    <mxGeometry as="geometry" relative="1"/>
                 </mxCell>
                 <mxCell style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];"
-                    connectable="0" id="KjXTeLB7kf_rAEjumU_H-9" parent="KjXTeLB7kf_rAEjumU_H-8"
-                    value="Check Cache for&lt;br&gt;JSON Web Token" vertex="1">
+                        connectable="0" id="KjXTeLB7kf_rAEjumU_H-9" parent="KjXTeLB7kf_rAEjumU_H-8"
+                        value="Check Cache for&lt;br&gt;JSON Web Token" vertex="1">
                     <mxGeometry as="geometry" relative="1" x="-0.0765" y="3">
-                        <mxPoint as="offset" x="34" y="3" />
+                        <mxPoint as="offset" x="34" y="3"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell
-                    style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;"
-                    edge="1" id="KjXTeLB7kf_rAEjumU_H-15" parent="1" source="KjXTeLB7kf_rAEjumU_H-4"
-                    target="KjXTeLB7kf_rAEjumU_H-14">
+                        style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;"
+                        edge="1" id="KjXTeLB7kf_rAEjumU_H-15" parent="1" source="KjXTeLB7kf_rAEjumU_H-4"
+                        target="KjXTeLB7kf_rAEjumU_H-14">
                     <mxGeometry as="geometry" relative="1">
-                        <mxPoint as="targetPoint" x="195" y="290" />
+                        <mxPoint as="targetPoint" x="195" y="290"/>
                         <Array as="points">
-                            <mxPoint x="190" y="290" />
-                            <mxPoint x="190" y="290" />
+                            <mxPoint x="190" y="290"/>
+                            <mxPoint x="190" y="290"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
                 <mxCell style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];"
-                    connectable="0" id="7raKiSbSl4hWi9Y7VGdX-1" parent="KjXTeLB7kf_rAEjumU_H-15"
-                    value="&lt;span style=&quot;color: rgb(255, 255, 255); font-size: 12px; background-color: rgb(42, 37, 47);&quot;&gt;Username and Password&lt;br&gt;will be supplied to the API&lt;br&gt;to request a new token&lt;br&gt;&lt;/span&gt;"
-                    vertex="1">
+                        connectable="0" id="7raKiSbSl4hWi9Y7VGdX-1" parent="KjXTeLB7kf_rAEjumU_H-15"
+                        value="&lt;span style=&quot;color: rgb(255, 255, 255); font-size: 12px; background-color: rgb(42, 37, 47);&quot;&gt;Username and Password&lt;br&gt;will be supplied to the API&lt;br&gt;to request a new token&lt;br&gt;&lt;/span&gt;"
+                        vertex="1">
                     <mxGeometry as="geometry" relative="1" x="0.0669" y="1">
-                        <mxPoint as="offset" x="-1" y="-51" />
+                        <mxPoint as="offset" x="-1" y="-51"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell style="html=1;dashed=0;whiteSpace=wrap;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;"
-                    id="KjXTeLB7kf_rAEjumU_H-4" parent="1"
-                    value="1&lt;br&gt;&lt;br&gt;Any API request that requires authentication" vertex="1">
-                    <mxGeometry as="geometry" height="60" width="150" x="115" y="90" />
+                        id="KjXTeLB7kf_rAEjumU_H-4" parent="1"
+                        value="1&lt;br&gt;&lt;br&gt;Any API request that requires authentication" vertex="1">
+                    <mxGeometry as="geometry" height="60" width="150" x="115" y="90"/>
                 </mxCell>
                 <mxCell
-                    style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"
-                    edge="1" id="u8jEK3f8F5vCqRxOsxIB-2" parent="1" source="KjXTeLB7kf_rAEjumU_H-14"
-                    target="KjXTeLB7kf_rAEjumU_H-3"
-                    value="A new JWT token&lt;br&gt;will be supplied&lt;br&gt;to the client to be&lt;br&gt;used on subsequent&lt;br&gt;API requests">
+                        style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"
+                        edge="1" id="u8jEK3f8F5vCqRxOsxIB-2" parent="1" source="KjXTeLB7kf_rAEjumU_H-14"
+                        target="KjXTeLB7kf_rAEjumU_H-3"
+                        value="A new JWT token&lt;br&gt;will be supplied&lt;br&gt;to the client to be&lt;br&gt;used on subsequent&lt;br&gt;API requests">
                     <mxGeometry as="geometry" relative="1" x="0.0857" y="20">
-                        <mxPoint as="targetPoint" x="85" y="140" />
+                        <mxPoint as="targetPoint" x="85" y="140"/>
                         <Array as="points">
-                            <mxPoint x="75" y="270" />
-                            <mxPoint x="75" y="30" />
+                            <mxPoint x="75" y="270"/>
+                            <mxPoint x="75" y="30"/>
                         </Array>
-                        <mxPoint as="offset" />
+                        <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell
-                    style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;"
-                    edge="1" id="u8jEK3f8F5vCqRxOsxIB-3" parent="1" source="KjXTeLB7kf_rAEjumU_H-14"
-                    target="7raKiSbSl4hWi9Y7VGdX-2">
-                    <mxGeometry as="geometry" relative="1" />
+                        style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;"
+                        edge="1" id="u8jEK3f8F5vCqRxOsxIB-3" parent="1" source="KjXTeLB7kf_rAEjumU_H-14"
+                        target="7raKiSbSl4hWi9Y7VGdX-2">
+                    <mxGeometry as="geometry" relative="1"/>
                 </mxCell>
                 <mxCell style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];"
-                    connectable="0" id="u8jEK3f8F5vCqRxOsxIB-4" parent="u8jEK3f8F5vCqRxOsxIB-3"
-                    value="The API will receive the username&lt;br&gt;and password for which a JWT&lt;br&gt;token will be initialized"
-                    vertex="1">
+                        connectable="0" id="u8jEK3f8F5vCqRxOsxIB-4" parent="u8jEK3f8F5vCqRxOsxIB-3"
+                        value="The API will receive the username&lt;br&gt;and password for which a JWT&lt;br&gt;token will be initialized"
+                        vertex="1">
                     <mxGeometry as="geometry" relative="1" x="-0.6403" y="2">
-                        <mxPoint as="offset" x="-62" y="8" />
+                        <mxPoint as="offset" x="-62" y="8"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell style="html=1;dashed=0;whiteSpace=wrap;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;"
-                    id="KjXTeLB7kf_rAEjumU_H-14" parent="1" value="Server" vertex="1">
-                    <mxGeometry as="geometry" height="40" width="90" x="145" y="250" />
+                        id="KjXTeLB7kf_rAEjumU_H-14" parent="1" value="Server" vertex="1">
+                    <mxGeometry as="geometry" height="40" width="90" x="145" y="250"/>
                 </mxCell>
                 <mxCell
-                    style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;"
-                    edge="1" id="u8jEK3f8F5vCqRxOsxIB-10" parent="1" source="KjXTeLB7kf_rAEjumU_H-16"
-                    target="7raKiSbSl4hWi9Y7VGdX-2">
+                        style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;"
+                        edge="1" id="u8jEK3f8F5vCqRxOsxIB-10" parent="1" source="KjXTeLB7kf_rAEjumU_H-16"
+                        target="7raKiSbSl4hWi9Y7VGdX-2">
                     <mxGeometry as="geometry" relative="1">
-                        <mxPoint as="targetPoint" x="180" y="440" />
+                        <mxPoint as="targetPoint" x="180" y="440"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];"
-                    connectable="0" id="u8jEK3f8F5vCqRxOsxIB-12" parent="u8jEK3f8F5vCqRxOsxIB-10"
-                    value="An error will be thrown&lt;br&gt;if the username is invalid" vertex="1">
+                        connectable="0" id="u8jEK3f8F5vCqRxOsxIB-12" parent="u8jEK3f8F5vCqRxOsxIB-10"
+                        value="An error will be thrown&lt;br&gt;if the username is invalid" vertex="1">
                     <mxGeometry as="geometry" relative="1" x="-0.5529" y="-2">
-                        <mxPoint as="offset" x="-12" y="-1" />
+                        <mxPoint as="offset" x="-12" y="-1"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell
-                    style="html=1;dashed=0;whiteSpace=wrap;shape=mxgraph.dfd.dataStoreID;align=left;spacingLeft=3;points=[[0,0],[0.5,0],[1,0],[0,0.5],[1,0.5],[0,1],[0.5,1],[1,1]];fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;"
-                    id="KjXTeLB7kf_rAEjumU_H-16" parent="1"
-                    value="2&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;Username Column of&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;Database Login Table"
-                    vertex="1">
-                    <mxGeometry as="geometry" height="40" width="170" x="180" y="490" />
+                        style="html=1;dashed=0;whiteSpace=wrap;shape=mxgraph.dfd.dataStoreID;align=left;spacingLeft=3;points=[[0,0],[0.5,0],[1,0],[0,0.5],[1,0.5],[0,1],[0.5,1],[1,1]];fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;"
+                        id="KjXTeLB7kf_rAEjumU_H-16" parent="1"
+                        value="2&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;Username Column of&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;Database Login Table"
+                        vertex="1">
+                    <mxGeometry as="geometry" height="40" width="170" x="180" y="490"/>
                 </mxCell>
                 <mxCell
-                    style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"
-                    edge="1" id="u8jEK3f8F5vCqRxOsxIB-8" parent="1" source="7raKiSbSl4hWi9Y7VGdX-2"
-                    target="u8jEK3f8F5vCqRxOsxIB-7">
-                    <mxGeometry as="geometry" relative="1" />
+                        style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"
+                        edge="1" id="u8jEK3f8F5vCqRxOsxIB-8" parent="1" source="7raKiSbSl4hWi9Y7VGdX-2"
+                        target="u8jEK3f8F5vCqRxOsxIB-7">
+                    <mxGeometry as="geometry" relative="1"/>
                 </mxCell>
                 <mxCell style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];"
-                    connectable="0" id="u8jEK3f8F5vCqRxOsxIB-13" parent="u8jEK3f8F5vCqRxOsxIB-8"
-                    value="If the username is valid,&lt;br&gt;it will be passed to&lt;br&gt;the password hashing&lt;br&gt;algorithm"
-                    vertex="1">
+                        connectable="0" id="u8jEK3f8F5vCqRxOsxIB-13" parent="u8jEK3f8F5vCqRxOsxIB-8"
+                        value="If the username is valid,&lt;br&gt;it will be passed to&lt;br&gt;the password hashing&lt;br&gt;algorithm"
+                        vertex="1">
                     <mxGeometry as="geometry" relative="1" x="-0.1024" y="3">
-                        <mxPoint as="offset" x="3" y="4" />
+                        <mxPoint as="offset" x="3" y="4"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell
-                    style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"
-                    edge="1" id="u8jEK3f8F5vCqRxOsxIB-9" parent="1" source="7raKiSbSl4hWi9Y7VGdX-2"
-                    target="KjXTeLB7kf_rAEjumU_H-16">
-                    <mxGeometry as="geometry" relative="1" />
+                        style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"
+                        edge="1" id="u8jEK3f8F5vCqRxOsxIB-9" parent="1" source="7raKiSbSl4hWi9Y7VGdX-2"
+                        target="KjXTeLB7kf_rAEjumU_H-16">
+                    <mxGeometry as="geometry" relative="1"/>
                 </mxCell>
                 <mxCell style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];"
-                    connectable="0" id="u8jEK3f8F5vCqRxOsxIB-11" parent="u8jEK3f8F5vCqRxOsxIB-9"
-                    value="The username will&lt;br&gt;be checked against&lt;br&gt;the values in the database"
-                    vertex="1">
+                        connectable="0" id="u8jEK3f8F5vCqRxOsxIB-11" parent="u8jEK3f8F5vCqRxOsxIB-9"
+                        value="The username will&lt;br&gt;be checked against&lt;br&gt;the values in the database"
+                        vertex="1">
                     <mxGeometry as="geometry" relative="1" x="-0.0484" y="-1">
-                        <mxPoint as="offset" x="-34" y="-15" />
+                        <mxPoint as="offset" x="-34" y="-15"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell style="html=1;dashed=0;whiteSpace=wrap;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;"
-                    id="7raKiSbSl4hWi9Y7VGdX-2" parent="1" value="2&lt;br&gt;&lt;br&gt;Username Check" vertex="1">
-                    <mxGeometry as="geometry" height="70" width="150" x="70" y="360" />
+                        id="7raKiSbSl4hWi9Y7VGdX-2" parent="1" value="2&lt;br&gt;&lt;br&gt;Username Check" vertex="1">
+                    <mxGeometry as="geometry" height="70" width="150" x="70" y="360"/>
                 </mxCell>
                 <mxCell
-                    style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.152;entryY=0.046;entryDx=0;entryDy=0;entryPerimeter=0;"
-                    edge="1" id="u8jEK3f8F5vCqRxOsxIB-16" parent="1" source="u8jEK3f8F5vCqRxOsxIB-7"
-                    target="u8jEK3f8F5vCqRxOsxIB-15">
+                        style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.152;entryY=0.046;entryDx=0;entryDy=0;entryPerimeter=0;"
+                        edge="1" id="u8jEK3f8F5vCqRxOsxIB-16" parent="1" source="u8jEK3f8F5vCqRxOsxIB-7"
+                        target="u8jEK3f8F5vCqRxOsxIB-15">
                     <mxGeometry as="geometry" relative="1">
                         <Array as="points">
-                            <mxPoint x="560" y="350" />
-                            <mxPoint x="560" y="380" />
-                            <mxPoint x="532" y="380" />
+                            <mxPoint x="560" y="350"/>
+                            <mxPoint x="560" y="380"/>
+                            <mxPoint x="532" y="380"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
                 <mxCell style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];"
-                    connectable="0" id="u8jEK3f8F5vCqRxOsxIB-17" parent="u8jEK3f8F5vCqRxOsxIB-16"
-                    value="The password hash will be&lt;br&gt;checked against the values&lt;br&gt;contained in the password&lt;br&gt;table."
-                    vertex="1">
+                        connectable="0" id="u8jEK3f8F5vCqRxOsxIB-17" parent="u8jEK3f8F5vCqRxOsxIB-16"
+                        value="The password hash will be&lt;br&gt;checked against the values&lt;br&gt;contained in the password&lt;br&gt;table."
+                        vertex="1">
                     <mxGeometry as="geometry" relative="1" x="-0.0863" y="2">
-                        <mxPoint as="offset" x="-4" y="26" />
+                        <mxPoint as="offset" x="-4" y="26"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell
-                    style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;"
-                    edge="1" id="u8jEK3f8F5vCqRxOsxIB-20" parent="1" source="u8jEK3f8F5vCqRxOsxIB-7"
-                    target="u8jEK3f8F5vCqRxOsxIB-22">
-                    <mxGeometry as="geometry" relative="1" />
+                        style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;"
+                        edge="1" id="u8jEK3f8F5vCqRxOsxIB-20" parent="1" source="u8jEK3f8F5vCqRxOsxIB-7"
+                        target="u8jEK3f8F5vCqRxOsxIB-22">
+                    <mxGeometry as="geometry" relative="1"/>
                 </mxCell>
                 <mxCell style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];"
-                    connectable="0" id="u8jEK3f8F5vCqRxOsxIB-26" parent="u8jEK3f8F5vCqRxOsxIB-20"
-                    value="Assuming no errors exist,&lt;br&gt;a new JWT token will&lt;br&gt;be requested." vertex="1">
+                        connectable="0" id="u8jEK3f8F5vCqRxOsxIB-26" parent="u8jEK3f8F5vCqRxOsxIB-20"
+                        value="Assuming no errors exist,&lt;br&gt;a new JWT token will&lt;br&gt;be requested."
+                        vertex="1">
                     <mxGeometry as="geometry" relative="1" x="0.1419" y="-2">
-                        <mxPoint as="offset" x="-5" />
+                        <mxPoint as="offset" x="-5"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell style="html=1;dashed=0;whiteSpace=wrap;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;"
-                    id="u8jEK3f8F5vCqRxOsxIB-7" parent="1" value="3&lt;br&gt;&lt;br&gt;Password Hashing Algorithm"
-                    vertex="1">
-                    <mxGeometry as="geometry" height="70" width="150" x="520" y="290" />
+                        id="u8jEK3f8F5vCqRxOsxIB-7" parent="1" value="3&lt;br&gt;&lt;br&gt;Password Hashing Algorithm"
+                        vertex="1">
+                    <mxGeometry as="geometry" height="70" width="150" x="520" y="290"/>
                 </mxCell>
                 <mxCell
-                    style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;"
-                    edge="1" id="u8jEK3f8F5vCqRxOsxIB-18" parent="1" source="u8jEK3f8F5vCqRxOsxIB-15"
-                    target="u8jEK3f8F5vCqRxOsxIB-7">
+                        style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;"
+                        edge="1" id="u8jEK3f8F5vCqRxOsxIB-18" parent="1" source="u8jEK3f8F5vCqRxOsxIB-15"
+                        target="u8jEK3f8F5vCqRxOsxIB-7">
                     <mxGeometry as="geometry" relative="1">
                         <Array as="points">
-                            <mxPoint x="685" y="440" />
-                            <mxPoint x="640" y="440" />
-                            <mxPoint x="640" y="410" />
-                            <mxPoint x="633" y="410" />
+                            <mxPoint x="685" y="440"/>
+                            <mxPoint x="640" y="440"/>
+                            <mxPoint x="640" y="410"/>
+                            <mxPoint x="633" y="410"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
                 <mxCell style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];"
-                    connectable="0" id="u8jEK3f8F5vCqRxOsxIB-19" parent="u8jEK3f8F5vCqRxOsxIB-18"
-                    value="An error will be thrown&lt;br&gt;if the password hash is invalid" vertex="1">
+                        connectable="0" id="u8jEK3f8F5vCqRxOsxIB-19" parent="u8jEK3f8F5vCqRxOsxIB-18"
+                        value="An error will be thrown&lt;br&gt;if the password hash is invalid" vertex="1">
                     <mxGeometry as="geometry" relative="1" x="0.5349" y="-1">
-                        <mxPoint as="offset" x="47" y="30" />
+                        <mxPoint as="offset" x="47" y="30"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell
-                    style="html=1;dashed=0;whiteSpace=wrap;shape=mxgraph.dfd.dataStoreID;align=left;spacingLeft=3;points=[[0,0],[0.5,0],[1,0],[0,0.5],[1,0.5],[0,1],[0.5,1],[1,1]];fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;"
-                    id="u8jEK3f8F5vCqRxOsxIB-15" parent="1"
-                    value="3&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;Password Hash Column&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;of Database Login Table"
-                    vertex="1">
-                    <mxGeometry as="geometry" height="40" width="180" x="505" y="480" />
+                        style="html=1;dashed=0;whiteSpace=wrap;shape=mxgraph.dfd.dataStoreID;align=left;spacingLeft=3;points=[[0,0],[0.5,0],[1,0],[0,0.5],[1,0.5],[0,1],[0.5,1],[1,1]];fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;"
+                        id="u8jEK3f8F5vCqRxOsxIB-15" parent="1"
+                        value="3&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;Password Hash Column&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;of Database Login Table"
+                        vertex="1">
+                    <mxGeometry as="geometry" height="40" width="180" x="505" y="480"/>
                 </mxCell>
                 <mxCell
-                    style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;"
-                    edge="1" id="u8jEK3f8F5vCqRxOsxIB-24" parent="1" source="u8jEK3f8F5vCqRxOsxIB-22"
-                    target="KjXTeLB7kf_rAEjumU_H-14">
-                    <mxGeometry as="geometry" relative="1" />
+                        style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;"
+                        edge="1" id="u8jEK3f8F5vCqRxOsxIB-24" parent="1" source="u8jEK3f8F5vCqRxOsxIB-22"
+                        target="KjXTeLB7kf_rAEjumU_H-14">
+                    <mxGeometry as="geometry" relative="1"/>
                 </mxCell>
                 <mxCell style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];"
-                    connectable="0" id="u8jEK3f8F5vCqRxOsxIB-25" parent="u8jEK3f8F5vCqRxOsxIB-24"
-                    value="The newly-created JWT token&lt;br&gt;will be supplied to the client&lt;br&gt;to be used in all subsequent&lt;br&gt;requests until the token expires."
-                    vertex="1">
+                        connectable="0" id="u8jEK3f8F5vCqRxOsxIB-25" parent="u8jEK3f8F5vCqRxOsxIB-24"
+                        value="The newly-created JWT token&lt;br&gt;will be supplied to the client&lt;br&gt;to be used in all subsequent&lt;br&gt;requests until the token expires."
+                        vertex="1">
                     <mxGeometry as="geometry" relative="1" x="0.0622" y="3">
-                        <mxPoint as="offset" y="-4" />
+                        <mxPoint as="offset" y="-4"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell
-                    style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;"
-                    edge="1" id="u8jEK3f8F5vCqRxOsxIB-27" parent="1" source="u8jEK3f8F5vCqRxOsxIB-22"
-                    target="u8jEK3f8F5vCqRxOsxIB-23">
-                    <mxGeometry as="geometry" relative="1" />
+                        style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;"
+                        edge="1" id="u8jEK3f8F5vCqRxOsxIB-27" parent="1" source="u8jEK3f8F5vCqRxOsxIB-22"
+                        target="u8jEK3f8F5vCqRxOsxIB-23">
+                    <mxGeometry as="geometry" relative="1"/>
                 </mxCell>
                 <mxCell style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];"
-                    connectable="0" id="u8jEK3f8F5vCqRxOsxIB-28" parent="u8jEK3f8F5vCqRxOsxIB-27"
-                    value="A newly-generated JWT token&lt;br&gt;will be created with the user ID&lt;br&gt;and date."
-                    vertex="1">
+                        connectable="0" id="u8jEK3f8F5vCqRxOsxIB-28" parent="u8jEK3f8F5vCqRxOsxIB-27"
+                        value="A newly-generated JWT token&lt;br&gt;will be created with the user ID&lt;br&gt;and date."
+                        vertex="1">
                     <mxGeometry as="geometry" relative="1" x="0.1152" y="1">
-                        <mxPoint as="offset" x="6" y="-31" />
+                        <mxPoint as="offset" x="6" y="-31"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell style="html=1;dashed=0;whiteSpace=wrap;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;"
-                    id="u8jEK3f8F5vCqRxOsxIB-22" parent="1" value="4&lt;br&gt;&lt;br&gt;JWT Token Initialization"
-                    vertex="1">
-                    <mxGeometry as="geometry" height="70" width="150" x="530" y="140" />
+                        id="u8jEK3f8F5vCqRxOsxIB-22" parent="1" value="4&lt;br&gt;&lt;br&gt;JWT Token Initialization"
+                        vertex="1">
+                    <mxGeometry as="geometry" height="70" width="150" x="530" y="140"/>
                 </mxCell>
                 <mxCell
-                    style="html=1;dashed=0;whiteSpace=wrap;shape=mxgraph.dfd.dataStoreID;align=left;spacingLeft=3;points=[[0,0],[0.5,0],[1,0],[0,0.5],[1,0.5],[0,1],[0.5,1],[1,1]];fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;"
-                    id="u8jEK3f8F5vCqRxOsxIB-23" parent="1"
-                    value="4&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;Token Table" vertex="1">
-                    <mxGeometry as="geometry" height="40" width="110" x="690" y="40" />
+                        style="html=1;dashed=0;whiteSpace=wrap;shape=mxgraph.dfd.dataStoreID;align=left;spacingLeft=3;points=[[0,0],[0.5,0],[1,0],[0,0.5],[1,0.5],[0,1],[0.5,1],[1,1]];fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;"
+                        id="u8jEK3f8F5vCqRxOsxIB-23" parent="1"
+                        value="4&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;Token Table" vertex="1">
+                    <mxGeometry as="geometry" height="40" width="110" x="690" y="40"/>
                 </mxCell>
             </root>
         </mxGraphModel>
     </diagram>
     <diagram name="Restaurant Owner Processes" id="TIC49DCwPnb8ja_f16ix">
         <mxGraphModel arrows="1" connect="1" dx="924" dy="771" fold="1" grid="1" gridSize="10" guides="1" math="0"
-            page="1" pageHeight="1100" pageScale="1" pageWidth="850" shadow="0" tooltips="1">
+                      page="1" pageHeight="1100" pageScale="1" pageWidth="850" shadow="0" tooltips="1">
             <root>
-                <mxCell id="0" />
-                <mxCell id="1" parent="0" />
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
                 <mxCell style="html=1;dashed=0;whiteSpace=wrap;" id="_w88QMAFyIam02HcKvK8-1" parent="1" value=""
-                    vertex="1">
-                    <mxGeometry as="geometry" height="50" width="100" x="40" y="40" />
+                        vertex="1">
+                    <mxGeometry as="geometry" height="50" width="100" x="40" y="40"/>
                 </mxCell>
             </root>
         </mxGraphModel>

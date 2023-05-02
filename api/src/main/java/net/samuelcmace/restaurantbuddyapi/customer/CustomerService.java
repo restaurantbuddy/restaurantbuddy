@@ -11,8 +11,7 @@ import java.util.List;
 @Service
 public class CustomerService {
 
-    public List<Item> getItems(Long itemId)
-    {
+    public List<Item> getItems(Long itemId) {
         throw new UnsupportedOperationException();
     }
 

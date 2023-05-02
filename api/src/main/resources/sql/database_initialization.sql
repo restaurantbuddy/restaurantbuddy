@@ -1,4 +1,5 @@
-USE restaurantbuddy;
+USE
+restaurantbuddy;
 
 INSERT INTO ROLE (ROLE_ID, ROLE_NAME, ROLE_DESCRIPTION)
 VALUES (1, 'OWNER',

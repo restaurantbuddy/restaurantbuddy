@@ -82,7 +82,7 @@ public class JwtService {
     /**
      * Method called to check the validity of a JWT token.
      *
-     * @param token The token in question.
+     * @param token       The token in question.
      * @param userDetails An interface implementation containing information about the user.
      * @return A boolean indicating whether the token is valid.
      */

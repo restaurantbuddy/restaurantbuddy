@@ -8,8 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class MinioTests {
 
     @Test
-    public void createObjectStorageTest()
-    {
+    public void createObjectStorageTest() {
         MinioClient client = MinioClient.builder()
                 .endpoint("http://localhost:9000/")
                 .credentials("restaurantbuddy", "restaurantbuddy")
@@ -20,12 +19,10 @@ public class MinioTests {
         try {
             boolean bucketFound = client.bucketExists(BucketExistsArgs.builder().bucket(bucketName).build());
 
-            if(!bucketFound)
-            {
+            if (!bucketFound) {
                 System.out.println("Bucket not found. We will create it now.");
                 client.makeBucket(MakeBucketArgs.builder().bucket(bucketName).build());
-            }
-            else {
+            } else {
                 System.out.println("The bucket already exists.");
             }
 
@@ -33,11 +30,11 @@ public class MinioTests {
 
             client.uploadObject(
                     UploadObjectArgs
-                        .builder()
+                            .builder()
                             .bucket(bucketName)
                             .object("/menu_item_images/" + menuItemId + ".jpg")
                             .filename("C:\\Users\\samue\\Downloads\\" + menuItemId + ".jpg")
-                        .build());
+                            .build());
 
         } catch (Exception e) {
             throw new RuntimeException(e);

@@ -2,7 +2,6 @@ package net.samuelcmace.restaurantbuddyapi.owner;
 
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,8 +28,7 @@ public class OwnerController {
     }
 
     @RequestMapping(value = "/items/add-new-item")
-    public boolean addNewMenuItem()
-    {
+    public boolean addNewMenuItem() {
 
 
         return true;

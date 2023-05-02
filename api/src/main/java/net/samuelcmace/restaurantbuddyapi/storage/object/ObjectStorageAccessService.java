@@ -9,13 +9,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class ObjectStorageAccessService {
 
-    public void putFile(String base64Data, String filePath)
-    {
+    public void putFile(String base64Data, String filePath) {
 
     }
 
-    public String getFile(String filePath)
-    {
+    public String getFile(String filePath) {
         String data = "";
 
         MinioClient client = MinioClient.builder()
@@ -28,12 +26,10 @@ public class ObjectStorageAccessService {
         try {
             boolean bucketFound = client.bucketExists(BucketExistsArgs.builder().bucket(bucketName).build());
 
-            if(!bucketFound)
-            {
+            if (!bucketFound) {
                 System.out.println("Bucket not found. We will create it now.");
                 client.makeBucket(MakeBucketArgs.builder().bucket(bucketName).build());
-            }
-            else {
+            } else {
                 System.out.println("The bucket already exists.");
             }
 

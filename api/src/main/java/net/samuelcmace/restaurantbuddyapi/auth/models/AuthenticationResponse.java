@@ -1,4 +1,4 @@
-package net.samuelcmace.restaurantbuddyapi.auth.models.registration;
+package net.samuelcmace.restaurantbuddyapi.auth.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

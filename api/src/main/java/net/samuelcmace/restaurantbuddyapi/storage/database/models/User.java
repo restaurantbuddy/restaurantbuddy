@@ -130,11 +130,11 @@ public class User implements UserDetails {
 
         List<SimpleGrantedAuthority> authorityList = new ArrayList<SimpleGrantedAuthority>();
 
-        if(this.getCustomer() != null)
+        if (this.getCustomer() != null)
             authorityList.add(new SimpleGrantedAuthority(Customer.TABLE_NAME));
-        if(this.getEmployee() != null)
+        if (this.getEmployee() != null)
             authorityList.add(new SimpleGrantedAuthority(Employee.TABLE_NAME));
-        if(this.getOwner() != null)
+        if (this.getOwner() != null)
             authorityList.add(new SimpleGrantedAuthority(Owner.TABLE_NAME));
 
         return authorityList;

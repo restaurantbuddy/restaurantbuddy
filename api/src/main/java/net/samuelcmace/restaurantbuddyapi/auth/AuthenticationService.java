@@ -1,10 +1,8 @@
 package net.samuelcmace.restaurantbuddyapi.auth;
 
 import lombok.RequiredArgsConstructor;
-import net.samuelcmace.restaurantbuddyapi.auth.exception.UsernameAlreadyExistsException;
-import net.samuelcmace.restaurantbuddyapi.auth.exception.UsernameDoesNotExistException;
-import net.samuelcmace.restaurantbuddyapi.auth.models.authentication.AuthenticationRequest;
-import net.samuelcmace.restaurantbuddyapi.auth.models.registration.AuthenticationResponse;
+import net.samuelcmace.restaurantbuddyapi.auth.models.AuthenticationRequest;
+import net.samuelcmace.restaurantbuddyapi.auth.models.AuthenticationResponse;
 import net.samuelcmace.restaurantbuddyapi.auth.models.registration.existinguser.RegisterExistingCustomerRequest;
 import net.samuelcmace.restaurantbuddyapi.auth.models.registration.existinguser.RegisterExistingEmployeeRequest;
 import net.samuelcmace.restaurantbuddyapi.auth.models.registration.existinguser.RegisterExistingOwnerRequest;
@@ -25,7 +23,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 /**
- * The MVC Service called by the AuthenticationController in all of it's requests.
+ * The MVC Service called by the AuthenticationController in all of its requests.
  */
 @Service
 @RequiredArgsConstructor
@@ -75,7 +73,7 @@ public class AuthenticationService {
      * Method called by the MVC controller to register a new user.
      *
      * @param request The request sent from the client.
-     * @return A new response object containing the JWT token.
+     * @return A new JSON response object containing the JWT token.
      * @throws UsernameAlreadyExistsException Thrown if the given username already exists in the database.
      */
     public AuthenticationResponse registerNew(RegisterNewRequest request) throws UsernameAlreadyExistsException {
@@ -117,11 +115,10 @@ public class AuthenticationService {
     }
 
     /**
-     * Method used to register an existing user with a new role.
+     * Method to assign a new role to an existing User.
      *
-     * @param request
-     * @return
-     * @throws UsernameDoesNotExistException
+     * @param request The JSON model sent by the client.
+     * @return A new JSON response object containing the JWT token.
      */
     public AuthenticationResponse registerExisting(RegisterExistingRequest request) {
 

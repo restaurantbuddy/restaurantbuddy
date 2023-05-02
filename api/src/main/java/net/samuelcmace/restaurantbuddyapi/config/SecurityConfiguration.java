@@ -43,6 +43,7 @@ public class SecurityConfiguration {
                 .disable()
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/auth/authenticate/**").permitAll()
+                        .requestMatchers("/auth/authenticate/customer/**").permitAll()
                         .requestMatchers("/auth/register/employee/**").hasAuthority("OWNER")
                         .requestMatchers("/auth/register/owner/**").hasAuthority("OWNER")
                         .requestMatchers("/customer/**").hasAuthority("CUSTOMER")

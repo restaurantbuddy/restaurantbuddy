@@ -1,4 +1,4 @@
-package net.samuelcmace.restaurantbuddyapi.auth.exception;
+package net.samuelcmace.restaurantbuddyapi.auth;
 
 import javax.naming.AuthenticationException;
 

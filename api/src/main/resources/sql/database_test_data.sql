@@ -1,4 +1,5 @@
-USE restaurantbuddy;
+USE
+restaurantbuddy;
 
 -- Dummy Logins
 -- Role Key: OWNER = 1, EMPLOYEE = 2, CUSTOMER = 3

@@ -1,12 +1,12 @@
 DROP
-DATABASE IF EXISTS restaurantbuddy;
+    DATABASE IF EXISTS restaurantbuddy;
 CREATE
-DATABASE restaurantbuddy;
+    DATABASE restaurantbuddy;
 
 DROP
-USER IF EXISTS 'restaurantbuddy'@'localhost';
+    USER IF EXISTS 'restaurantbuddy'@'localhost';
 CREATE
-USER IF NOT EXISTS 'restaurantbuddy'@'localhost' IDENTIFIED BY 'restaurantbuddy';
+    USER IF NOT EXISTS 'restaurantbuddy'@'localhost' IDENTIFIED BY 'restaurantbuddy';
 GRANT ALL PRIVILEGES ON restaurantbuddy.* TO 'restaurantbuddy'@'localhost' IDENTIFIED BY 'restaurantbuddy';
 
 USE restaurantbuddy;
