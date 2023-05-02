@@ -1,7 +1,7 @@
 package net.samuelcmace.restaurantbuddyapi.config;
 
 import lombok.RequiredArgsConstructor;
-import net.samuelcmace.restaurantbuddyapi.storage.database.repositories.LoginRepository;
+import net.samuelcmace.restaurantbuddyapi.database.repositories.LoginRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

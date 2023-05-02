@@ -1,6 +1,6 @@
-package net.samuelcmace.restaurantbuddyapi.storage.database.repositories;
+package net.samuelcmace.restaurantbuddyapi.database.repositories;
 
-import net.samuelcmace.restaurantbuddyapi.storage.database.models.Customer;
+import net.samuelcmace.restaurantbuddyapi.database.models.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

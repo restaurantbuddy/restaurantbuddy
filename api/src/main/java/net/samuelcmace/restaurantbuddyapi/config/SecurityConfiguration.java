@@ -1,6 +1,9 @@
 package net.samuelcmace.restaurantbuddyapi.config;
 
 import lombok.RequiredArgsConstructor;
+import net.samuelcmace.restaurantbuddyapi.database.models.Customer;
+import net.samuelcmace.restaurantbuddyapi.database.models.Employee;
+import net.samuelcmace.restaurantbuddyapi.database.models.Owner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -23,7 +26,6 @@ public class SecurityConfiguration {
      */
     private final JwtAuthenticationFilter jwtAuthFilter;
 
-
     /**
      * The instance of AuthenticationProvider used by the class.
      */
@@ -42,13 +44,10 @@ public class SecurityConfiguration {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/auth/authenticate/**").permitAll()
-                        .requestMatchers("/auth/authenticate/customer/**").permitAll()
-                        .requestMatchers("/auth/register/employee/**").hasAuthority("OWNER")
-                        .requestMatchers("/auth/register/owner/**").hasAuthority("OWNER")
-                        .requestMatchers("/customer/**").hasAuthority("CUSTOMER")
-                        .requestMatchers("/employee/**").hasAuthority("EMPLOYEE")
-                        .requestMatchers("/owner/**").hasAuthority("OWNER")
+                        .requestMatchers("/auth/authenticate", "/auth/register/customer/**").permitAll()
+                        .requestMatchers("/customer/**").hasAuthority(Customer.TABLE_NAME)
+                        .requestMatchers("/employee/**").hasAuthority(Employee.TABLE_NAME)
+                        .requestMatchers("/owner/**", "/auth/register/employee/**", "/auth/register/owner/**").hasAuthority(Owner.TABLE_NAME)
                         .anyRequest().denyAll())
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

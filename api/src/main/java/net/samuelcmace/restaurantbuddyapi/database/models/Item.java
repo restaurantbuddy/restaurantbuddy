@@ -1,4 +1,4 @@
-package net.samuelcmace.restaurantbuddyapi.storage.database.models;
+package net.samuelcmace.restaurantbuddyapi.database.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

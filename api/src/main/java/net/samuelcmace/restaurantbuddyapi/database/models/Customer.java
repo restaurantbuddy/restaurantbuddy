@@ -1,4 +1,4 @@
-package net.samuelcmace.restaurantbuddyapi.storage.database.models;
+package net.samuelcmace.restaurantbuddyapi.database.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -43,36 +43,71 @@ public class Customer implements UserDetails {
     @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", nullable = false, unique = true)
     private User user;
 
+    /**
+     * Retrieves the roles associated with the user for authorization purposes.
+     *
+     * @return The roles that the user has been granted.
+     */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(TABLE_NAME));
+        return this.getUser().getAuthorities();
     }
 
+    /**
+     * Retrieves the password from the login associated with the user.
+     *
+     * @return The password associated with the login.
+     */
     @Override
     public String getPassword() {
-        return user.getLogin().getPasswordHash();
+        return this.getUser().getLogin().getPasswordHash();
     }
 
+    /**
+     * Retrieves the username from the login associated with the user.
+     *
+     * @return The username associated with the login.
+     */
     @Override
     public String getUsername() {
-        return user.getLogin().getUsername();
+        return this.getUser().getLogin().getUsername();
     }
 
+    /**
+     * Retrieves whether the account is expired.
+     *
+     * @return A flag indicating whether the account is expired.
+     */
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
+    /**
+     * Retrieves whether the account is locked.
+     *
+     * @return A flag indicating whether the account is locked.
+     */
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
+    /**
+     * Retrieves whether the account's credentials are expired.
+     *
+     * @return A flag indicating account's credentials are expired.
+     */
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
+    /**
+     * Retrieves whether the account's is enabled.
+     *
+     * @return A flag indicating whether the account is enabled.
+     */
     @Override
     public boolean isEnabled() {
         return true;

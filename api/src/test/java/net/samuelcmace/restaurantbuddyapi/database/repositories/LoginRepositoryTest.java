@@ -1,7 +1,6 @@
 package net.samuelcmace.restaurantbuddyapi.database.repositories;
 
-import net.samuelcmace.restaurantbuddyapi.storage.database.models.Login;
-import net.samuelcmace.restaurantbuddyapi.storage.database.repositories.LoginRepository;
+import net.samuelcmace.restaurantbuddyapi.database.models.Login;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

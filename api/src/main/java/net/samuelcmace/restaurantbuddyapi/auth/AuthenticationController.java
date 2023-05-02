@@ -33,12 +33,11 @@ public class AuthenticationController {
      *
      * @param request The JSON request from the client.
      * @return A JSON response object that will (if successful) contain the JWT token.
-     * @throws UsernameAlreadyExistsException Thrown if the username already exists.
      */
     @PostMapping("/register/customer/new")
     public ResponseEntity<AuthenticationResponse> registerNewCustomer(
             @RequestBody RegisterNewCustomerRequest request
-    ) throws UsernameAlreadyExistsException {
+    ) {
         return ResponseEntity.ok(authenticationService.registerNew(request));
     }
 
@@ -60,12 +59,11 @@ public class AuthenticationController {
      *
      * @param request The JSON request from the client.
      * @return A JSON response object that will (if successful) contain the JWT token.
-     * @throws UsernameAlreadyExistsException Thrown if the username already exists.
      */
     @PostMapping("/register/employee/new")
     public ResponseEntity<AuthenticationResponse> registerNewEmployee(
             @RequestBody RegisterNewEmployeeRequest request
-    ) throws UsernameAlreadyExistsException {
+    ) {
         return ResponseEntity.ok(authenticationService.registerNew(request));
     }
 
@@ -87,12 +85,11 @@ public class AuthenticationController {
      *
      * @param request The JSON request from the client.
      * @return A JSON response object that will (if successful) contain the JWT token.
-     * @throws UsernameAlreadyExistsException Thrown if the username already exists.
      */
     @PostMapping("/register/owner/new")
     public ResponseEntity<AuthenticationResponse> registerNewOwner(
             @RequestBody RegisterNewOwnerRequest request
-    ) throws UsernameAlreadyExistsException {
+    ) {
         return ResponseEntity.ok(authenticationService.registerNew(request));
     }
 

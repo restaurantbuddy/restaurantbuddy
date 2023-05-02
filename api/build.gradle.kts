@@ -25,9 +25,7 @@ dependencies {
     implementation("io.jsonwebtoken:jjwt-impl:0.11.5")
     implementation("io.jsonwebtoken:jjwt-jackson:0.11.5")
 
-
     runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
-    implementation("io.minio:minio:8.5.2")
 
     implementation("org.json:json:20230227")
 

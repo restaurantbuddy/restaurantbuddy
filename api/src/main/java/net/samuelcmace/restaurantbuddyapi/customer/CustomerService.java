@@ -1,6 +1,6 @@
 package net.samuelcmace.restaurantbuddyapi.customer;
 
-import net.samuelcmace.restaurantbuddyapi.storage.database.models.Item;
+import net.samuelcmace.restaurantbuddyapi.database.models.Item;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

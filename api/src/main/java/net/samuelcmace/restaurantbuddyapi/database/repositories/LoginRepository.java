@@ -1,6 +1,6 @@
-package net.samuelcmace.restaurantbuddyapi.storage.database.repositories;
+package net.samuelcmace.restaurantbuddyapi.database.repositories;
 
-import net.samuelcmace.restaurantbuddyapi.storage.database.models.Login;
+import net.samuelcmace.restaurantbuddyapi.database.models.Login;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,5 +13,4 @@ import java.util.Optional;
 public interface LoginRepository extends JpaRepository<Login, Long> {
 
     public Optional<Login> findByUsername(String username);
-
 }

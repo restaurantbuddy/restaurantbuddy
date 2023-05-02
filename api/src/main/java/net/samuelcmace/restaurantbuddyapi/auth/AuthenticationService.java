@@ -3,6 +3,8 @@ package net.samuelcmace.restaurantbuddyapi.auth;
 import lombok.RequiredArgsConstructor;
 import net.samuelcmace.restaurantbuddyapi.auth.models.AuthenticationRequest;
 import net.samuelcmace.restaurantbuddyapi.auth.models.AuthenticationResponse;
+import net.samuelcmace.restaurantbuddyapi.auth.models.registration.ISalaried;
+import net.samuelcmace.restaurantbuddyapi.auth.models.registration.RegisterRequest;
 import net.samuelcmace.restaurantbuddyapi.auth.models.registration.existinguser.RegisterExistingCustomerRequest;
 import net.samuelcmace.restaurantbuddyapi.auth.models.registration.existinguser.RegisterExistingEmployeeRequest;
 import net.samuelcmace.restaurantbuddyapi.auth.models.registration.existinguser.RegisterExistingOwnerRequest;
@@ -12,11 +14,10 @@ import net.samuelcmace.restaurantbuddyapi.auth.models.registration.newuser.Regis
 import net.samuelcmace.restaurantbuddyapi.auth.models.registration.newuser.RegisterNewOwnerRequest;
 import net.samuelcmace.restaurantbuddyapi.auth.models.registration.newuser.RegisterNewRequest;
 import net.samuelcmace.restaurantbuddyapi.config.JwtService;
-import net.samuelcmace.restaurantbuddyapi.storage.database.models.*;
-import net.samuelcmace.restaurantbuddyapi.storage.database.repositories.*;
+import net.samuelcmace.restaurantbuddyapi.database.models.*;
+import net.samuelcmace.restaurantbuddyapi.database.repositories.*;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -74,44 +75,18 @@ public class AuthenticationService {
      *
      * @param request The request sent from the client.
      * @return A new JSON response object containing the JWT token.
-     * @throws UsernameAlreadyExistsException Thrown if the given username already exists in the database.
      */
-    public AuthenticationResponse registerNew(RegisterNewRequest request) throws UsernameAlreadyExistsException {
+    public AuthenticationResponse registerNew(RegisterNewRequest request) {
 
         Optional<Login> login = loginRepository.findByUsername(request.getUsername());
 
         if (login.isPresent()) {
-            throw new UsernameAlreadyExistsException("The requested username already exists!");
+            return AuthenticationResponse.builder().errorMessage("The username already exists!").build();
         } else {
-
             User newUser = registerNewUser(request);
-
-            if (request.getClass() == RegisterNewCustomerRequest.class) {
-
-                Customer newCustomer = addCustomerRole(newUser);
-
-                var jwtToken = jwtService.generateToken(newCustomer);
-                return AuthenticationResponse.builder().jwtToken(jwtToken).build();
-
-            } else if (request.getClass() == RegisterNewEmployeeRequest.class) {
-
-                Double salary = ((RegisterNewEmployeeRequest) request).getSalary();
-                Employee newEmployee = addEmployeeRole(newUser, salary);
-
-                var jwtToken = jwtService.generateToken(newEmployee);
-                return AuthenticationResponse.builder().jwtToken(jwtToken).build();
-
-            } else if (request.getClass() == RegisterNewOwnerRequest.class) {
-
-                Owner newOwner = addOwnerRole(newUser);
-
-                var jwtToken = jwtService.generateToken(newOwner);
-                return AuthenticationResponse.builder().jwtToken(jwtToken).build();
-
-            } else {
-                return null;
-            }
+            return assignRole(request, newUser);
         }
+
     }
 
     /**
@@ -125,37 +100,57 @@ public class AuthenticationService {
         Optional<Login> login = loginRepository.findByUsername(request.getUsername());
 
         if (login.isPresent()) {
-
             User existingUser = login.get().getUser();
-
-            if (request.getClass() == RegisterExistingCustomerRequest.class) {
-
-                Customer newCustomer = addCustomerRole(existingUser);
-
-                var jwtToken = jwtService.generateToken(newCustomer);
-                return AuthenticationResponse.builder().jwtToken(jwtToken).build();
-
-            } else if (request.getClass() == RegisterExistingEmployeeRequest.class) {
-
-                Double salary = ((RegisterExistingEmployeeRequest) request).getSalary();
-                Employee newEmployee = addEmployeeRole(existingUser, salary);
-
-                var jwtToken = jwtService.generateToken(newEmployee);
-                return AuthenticationResponse.builder().jwtToken(jwtToken).build();
-
-            } else if (request.getClass() == RegisterExistingOwnerRequest.class) {
-
-                Owner newOwner = addOwnerRole(existingUser);
-
-                var jwtToken = jwtService.generateToken(newOwner);
-                return AuthenticationResponse.builder().jwtToken(jwtToken).build();
-
-            } else {
-                return null;
-            }
+            return assignRole(request, existingUser);
         } else {
-            return null;
+            return AuthenticationResponse.builder().errorMessage("The specified user does not exist!").build();
         }
+
+    }
+
+    /**
+     * Internal method to assign a user to a role.
+     *
+     * @param request The MVC request that invoked the role assignment.
+     * @param user    The user in question for which the role should be assigned.
+     * @return The response object to be sent back to the client (which will, if successful, contain a valid JWT token).
+     */
+    private AuthenticationResponse assignRole(RegisterRequest request, User user) {
+
+        if (request.getClass() == RegisterNewCustomerRequest.class ||
+                request.getClass() == RegisterExistingCustomerRequest.class) {
+
+            Customer newCustomer = addCustomerRole(user);
+
+            var jwtToken = jwtService.generateToken(newCustomer);
+            return AuthenticationResponse.builder().jwtToken(jwtToken).build();
+
+        } else if (request.getClass() == RegisterNewEmployeeRequest.class ||
+                request.getClass() == RegisterExistingEmployeeRequest.class) {
+
+            Double salary = ((ISalaried) request).getSalary();
+            Employee newEmployee = addEmployeeRole(user, salary);
+
+            var jwtToken = jwtService.generateToken(newEmployee);
+            return AuthenticationResponse.builder().jwtToken(jwtToken).build();
+
+        } else if (request.getClass() == RegisterNewOwnerRequest.class ||
+                request.getClass() == RegisterExistingOwnerRequest.class) {
+
+            Owner newOwner = addOwnerRole(user);
+
+            var jwtToken = jwtService.generateToken(newOwner);
+            return AuthenticationResponse.builder().jwtToken(jwtToken).build();
+
+        } else {
+
+            return AuthenticationResponse
+                    .builder()
+                    .errorMessage("Invalid role specified!")
+                    .build();
+
+        }
+
     }
 
     /**
@@ -173,14 +168,14 @@ public class AuthenticationService {
                 )
         );
 
-        var login = loginRepository
-                .findByUsername(request.getUsername())
-                .orElseThrow(
-                        () -> new UsernameNotFoundException("The requested username was not found!")
-                );
+        Optional<Login> login = loginRepository.findByUsername(request.getUsername());
 
-        var jwtToken = jwtService.generateToken(login.getUser().getCustomer());
-        return AuthenticationResponse.builder().jwtToken(jwtToken).build();
+        if (login.isEmpty()) {
+            return AuthenticationResponse.builder().errorMessage("The specified user does not exist!").build();
+        } else {
+            var jwtToken = jwtService.generateToken(login.get().getUser().getCustomer());
+            return AuthenticationResponse.builder().jwtToken(jwtToken).build();
+        }
 
     }
 
