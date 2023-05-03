@@ -1,6 +1,7 @@
 package net.samuelcmace.restaurantbuddyapi.customer;
 
-import org.json.JSONObject;
+import net.samuelcmace.restaurantbuddyapi.database.models.Customer;
+import net.samuelcmace.restaurantbuddyapi.shared.GenericResponseModel;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,15 +16,9 @@ public class CustomerController {
      *
      * @return A JSON object containing a boolean indicating whether the user is authenticated as a customer.
      */
-    @GetMapping(value = "/customer", produces = "application/json")
-    public String index() {
-
-        JSONObject result = new JSONObject();
-
-        result.put("isCustomer", true);
-
-        return result.toString();
-
+    @GetMapping(value = "/customer")
+    public GenericResponseModel index() {
+        return GenericResponseModel.builder().successMessage("Controller: " + Customer.TABLE_NAME).build();
     }
 
 }

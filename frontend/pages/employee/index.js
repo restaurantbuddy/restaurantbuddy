@@ -13,7 +13,7 @@ export default function EmployeeHome() {
         </Head>
         <div className="main-content">
             <Header/>
-            <EmployeeNavbar restaurantName="RestaurantBuddy" />
+            <EmployeeNavbar restaurantName="RestaurantBuddy"/>
 
             <Footer/>
         </div>

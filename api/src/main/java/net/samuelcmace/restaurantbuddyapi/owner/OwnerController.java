@@ -1,11 +1,11 @@
 package net.samuelcmace.restaurantbuddyapi.owner;
 
 import lombok.RequiredArgsConstructor;
+import net.samuelcmace.restaurantbuddyapi.database.models.Customer;
 import net.samuelcmace.restaurantbuddyapi.owner.models.AllUsersModel;
 import net.samuelcmace.restaurantbuddyapi.owner.models.ItemModel;
 import net.samuelcmace.restaurantbuddyapi.owner.models.UserModel;
 import net.samuelcmace.restaurantbuddyapi.shared.GenericResponseModel;
-import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -26,15 +26,9 @@ public class OwnerController {
      *
      * @return A JSON object containing a boolean indicating whether the user is authenticated as an owner.
      */
-    @GetMapping(value = "/", produces = "application/json")
-    public String index() {
-
-        JSONObject result = new JSONObject();
-
-        result.put("isOwner", true);
-
-        return result.toString();
-
+    @GetMapping(value = "/")
+    public GenericResponseModel index() {
+        return GenericResponseModel.builder().successMessage("Controller: " + Customer.TABLE_NAME).build();
     }
 
     /**

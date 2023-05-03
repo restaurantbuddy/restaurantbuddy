@@ -2,7 +2,7 @@ $(function () {
 
     let x = 5;
 
-    $("#loginForm").submit(function(e) {
+    $("#loginForm").submit(function (e) {
 
         e.preventDefault();
 

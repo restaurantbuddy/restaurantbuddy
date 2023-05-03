@@ -12,7 +12,7 @@ export default function Page() {
         </Head>
         <div className="main-content">
             <Header/>
-            <OwnerNavbar restaurantName="RestaurantBuddy" />
+            <OwnerNavbar restaurantName="RestaurantBuddy"/>
 
             <div className="rounded-corners inner-color">
                 <h1>User Management</h1>
