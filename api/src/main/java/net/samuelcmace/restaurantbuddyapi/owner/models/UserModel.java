@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * MVC model representing a user.
+ */
 @Builder
 @Data
 @AllArgsConstructor

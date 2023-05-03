@@ -3,7 +3,6 @@ package net.samuelcmace.restaurantbuddyapi.auth;
 import lombok.RequiredArgsConstructor;
 import net.samuelcmace.restaurantbuddyapi.auth.models.AuthenticationRequest;
 import net.samuelcmace.restaurantbuddyapi.auth.models.AuthenticationResponse;
-import net.samuelcmace.restaurantbuddyapi.auth.models.deletion.DeletionResponse;
 import net.samuelcmace.restaurantbuddyapi.auth.models.deletion.RoleDeletionRequest;
 import net.samuelcmace.restaurantbuddyapi.auth.models.deletion.UserDeletionRequest;
 import net.samuelcmace.restaurantbuddyapi.auth.models.registration.existinguser.RegisterExistingCustomerRequest;
@@ -12,6 +11,7 @@ import net.samuelcmace.restaurantbuddyapi.auth.models.registration.existinguser.
 import net.samuelcmace.restaurantbuddyapi.auth.models.registration.newuser.RegisterNewCustomerRequest;
 import net.samuelcmace.restaurantbuddyapi.auth.models.registration.newuser.RegisterNewEmployeeRequest;
 import net.samuelcmace.restaurantbuddyapi.auth.models.registration.newuser.RegisterNewOwnerRequest;
+import net.samuelcmace.restaurantbuddyapi.shared.GenericResponseModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -116,7 +116,7 @@ public class AuthenticationController {
      * @return A JSON response object containing details about the operation.
      */
     @PostMapping("/delete/user")
-    public ResponseEntity<DeletionResponse> deleteUser(
+    public ResponseEntity<GenericResponseModel> deleteUser(
             @RequestBody UserDeletionRequest request
     ) {
         return ResponseEntity.ok(authenticationService.delete(request));
@@ -129,7 +129,7 @@ public class AuthenticationController {
      * @return A JSON response object containing details about the operation.
      */
     @PostMapping("/delete/role")
-    public ResponseEntity<DeletionResponse> deleteRole(
+    public ResponseEntity<GenericResponseModel> deleteRole(
             @RequestBody RoleDeletionRequest request
     ) {
         return ResponseEntity.ok(authenticationService.delete(request));

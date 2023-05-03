@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import net.samuelcmace.restaurantbuddyapi.auth.models.AuthenticationRequest;
 import net.samuelcmace.restaurantbuddyapi.auth.models.AuthenticationResponse;
 import net.samuelcmace.restaurantbuddyapi.auth.models.deletion.DeletionRequest;
-import net.samuelcmace.restaurantbuddyapi.auth.models.deletion.DeletionResponse;
 import net.samuelcmace.restaurantbuddyapi.auth.models.deletion.RoleDeletionRequest;
 import net.samuelcmace.restaurantbuddyapi.auth.models.deletion.UserDeletionRequest;
 import net.samuelcmace.restaurantbuddyapi.auth.models.registration.ISalaried;
@@ -20,6 +19,7 @@ import net.samuelcmace.restaurantbuddyapi.auth.models.registration.newuser.Regis
 import net.samuelcmace.restaurantbuddyapi.config.JwtService;
 import net.samuelcmace.restaurantbuddyapi.database.models.*;
 import net.samuelcmace.restaurantbuddyapi.database.repositories.*;
+import net.samuelcmace.restaurantbuddyapi.shared.GenericResponseModel;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -157,7 +157,7 @@ public class AuthenticationService {
 
     }
 
-    public DeletionResponse delete(DeletionRequest request) {
+    public GenericResponseModel delete(DeletionRequest request) {
 
         String responseMessage = "";
 
@@ -186,7 +186,7 @@ public class AuthenticationService {
                         ownerRepository.delete(user.getOwner());
                     }
                     default -> {
-                        return DeletionResponse.builder().errorMessage("The API received an invalid role deletion request!").build();
+                        return GenericResponseModel.builder().errorMessage("The API received an invalid role deletion request!").build();
                     }
                 }
 
@@ -214,14 +214,14 @@ public class AuthenticationService {
                 loginRepository.delete(login);
 
             } else {
-                return DeletionResponse.builder().errorMessage("The API received an invalid user deletion request!").build();
+                return GenericResponseModel.builder().errorMessage("The API received an invalid user deletion request!").build();
             }
 
         } else {
-            return DeletionResponse.builder().errorMessage("The specified user could not be found!").build();
+            return GenericResponseModel.builder().errorMessage("The specified user could not be found!").build();
         }
 
-        return DeletionResponse.builder().successMessage(responseMessage).build();
+        return GenericResponseModel.builder().successMessage(responseMessage).build();
     }
 
     /**

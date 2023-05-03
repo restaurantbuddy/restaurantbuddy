@@ -5,6 +5,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
+/**
+ * MVC model representing a menu item.
+ */
 @Builder
 @Data
 @AllArgsConstructor
@@ -14,21 +19,31 @@ public class ItemModel {
     /**
      * The ID corresponding to the item.
      */
-    public String itemId;
+    private Long id;
 
     /**
      * The name of the menu item.
      */
-    public String itemName;
+    private String name;
+
+    /**
+     * The price of the menu item.
+     */
+    private Double price;
 
     /**
      * The description of the item.
      */
-    public String itemDescription;
+    private String description;
 
     /**
      * The image data representing the item (stored in Base64).
      */
-    public String itemImage;
+    private String image;
+
+    /**
+     * The menus on which the item is advertised.
+     */
+    private List<String> menus;
 
 }
