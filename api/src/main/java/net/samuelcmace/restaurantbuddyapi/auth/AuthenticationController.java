@@ -11,7 +11,7 @@ import net.samuelcmace.restaurantbuddyapi.auth.models.registration.existinguser.
 import net.samuelcmace.restaurantbuddyapi.auth.models.registration.newuser.RegisterNewCustomerRequest;
 import net.samuelcmace.restaurantbuddyapi.auth.models.registration.newuser.RegisterNewEmployeeRequest;
 import net.samuelcmace.restaurantbuddyapi.auth.models.registration.newuser.RegisterNewOwnerRequest;
-import net.samuelcmace.restaurantbuddyapi.shared.GenericResponseModel;
+import net.samuelcmace.restaurantbuddyapi.shared.model.GenericResponseModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

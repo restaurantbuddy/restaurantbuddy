@@ -3,9 +3,11 @@ package net.samuelcmace.restaurantbuddyapi.owner;
 import lombok.RequiredArgsConstructor;
 import net.samuelcmace.restaurantbuddyapi.database.models.Owner;
 import net.samuelcmace.restaurantbuddyapi.owner.models.AllUsersModel;
-import net.samuelcmace.restaurantbuddyapi.owner.models.ItemModel;
 import net.samuelcmace.restaurantbuddyapi.owner.models.UserModel;
-import net.samuelcmace.restaurantbuddyapi.shared.GenericResponseModel;
+import net.samuelcmace.restaurantbuddyapi.shared.model.AllItemsModel;
+import net.samuelcmace.restaurantbuddyapi.shared.model.GenericResponseModel;
+import net.samuelcmace.restaurantbuddyapi.shared.model.ItemModel;
+import net.samuelcmace.restaurantbuddyapi.shared.service.ItemReadService;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -17,7 +19,12 @@ import org.springframework.web.bind.annotation.*;
 public class OwnerController {
 
     /**
-     * OwnerService
+     * ItemReadService instance associated with the service.
+     */
+    private final ItemReadService itemReadService;
+
+    /**
+     * OwnerService instance associated with the service.
      */
     private final OwnerService ownerService;
 
@@ -36,7 +43,7 @@ public class OwnerController {
      *
      * @return A model encapsulating a set containing all the users in the system and their details (in JSON format).
      */
-    @GetMapping(value = "/user-management/read/all", produces = "application/json")
+    @GetMapping(value = "/user-management/read/all")
     public AllUsersModel listAllUsers() {
         return AllUsersModel
                 .builder()
@@ -50,9 +57,34 @@ public class OwnerController {
      * @param id The primary key of the menu item (as supplied in the path of the request).
      * @return A JSON object containing details about the user.
      */
-    @GetMapping(value = "/user-management/read/{id}", produces = "application/json")
+    @GetMapping(value = "/user-management/read/{id}")
     public UserModel listUserById(@PathVariable Long id) {
         return ownerService.findUser(id);
+    }
+
+    /**
+     * MVC route to view all menu items stored in the database.
+     *
+     * @return A JSON object containing the menu items.
+     */
+    @GetMapping(value = "/item-management/read/all")
+    public AllItemsModel readAllItems() {
+        return AllItemsModel.builder()
+                .items(itemReadService.findAllMenuItems())
+                .build();
+    }
+
+    /**
+     * MVC route to view all menu items stored in the database.
+     *
+     * @param primaryKey The primary key to be queried.
+     * @return A JSON object containing the menu item.
+     */
+    @GetMapping(value = "/item-management/read/{primaryKey}")
+    public ItemModel readMenuItemById(
+            @PathVariable Long primaryKey
+    ) {
+        return itemReadService.findMenuItem(primaryKey);
     }
 
     /**
@@ -61,7 +93,7 @@ public class OwnerController {
      * @param request The new item to be created.
      * @return A generic JSON model containing any relevant success or error messages.
      */
-    @RequestMapping(value = "/item-management/create")
+    @PostMapping(value = "/item-management/create")
     public GenericResponseModel addItem(
             @RequestBody ItemModel request
     ) {
@@ -83,7 +115,7 @@ public class OwnerController {
      * @param request The JSON model sent by the client.
      * @return A generic JSON response model containing any relevant error or debugging messages.
      */
-    @RequestMapping(value = "/item-management/update")
+    @PostMapping(value = "/item-management/update")
     public GenericResponseModel updateItem(
             @RequestBody ItemModel request
     ) {
@@ -105,7 +137,7 @@ public class OwnerController {
      * @param primaryKey The primary key that corresponds to the item to be deleted.
      * @return A generic JSON response model containing any relevant error or debugging messages.
      */
-    @RequestMapping(value = "/item-management/delete/{primaryKey}")
+    @PostMapping(value = "/item-management/delete/{primaryKey}")
     public GenericResponseModel deleteItem(
             @PathVariable Long primaryKey
     ) {

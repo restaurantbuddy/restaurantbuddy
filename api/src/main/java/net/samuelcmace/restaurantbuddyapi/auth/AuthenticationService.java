@@ -19,7 +19,7 @@ import net.samuelcmace.restaurantbuddyapi.auth.models.registration.newuser.Regis
 import net.samuelcmace.restaurantbuddyapi.config.JwtService;
 import net.samuelcmace.restaurantbuddyapi.database.models.*;
 import net.samuelcmace.restaurantbuddyapi.database.repositories.*;
-import net.samuelcmace.restaurantbuddyapi.shared.GenericResponseModel;
+import net.samuelcmace.restaurantbuddyapi.shared.model.GenericResponseModel;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;

@@ -1,4 +1,4 @@
-package net.samuelcmace.restaurantbuddyapi.owner.models;
+package net.samuelcmace.restaurantbuddyapi.shared.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,6 +19,6 @@ public class AllItemsModel {
     /**
      * The set of items in question.
      */
-    private List<UserModel> items;
+    private List<ItemModel> items;
 
 }

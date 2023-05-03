@@ -2,7 +2,7 @@ package net.samuelcmace.restaurantbuddyapi.employee;
 
 import lombok.RequiredArgsConstructor;
 import net.samuelcmace.restaurantbuddyapi.database.models.Employee;
-import net.samuelcmace.restaurantbuddyapi.shared.GenericResponseModel;
+import net.samuelcmace.restaurantbuddyapi.shared.model.GenericResponseModel;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

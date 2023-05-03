@@ -4,9 +4,11 @@ import lombok.RequiredArgsConstructor;
 import net.samuelcmace.restaurantbuddyapi.database.models.Item;
 import net.samuelcmace.restaurantbuddyapi.database.models.Menu;
 import net.samuelcmace.restaurantbuddyapi.database.models.User;
-import net.samuelcmace.restaurantbuddyapi.database.repositories.*;
-import net.samuelcmace.restaurantbuddyapi.owner.models.ItemModel;
+import net.samuelcmace.restaurantbuddyapi.database.repositories.ItemRepository;
+import net.samuelcmace.restaurantbuddyapi.database.repositories.MenuRepository;
+import net.samuelcmace.restaurantbuddyapi.database.repositories.UserRepository;
 import net.samuelcmace.restaurantbuddyapi.owner.models.UserModel;
+import net.samuelcmace.restaurantbuddyapi.shared.model.ItemModel;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
@@ -22,29 +24,9 @@ import java.util.Optional;
 public class OwnerService {
 
     /**
-     * The LoginRepository instance used by the service.
-     */
-    private final LoginRepository loginRepository;
-
-    /**
      * The UserRepository instance used by the service.
      */
     private final UserRepository userRepository;
-
-    /**
-     * The CustomerRepository instance used by the service.
-     */
-    private final CustomerRepository customerRepository;
-
-    /**
-     * The EmployeeRepository instance used by the service.
-     */
-    private final EmployeeRepository employeeRepository;
-
-    /**
-     * The OwnerRepository instance used by the service.
-     */
-    private final OwnerRepository ownerRepository;
 
     /**
      * The ItemRepository instance used by the service.
@@ -122,68 +104,6 @@ public class OwnerService {
                 .password(user.getPassword())
                 .build();
 
-    }
-
-    /**
-     * Method to query all menu items in the database.
-     *
-     * @return A set of user models to be sent back to the user.
-     */
-    public List<ItemModel> findAllMenuItems() {
-
-        List<Item> menuItemJPACollection = itemRepository.findAll();
-        List<ItemModel> menuItemModelCollection = new ArrayList<>();
-
-        for (Item item : menuItemJPACollection) {
-            menuItemModelCollection.add(buildItemModel(item));
-        }
-
-        return menuItemModelCollection;
-
-    }
-
-    /**
-     * Method to retrieve a menu item by the primary key.
-     *
-     * @param menuItemId The menu item id in question.
-     * @return A new MVC object containing the new user.
-     */
-    public ItemModel findMenuItem(Long menuItemId) {
-
-        Optional<Item> itemRequest = itemRepository.findById(menuItemId);
-
-        if (itemRequest.isPresent()) {
-            return buildItemModel(itemRequest.get());
-        } else {
-            return ItemModel.builder().build();
-        }
-
-    }
-
-    /**
-     * Private method to build an ItemModel out of an Item JPA entity.
-     *
-     * @param item The item JPA entity in question.
-     * @return A new MVC model to be returned to the client in JSON format.
-     */
-    private ItemModel buildItemModel(Item item) {
-        List<String> menus = new ArrayList<>();
-
-        if (!item.getMenus().isEmpty()) {
-            for (Menu menu : item.getMenus()) {
-                menus.add(menu.getName());
-            }
-        }
-
-        ItemModel itemModel = ItemModel.builder()
-                .id(item.getId())
-                .name(item.getName())
-                .price(item.getCost())
-                .description(item.getDescription())
-                .menus(menus)
-                .build();
-
-        return itemModel;
     }
 
     /**

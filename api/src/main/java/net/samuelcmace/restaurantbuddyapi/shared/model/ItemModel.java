@@ -1,4 +1,4 @@
-package net.samuelcmace.restaurantbuddyapi.owner.models;
+package net.samuelcmace.restaurantbuddyapi.shared.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
