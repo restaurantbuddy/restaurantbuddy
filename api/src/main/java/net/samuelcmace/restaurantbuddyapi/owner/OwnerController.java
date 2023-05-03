@@ -1,7 +1,7 @@
 package net.samuelcmace.restaurantbuddyapi.owner;
 
 import lombok.RequiredArgsConstructor;
-import net.samuelcmace.restaurantbuddyapi.database.models.Customer;
+import net.samuelcmace.restaurantbuddyapi.database.models.Owner;
 import net.samuelcmace.restaurantbuddyapi.owner.models.AllUsersModel;
 import net.samuelcmace.restaurantbuddyapi.owner.models.ItemModel;
 import net.samuelcmace.restaurantbuddyapi.owner.models.UserModel;
@@ -26,9 +26,9 @@ public class OwnerController {
      *
      * @return A JSON object containing a boolean indicating whether the user is authenticated as an owner.
      */
-    @GetMapping(value = "/")
+    @GetMapping("/")
     public GenericResponseModel index() {
-        return GenericResponseModel.builder().successMessage("Controller: " + Customer.TABLE_NAME).build();
+        return GenericResponseModel.builder().successMessage("Controller: " + Owner.TABLE_NAME).build();
     }
 
     /**

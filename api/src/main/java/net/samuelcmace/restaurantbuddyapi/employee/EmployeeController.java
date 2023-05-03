@@ -1,14 +1,18 @@
 package net.samuelcmace.restaurantbuddyapi.employee;
 
-import net.samuelcmace.restaurantbuddyapi.database.models.Customer;
+import lombok.RequiredArgsConstructor;
+import net.samuelcmace.restaurantbuddyapi.database.models.Employee;
 import net.samuelcmace.restaurantbuddyapi.shared.GenericResponseModel;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
  * MVC Controller to handle all employee-related requests.
  */
 @RestController
+@RequestMapping("/employee")
+@RequiredArgsConstructor
 public class EmployeeController {
 
     /**
@@ -16,9 +20,9 @@ public class EmployeeController {
      *
      * @return A JSON object containing a boolean indicating whether the user is authenticated as an employee.
      */
-    @GetMapping(value = "/employee")
+    @GetMapping("/")
     public GenericResponseModel index() {
-        return GenericResponseModel.builder().successMessage("Controller: " + Customer.TABLE_NAME).build();
+        return GenericResponseModel.builder().successMessage("Controller: " + Employee.TABLE_NAME).build();
     }
 
 }
