@@ -1,12 +1,12 @@
 @import url(fonts/ubuntu-font-family/fonts.css);
 
-/* Eliminate Browser's Default Padding and Margin */
+/* Set Default Margin and Padding */
 * {
     margin: 0;
     padding: 0;
 }
 
-/* Overall Color Theme (Shared Layout) */
+/* Overall Color Theme */
 :root {
     --outermost-color: #0B2447;
     --outer-color: #19376D;
@@ -40,12 +40,11 @@
     background-color: var(--innermost-color);
 }
 
-/* Overall Content (Shared Layout) */
+/* Overall Content */
 
 body {
     background-color: var(--outermost-color);
-    font-family: "ubuntu";
-    justify-content: center;
+    font-family: "ubuntu", sans-serif;
 }
 
 .main-content {
@@ -57,79 +56,44 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0.25em 0;
 }
 
-/* Header and Navigation (Shared Layout) */
+/* Header and Navigation */
 
 .title-bar {
     text-align: center;
 }
 
-header {
-    text-align: center;
-}
-
 header img {
     width: 100%;
-    max-height: 10em;
-    background-repeat: no-repeat;
     border-radius: 0.25em;
 }
 
 nav {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
 }
 
 nav li {
     list-style: none;
     display: inline-block;
-    margin: 0 0.25em;
+    margin: 0 0.5em;
 }
 
 nav li a {
     text-decoration: none;
 }
 
-.error-summary-list li {
-    list-style: none;
+/* Component Styling */
+
+.login-box {
+
 }
 
-/* Inner Content (View-Specific) */
-
-.error-message {
-    text-align: center;
+.logout-banner {
+    border: 0.0125em solid green;
+    background-color: lightgreen;
 }
 
-.image-card {
-    display: inline-block;
-    list-style: none;
-}
-
-#inventoryLookup {
-    max-width: 15em;
-}
-
-.contact-management {
-    display: inline-block;
-}
-
-.contact-management-grid {
-    display: grid;
-    grid-template-columns: 8em 1fr;
-}
-
-#loading {
-    display: none;
-}
-
-/* Footer Content (Shared Layout) */
-
-.card {
-    border-radius: 0.25em;
-    padding: 0.5em;
-    display: inline-block;
-    margin: 1em;
-}
+/* Footer Content */
 
 footer {
     display: flex;
@@ -137,8 +101,8 @@ footer {
 }
 
 footer p, footer a {
-    display: inline-block;
-    margin: 1em;
+    text-decoration: none;
+    margin: 0.5em 0;
 }
 
 /* Media Queries for Responsive Design */
@@ -146,12 +110,6 @@ footer p, footer a {
 @media screen and (min-width: 600px) {
     .main-content {
         border-radius: 0.25em;
-    }
-}
-
-@media only screen and (min-width: 768px) {
-    .gallery-content {
-        display: flex;
     }
 }
 

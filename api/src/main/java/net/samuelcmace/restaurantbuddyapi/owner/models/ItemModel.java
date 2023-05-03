@@ -11,6 +11,24 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ItemModel {
 
-    public String item;
+    /**
+     * The ID corresponding to the item.
+     */
+    public String itemId;
+
+    /**
+     * The name of the menu item.
+     */
+    public String itemName;
+
+    /**
+     * The description of the item.
+     */
+    public String itemDescription;
+
+    /**
+     * The image data representing the item (stored in Base64).
+     */
+    public String itemImage;
 
 }

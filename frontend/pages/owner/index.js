@@ -13,7 +13,11 @@ export default function EmployeeHome() {
         </Head>
         <div className="main-content">
             <Header/>
-            <OwnerNavbar/>
+            <OwnerNavbar restaurantName="RestaurantBuddy" />
+
+            <div className="rounded-corners inner-color">
+                <h1>Restaurant Overview</h1>
+            </div>
 
             <Footer/>
         </div>
