@@ -47,7 +47,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/auth/authenticate", "/auth/register/customer/**").permitAll()
                         .requestMatchers("/customer/**").hasAuthority(Customer.TABLE_NAME)
                         .requestMatchers("/employee/**").hasAuthority(Employee.TABLE_NAME)
-                        .requestMatchers("/owner/**", "/auth/register/employee/**", "/auth/register/owner/**").hasAuthority(Owner.TABLE_NAME)
+                        .requestMatchers("/owner/**", "/auth/register/employee/**", "/auth/register/owner/**", "/auth/delete/**").hasAuthority(Owner.TABLE_NAME)
                         .anyRequest().denyAll())
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

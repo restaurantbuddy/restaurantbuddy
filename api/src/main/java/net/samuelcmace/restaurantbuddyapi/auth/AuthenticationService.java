@@ -3,6 +3,10 @@ package net.samuelcmace.restaurantbuddyapi.auth;
 import lombok.RequiredArgsConstructor;
 import net.samuelcmace.restaurantbuddyapi.auth.models.AuthenticationRequest;
 import net.samuelcmace.restaurantbuddyapi.auth.models.AuthenticationResponse;
+import net.samuelcmace.restaurantbuddyapi.auth.models.deletion.DeletionRequest;
+import net.samuelcmace.restaurantbuddyapi.auth.models.deletion.DeletionResponse;
+import net.samuelcmace.restaurantbuddyapi.auth.models.deletion.RoleDeletionRequest;
+import net.samuelcmace.restaurantbuddyapi.auth.models.deletion.UserDeletionRequest;
 import net.samuelcmace.restaurantbuddyapi.auth.models.registration.ISalaried;
 import net.samuelcmace.restaurantbuddyapi.auth.models.registration.RegisterRequest;
 import net.samuelcmace.restaurantbuddyapi.auth.models.registration.existinguser.RegisterExistingCustomerRequest;
@@ -151,6 +155,73 @@ public class AuthenticationService {
 
         }
 
+    }
+
+    public DeletionResponse delete(DeletionRequest request) {
+
+        String responseMessage = "";
+
+        Optional<Login> loginRequest = loginRepository.findByUsername(request.getUsername());
+
+        if (loginRequest.isPresent()) {
+
+            Login login = loginRequest.get();
+            User user = login.getUser();
+
+            if (request.getClass() == RoleDeletionRequest.class) {
+
+                RoleDeletionRequest roleDeletionRequest = (RoleDeletionRequest) request;
+
+                switch (roleDeletionRequest.getRole()) {
+                    case Customer.TABLE_NAME -> {
+                        responseMessage += "Deleting role '" + user.getCustomer().getId() + "'... ";
+                        customerRepository.delete(user.getCustomer());
+                    }
+                    case Employee.TABLE_NAME -> {
+                        responseMessage += "Deleting role '" + user.getEmployee().getId() + "'... ";
+                        employeeRepository.delete(user.getEmployee());
+                    }
+                    case Owner.TABLE_NAME -> {
+                        responseMessage += "Deleting role '" + user.getOwner().getId() + "'... ";
+                        ownerRepository.delete(user.getOwner());
+                    }
+                    default -> {
+                        return DeletionResponse.builder().errorMessage("The API received an invalid role deletion request!").build();
+                    }
+                }
+
+            } else if (request.getClass() == UserDeletionRequest.class) {
+
+                if (user != null) {
+                    if (user.getCustomer() != null) {
+                        responseMessage += "Deleting role '" + user.getCustomer().getId() + "'... ";
+                        customerRepository.delete(user.getCustomer());
+                    }
+                    if (user.getEmployee() != null) {
+                        responseMessage += "Deleting role '" + user.getEmployee().getId() + "'... ";
+                        employeeRepository.delete(user.getEmployee());
+                    }
+                    if (user.getOwner() != null) {
+                        responseMessage += "Deleting role '" + user.getOwner().getId() + "'... ";
+                        ownerRepository.delete(user.getOwner());
+                    }
+
+                    responseMessage += "Deleting user '" + user.getId() + "'... ";
+                    userRepository.delete(user);
+                }
+
+                responseMessage += "Deleting login '" + login.getId() + "'... ";
+                loginRepository.delete(login);
+
+            } else {
+                return DeletionResponse.builder().errorMessage("The API received an invalid user deletion request!").build();
+            }
+
+        } else {
+            return DeletionResponse.builder().errorMessage("The specified user could not be found!").build();
+        }
+
+        return DeletionResponse.builder().successMessage(responseMessage).build();
     }
 
     /**

@@ -3,6 +3,9 @@ package net.samuelcmace.restaurantbuddyapi.auth;
 import lombok.RequiredArgsConstructor;
 import net.samuelcmace.restaurantbuddyapi.auth.models.AuthenticationRequest;
 import net.samuelcmace.restaurantbuddyapi.auth.models.AuthenticationResponse;
+import net.samuelcmace.restaurantbuddyapi.auth.models.deletion.DeletionResponse;
+import net.samuelcmace.restaurantbuddyapi.auth.models.deletion.RoleDeletionRequest;
+import net.samuelcmace.restaurantbuddyapi.auth.models.deletion.UserDeletionRequest;
 import net.samuelcmace.restaurantbuddyapi.auth.models.registration.existinguser.RegisterExistingCustomerRequest;
 import net.samuelcmace.restaurantbuddyapi.auth.models.registration.existinguser.RegisterExistingEmployeeRequest;
 import net.samuelcmace.restaurantbuddyapi.auth.models.registration.existinguser.RegisterExistingOwnerRequest;
@@ -94,7 +97,7 @@ public class AuthenticationController {
     }
 
     /**
-     * Method to assign an existing user to the pwmer role.
+     * Method to assign an existing user to the owner role.
      *
      * @param request The JSON request from the client.
      * @return A JSON response object that will (if successful) contain the JWT token.
@@ -104,6 +107,32 @@ public class AuthenticationController {
             @RequestBody RegisterExistingOwnerRequest request
     ) {
         return ResponseEntity.ok(authenticationService.registerExisting(request));
+    }
+
+    /**
+     * Method to remove a user, and it's corresponding login and roles.
+     *
+     * @param request The JSON request from the client.
+     * @return A JSON response object containing details about the operation.
+     */
+    @PostMapping("/delete/user")
+    public ResponseEntity<DeletionResponse> deleteUser(
+            @RequestBody UserDeletionRequest request
+    ) {
+        return ResponseEntity.ok(authenticationService.delete(request));
+    }
+
+    /**
+     * Method to remove role from a user.
+     *
+     * @param request The JSON request from the client.
+     * @return A JSON response object containing details about the operation.
+     */
+    @PostMapping("/delete/role")
+    public ResponseEntity<DeletionResponse> deleteRole(
+            @RequestBody RoleDeletionRequest request
+    ) {
+        return ResponseEntity.ok(authenticationService.delete(request));
     }
 
     /**
