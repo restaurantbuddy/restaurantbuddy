@@ -3,9 +3,9 @@ package net.samuelcmace.restaurantbuddyapi.customer;
 import lombok.RequiredArgsConstructor;
 import net.samuelcmace.restaurantbuddyapi.customer.models.OrderModel;
 import net.samuelcmace.restaurantbuddyapi.database.models.Customer;
-import net.samuelcmace.restaurantbuddyapi.shared.model.AllItemsModel;
+import net.samuelcmace.restaurantbuddyapi.shared.model.item.AllItemsModel;
 import net.samuelcmace.restaurantbuddyapi.shared.model.GenericResponseModel;
-import net.samuelcmace.restaurantbuddyapi.shared.model.ItemModel;
+import net.samuelcmace.restaurantbuddyapi.shared.model.item.ItemModel;
 import net.samuelcmace.restaurantbuddyapi.shared.service.ItemReadService;
 import org.springframework.web.bind.annotation.*;
 

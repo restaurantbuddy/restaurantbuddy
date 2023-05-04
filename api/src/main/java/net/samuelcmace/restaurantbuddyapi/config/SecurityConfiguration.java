@@ -44,7 +44,7 @@ public class SecurityConfiguration {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/auth/authenticate", "/auth/register/customer/**").permitAll()
+                        .requestMatchers("/about/**", "/auth/authenticate", "/auth/register/customer/**").permitAll()
                         .requestMatchers("/customer/**").hasAuthority(Customer.TABLE_NAME)
                         .requestMatchers("/employee/**").hasAuthority(Employee.TABLE_NAME)
                         .requestMatchers("/owner/**", "/auth/register/employee/**", "/auth/register/owner/**", "/auth/delete/**").hasAuthority(Owner.TABLE_NAME)

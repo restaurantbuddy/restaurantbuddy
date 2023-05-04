@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import net.samuelcmace.restaurantbuddyapi.database.models.Item;
 import net.samuelcmace.restaurantbuddyapi.database.models.Menu;
 import net.samuelcmace.restaurantbuddyapi.database.repositories.ItemRepository;
-import net.samuelcmace.restaurantbuddyapi.shared.model.ItemModel;
+import net.samuelcmace.restaurantbuddyapi.shared.model.item.ItemModel;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

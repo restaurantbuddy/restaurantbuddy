@@ -8,7 +8,7 @@ import net.samuelcmace.restaurantbuddyapi.database.repositories.ItemRepository;
 import net.samuelcmace.restaurantbuddyapi.database.repositories.MenuRepository;
 import net.samuelcmace.restaurantbuddyapi.database.repositories.UserRepository;
 import net.samuelcmace.restaurantbuddyapi.owner.models.UserModel;
-import net.samuelcmace.restaurantbuddyapi.shared.model.ItemModel;
+import net.samuelcmace.restaurantbuddyapi.shared.model.item.ItemModel;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
