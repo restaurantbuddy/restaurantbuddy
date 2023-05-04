@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import net.samuelcmace.restaurantbuddyapi.database.models.Item;
 import net.samuelcmace.restaurantbuddyapi.database.models.Menu;
 import net.samuelcmace.restaurantbuddyapi.database.repositories.ItemRepository;
+import net.samuelcmace.restaurantbuddyapi.shared.model.item.AllItemsModel;
 import net.samuelcmace.restaurantbuddyapi.shared.model.item.ItemModel;
 import org.springframework.stereotype.Service;
 
@@ -28,16 +29,10 @@ public class ItemReadService {
      *
      * @return A set of user models to be sent back to the user.
      */
-    public List<ItemModel> findAllMenuItems() {
+    public AllItemsModel findAllMenuItems() {
 
         List<Item> menuItemJPACollection = itemRepository.findAll();
-        List<ItemModel> menuItemModelCollection = new ArrayList<>();
-
-        for (Item item : menuItemJPACollection) {
-            menuItemModelCollection.add(buildItemModel(item));
-        }
-
-        return menuItemModelCollection;
+        return buildAllItemsModel(menuItemJPACollection);
 
     }
 
@@ -60,12 +55,29 @@ public class ItemReadService {
     }
 
     /**
+     * Method to convert a set of JPA items into an MVC object.
+     *
+     * @param items The items to be converted into an MVC JSON object.
+     * @return The newly-instantiated JSON object.
+     */
+    public AllItemsModel buildAllItemsModel(List<Item> items)
+    {
+        List<ItemModel> menuItemModelCollection = new ArrayList<>();
+
+        for (Item item : items) {
+            menuItemModelCollection.add(buildItemModel(item));
+        }
+
+        return AllItemsModel.builder().items(menuItemModelCollection).build();
+    }
+
+    /**
      * Private method to build an ItemModel out of an Item JPA entity.
      *
      * @param item The item JPA entity in question.
      * @return A new MVC model to be returned to the client in JSON format.
      */
-    private ItemModel buildItemModel(Item item) {
+    public ItemModel buildItemModel(Item item) {
         List<String> menus = new ArrayList<>();
 
         if (!item.getMenus().isEmpty()) {

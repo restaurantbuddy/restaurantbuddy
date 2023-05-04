@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import net.samuelcmace.restaurantbuddyapi.shared.model.location.LocationModel;
 
 import java.util.List;
 

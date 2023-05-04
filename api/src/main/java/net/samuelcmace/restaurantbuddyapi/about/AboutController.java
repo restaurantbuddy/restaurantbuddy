@@ -1,8 +1,8 @@
 package net.samuelcmace.restaurantbuddyapi.about;
 
 import lombok.RequiredArgsConstructor;
-import net.samuelcmace.restaurantbuddyapi.shared.model.location.AllLocationsModel;
 import net.samuelcmace.restaurantbuddyapi.shared.model.GenericResponseModel;
+import net.samuelcmace.restaurantbuddyapi.shared.model.location.AllLocationsModel;
 import net.samuelcmace.restaurantbuddyapi.shared.service.LocationReadService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

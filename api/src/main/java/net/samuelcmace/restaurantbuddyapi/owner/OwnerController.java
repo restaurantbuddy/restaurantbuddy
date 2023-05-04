@@ -1,14 +1,14 @@
 package net.samuelcmace.restaurantbuddyapi.owner;
 
 import lombok.RequiredArgsConstructor;
-import net.samuelcmace.restaurantbuddyapi.shared.model.location.AllLocationsModel;
-import net.samuelcmace.restaurantbuddyapi.shared.model.location.LocationModel;
 import net.samuelcmace.restaurantbuddyapi.database.models.Owner;
 import net.samuelcmace.restaurantbuddyapi.owner.models.AllUsersModel;
 import net.samuelcmace.restaurantbuddyapi.owner.models.UserModel;
-import net.samuelcmace.restaurantbuddyapi.shared.model.item.AllItemsModel;
 import net.samuelcmace.restaurantbuddyapi.shared.model.GenericResponseModel;
+import net.samuelcmace.restaurantbuddyapi.shared.model.item.AllItemsModel;
 import net.samuelcmace.restaurantbuddyapi.shared.model.item.ItemModel;
+import net.samuelcmace.restaurantbuddyapi.shared.model.location.AllLocationsModel;
+import net.samuelcmace.restaurantbuddyapi.shared.model.location.LocationModel;
 import net.samuelcmace.restaurantbuddyapi.shared.service.ItemReadService;
 import net.samuelcmace.restaurantbuddyapi.shared.service.LocationReadService;
 import org.springframework.web.bind.annotation.*;
@@ -77,9 +77,7 @@ public class OwnerController {
      */
     @GetMapping(value = "/item-management/read/all")
     public AllItemsModel readAllItems() {
-        return AllItemsModel.builder()
-                .items(itemReadService.findAllMenuItems())
-                .build();
+        return itemReadService.findAllMenuItems();
     }
 
     /**

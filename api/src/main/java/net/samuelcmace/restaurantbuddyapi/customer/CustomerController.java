@@ -3,10 +3,12 @@ package net.samuelcmace.restaurantbuddyapi.customer;
 import lombok.RequiredArgsConstructor;
 import net.samuelcmace.restaurantbuddyapi.customer.models.OrderModel;
 import net.samuelcmace.restaurantbuddyapi.database.models.Customer;
-import net.samuelcmace.restaurantbuddyapi.shared.model.item.AllItemsModel;
 import net.samuelcmace.restaurantbuddyapi.shared.model.GenericResponseModel;
+import net.samuelcmace.restaurantbuddyapi.shared.model.item.AllItemsModel;
 import net.samuelcmace.restaurantbuddyapi.shared.model.item.ItemModel;
+import net.samuelcmace.restaurantbuddyapi.shared.model.purchase.AllPurchasesModel;
 import net.samuelcmace.restaurantbuddyapi.shared.service.ItemReadService;
+import net.samuelcmace.restaurantbuddyapi.shared.service.PurchaseReadService;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -21,6 +23,11 @@ public class CustomerController {
      * ItemReadService instance associated with the service.
      */
     private final ItemReadService itemReadService;
+
+    /**
+     * PurchaseReadService instance associated with the service.
+     */
+    private final PurchaseReadService purchaseReadService;
 
     /**
      * CustomerService instance associated with the service.
@@ -44,9 +51,7 @@ public class CustomerController {
      */
     @GetMapping("/menu/read/all")
     public AllItemsModel readAllItems() {
-        return AllItemsModel.builder()
-                .items(itemReadService.findAllMenuItems())
-                .build();
+        return itemReadService.findAllMenuItems();
     }
 
     /**
@@ -68,7 +73,7 @@ public class CustomerController {
      * @param request The JSON model containing the order to be placed.
      * @return A JSON object containing the menu item.
      */
-    @PostMapping("/order/place")
+    @PostMapping("/order/create")
     public GenericResponseModel placeOrder(
             @RequestBody OrderModel request
     ) {
@@ -78,6 +83,16 @@ public class CustomerController {
         } catch (Exception e) {
             return GenericResponseModel.builder().errorMessage(e.getLocalizedMessage()).build();
         }
+    }
+
+    /**
+     * Method to retrieve all the orders placed by the customer.
+     *
+     * @return An object containing the entire order history of an authenticated customer.
+     */
+    @GetMapping("/order/read/all")
+    public AllPurchasesModel getAllOrders() {
+        return purchaseReadService.getPurchasesByCustomer();
     }
 
 }

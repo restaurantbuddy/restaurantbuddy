@@ -1,10 +1,10 @@
 package net.samuelcmace.restaurantbuddyapi.shared.service;
 
 import lombok.RequiredArgsConstructor;
-import net.samuelcmace.restaurantbuddyapi.shared.model.location.AllLocationsModel;
-import net.samuelcmace.restaurantbuddyapi.shared.model.location.LocationModel;
 import net.samuelcmace.restaurantbuddyapi.database.models.Location;
 import net.samuelcmace.restaurantbuddyapi.database.repositories.LocationRepository;
+import net.samuelcmace.restaurantbuddyapi.shared.model.location.AllLocationsModel;
+import net.samuelcmace.restaurantbuddyapi.shared.model.location.LocationModel;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

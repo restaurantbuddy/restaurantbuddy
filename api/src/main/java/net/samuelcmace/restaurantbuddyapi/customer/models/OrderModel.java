@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * MVC model containing a list of items for which the customer would like to place an order.
+ * This model is separate and distinct from the PurchaseModel, which deals with orders that have already been placed.
  */
 @Builder
 @Data
