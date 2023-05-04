@@ -12,6 +12,9 @@ import net.samuelcmace.restaurantbuddyapi.database.repositories.PurchaseReposito
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -56,8 +59,22 @@ public class CustomerService {
             // the user has CUSTOMER privileges, so there should be no need to check for null values.
             Customer associatedCustomer = loginQuery.get().getUser().getCustomer();
 
+            List<Item> menuItems = new ArrayList<>();
+
+            for (Long primaryKey : request.getMenuItems()) {
+                Optional<Item> items = itemRepository.findById(primaryKey);
+
+                if (items.isPresent()) {
+                    menuItems.add(items.get());
+                } else {
+                    throw new Exception("Error: The menu item with the primary key of " + primaryKey + " could not be found!");
+                }
+            }
+
             Purchase purchase = Purchase.builder()
                     .customer(associatedCustomer)
+                    .timePlaced(LocalDateTime.now())
+                    .items(menuItems)
                     .build();
 
             for (Long item : request.getMenuItems()) {

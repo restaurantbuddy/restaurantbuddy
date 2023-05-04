@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,14 +37,14 @@ public class Purchase {
     /**
      * Field representing the time the purchase was made.
      */
-    @Column(name = "PURCHASE_TIMESTAMP", nullable = false)
-    private Time timestamp;
+    @Column(name = "PURCHASE_PLACEMENT_TIME", nullable = false)
+    private LocalDateTime timePlaced;
 
     /**
-     * Field representing whether the purchase is completed.
+     * Field representing the time the purchase was made.
      */
-    @Column(name = "PURCHASE_IS_DONE", nullable = false)
-    private Boolean isDone;
+    @Column(name = "PURCHASE_COMPLETION_TIME")
+    private LocalDateTime timeCompleted;
 
     /**
      * Field representing the customer who placed the order.
