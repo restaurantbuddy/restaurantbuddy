@@ -6,12 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 /**
  * JPA entity representing the LOGIN table in the database.
@@ -56,40 +53,61 @@ public class Login implements UserDetails {
     @JoinColumn(name = "LOGIN_ID", referencedColumnName = "LOGIN_ID", nullable = false, unique = true)
     private User user;
 
+    /**
+     * Retrieves the roles associated with the user for authorization purposes.
+     *
+     * @return The roles that the user has been granted.
+     */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<SimpleGrantedAuthority> authorityList = new ArrayList<>();
-
-        if (this.user.getCustomer() != null)
-            authorityList.add(new SimpleGrantedAuthority(Customer.TABLE_NAME));
-        if (this.user.getEmployee() != null)
-            authorityList.add(new SimpleGrantedAuthority(Employee.TABLE_NAME));
-        if (this.user.getOwner() != null)
-            authorityList.add(new SimpleGrantedAuthority(Owner.TABLE_NAME));
-
-        return authorityList;
+        return this.getUser().getAuthorities();
     }
 
+    /**
+     * Retrieves the password from the login associated with the user.
+     *
+     * @return The password associated with the login.
+     */
     @Override
     public String getPassword() {
         return this.getPasswordHash();
     }
 
+    /**
+     * Retrieves whether the account is expired.
+     *
+     * @return A flag indicating whether the account is expired.
+     */
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
+    /**
+     * Retrieves whether the account is locked.
+     *
+     * @return A flag indicating whether the account is locked.
+     */
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
+    /**
+     * Retrieves whether the account's credentials are expired.
+     *
+     * @return A flag indicating account's credentials are expired.
+     */
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
+    /**
+     * Retrieves whether the account's is enabled.
+     *
+     * @return A flag indicating whether the account is enabled.
+     */
     @Override
     public boolean isEnabled() {
         return true;
