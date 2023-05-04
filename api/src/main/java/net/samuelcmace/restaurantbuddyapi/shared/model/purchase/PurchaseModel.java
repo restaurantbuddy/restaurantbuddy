@@ -5,10 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import net.samuelcmace.restaurantbuddyapi.shared.model.item.AllItemsModel;
-import net.samuelcmace.restaurantbuddyapi.shared.model.item.ItemModel;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * MVC model encapsulating a customer's purchase details.

@@ -60,8 +60,7 @@ public class ItemReadService {
      * @param items The items to be converted into an MVC JSON object.
      * @return The newly-instantiated JSON object.
      */
-    public AllItemsModel buildAllItemsModel(List<Item> items)
-    {
+    public AllItemsModel buildAllItemsModel(List<Item> items) {
         List<ItemModel> menuItemModelCollection = new ArrayList<>();
 
         for (Item item : items) {
