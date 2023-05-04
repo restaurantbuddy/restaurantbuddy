@@ -41,6 +41,12 @@ public class Purchase {
     private Time timestamp;
 
     /**
+     * Field representing whether the purchase is completed.
+     */
+    @Column(name = "PURCHASE_IS_DONE", nullable = false)
+    private Boolean isDone;
+
+    /**
      * Field representing the customer who placed the order.
      */
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
