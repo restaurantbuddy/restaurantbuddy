@@ -39,7 +39,7 @@ public class CustomerController {
      *
      * @return A JSON object containing a boolean indicating whether the user is authenticated as a customer.
      */
-    @GetMapping("/")
+    @GetMapping("")
     public GenericResponseModel index() {
         return GenericResponseModel.builder().successMessage("Controller: " + Customer.TABLE_NAME).build();
     }
@@ -49,7 +49,7 @@ public class CustomerController {
      *
      * @return A JSON object containing the menu items.
      */
-    @GetMapping("/menu/read/all")
+    @GetMapping("/items")
     public AllItemsModel readAllItems() {
         return itemReadService.findAllMenuItems();
     }
@@ -60,7 +60,7 @@ public class CustomerController {
      * @param primaryKey The primary key to be queried.
      * @return A JSON object containing the menu item.
      */
-    @GetMapping("/menu/read/{primaryKey}")
+    @GetMapping("/items/{primaryKey}")
     public ItemModel readMenuItemById(
             @PathVariable Long primaryKey
     ) {
@@ -73,7 +73,7 @@ public class CustomerController {
      * @param request The JSON model containing the order to be placed.
      * @return A JSON object containing the menu item.
      */
-    @PostMapping("/order/create")
+    @PostMapping("/order")
     public GenericResponseModel placeOrder(
             @RequestBody OrderModel request
     ) {
@@ -90,7 +90,7 @@ public class CustomerController {
      *
      * @return An object containing the entire order history of an authenticated customer.
      */
-    @GetMapping("/order/read/all")
+    @GetMapping("/orders")
     public AllPurchasesModel getAllOrders() {
         return purchaseReadService.getPurchasesByCustomer();
     }

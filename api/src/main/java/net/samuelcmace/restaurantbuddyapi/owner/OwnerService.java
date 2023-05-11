@@ -7,6 +7,7 @@ import net.samuelcmace.restaurantbuddyapi.database.models.User;
 import net.samuelcmace.restaurantbuddyapi.database.repositories.ItemRepository;
 import net.samuelcmace.restaurantbuddyapi.database.repositories.MenuRepository;
 import net.samuelcmace.restaurantbuddyapi.database.repositories.UserRepository;
+import net.samuelcmace.restaurantbuddyapi.owner.models.AllUsersModel;
 import net.samuelcmace.restaurantbuddyapi.owner.models.UserModel;
 import net.samuelcmace.restaurantbuddyapi.shared.model.item.ItemModel;
 import org.springframework.security.core.GrantedAuthority;
@@ -43,7 +44,7 @@ public class OwnerService {
      *
      * @return A set of user models to be sent back to the user.
      */
-    public List<UserModel> findAllUsers() {
+    public AllUsersModel findAllUsers() {
 
         List<User> userCollection = userRepository.findAll();
         List<UserModel> userModelCollection = new ArrayList<UserModel>();
@@ -52,7 +53,7 @@ public class OwnerService {
             userModelCollection.add(buildUserModel(user));
         }
 
-        return userModelCollection;
+        return AllUsersModel.builder().users(userModelCollection).build();
 
     }
 

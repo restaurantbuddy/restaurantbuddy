@@ -1,9 +1,6 @@
 package net.samuelcmace.restaurantbuddyapi.database.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,6 +27,7 @@ public class Location {
      */
     @Id
     @Column(name = "LOCATION_ID", nullable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**

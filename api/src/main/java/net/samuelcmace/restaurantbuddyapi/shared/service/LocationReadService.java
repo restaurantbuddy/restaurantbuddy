@@ -29,26 +29,18 @@ public class LocationReadService {
 
         List<Location> locations = locationRepository.findAll();
 
-        // If the location is empty, return an empty LocationModel.
-        if (locations.isEmpty()) {
-            return AllLocationsModel.builder().build();
+        List<LocationModel> locationMVCModels = new ArrayList<>();
+
+        for (Location location : locations) {
+            locationMVCModels.add(LocationModel.builder()
+                    .address(location.getAddress())
+                    .city(location.getCity())
+                    .state(location.getState())
+                    .zip(location.getZip())
+                    .build());
         }
 
-        // Otherwise, return the first in the set as the "main location" of the franchise.
-        else {
-            List<LocationModel> locationMVCModels = new ArrayList<>();
-
-            for (Location location : locations) {
-                locationMVCModels.add(LocationModel.builder()
-                        .address(location.getAddress())
-                        .city(location.getCity())
-                        .state(location.getState())
-                        .zip(location.getZip())
-                        .build());
-            }
-
-            return AllLocationsModel.builder().locations(locationMVCModels).build();
-        }
+        return AllLocationsModel.builder().locations(locationMVCModels).build();
 
     }
 

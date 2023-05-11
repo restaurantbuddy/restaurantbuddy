@@ -51,12 +51,9 @@ public class OwnerController {
      *
      * @return A model encapsulating a set containing all the users in the system and their details (in JSON format).
      */
-    @GetMapping(value = "/user-management/read/all")
+    @GetMapping(value = "/users")
     public AllUsersModel listAllUsers() {
-        return AllUsersModel
-                .builder()
-                .users(ownerService.findAllUsers())
-                .build();
+        return ownerService.findAllUsers();
     }
 
     /**
@@ -65,7 +62,7 @@ public class OwnerController {
      * @param id The primary key of the menu item (as supplied in the path of the request).
      * @return A JSON object containing details about the user.
      */
-    @GetMapping(value = "/user-management/read/{id}")
+    @GetMapping(value = "/users/{id}")
     public UserModel listUserById(@PathVariable Long id) {
         return ownerService.findUser(id);
     }
@@ -75,7 +72,7 @@ public class OwnerController {
      *
      * @return A JSON object containing the menu items.
      */
-    @GetMapping(value = "/item-management/read/all")
+    @GetMapping(value = "/items")
     public AllItemsModel readAllItems() {
         return itemReadService.findAllMenuItems();
     }
@@ -83,14 +80,14 @@ public class OwnerController {
     /**
      * MVC route to view all menu items stored in the database.
      *
-     * @param primaryKey The primary key to be queried.
+     * @param id The primary key to be queried.
      * @return A JSON object containing the menu item.
      */
-    @GetMapping(value = "/item-management/read/{primaryKey}")
+    @GetMapping("/items/{id}")
     public ItemModel readMenuItemById(
-            @PathVariable Long primaryKey
+            @PathVariable Long id
     ) {
-        return itemReadService.findMenuItem(primaryKey);
+        return itemReadService.findMenuItem(id);
     }
 
     /**
@@ -99,7 +96,7 @@ public class OwnerController {
      * @param request The new item to be created.
      * @return A generic JSON model containing any relevant success or error messages.
      */
-    @PostMapping(value = "/item-management/create")
+    @PostMapping(value = "/items")
     public GenericResponseModel addItem(
             @RequestBody ItemModel request
     ) {
@@ -121,7 +118,7 @@ public class OwnerController {
      * @param request The JSON model sent by the client.
      * @return A generic JSON response model containing any relevant error or debugging messages.
      */
-    @PostMapping(value = "/item-management/update")
+    @PutMapping(value = "/items")
     public GenericResponseModel updateItem(
             @RequestBody ItemModel request
     ) {
@@ -143,7 +140,7 @@ public class OwnerController {
      * @param primaryKey The primary key that corresponds to the item to be deleted.
      * @return A generic JSON response model containing any relevant error or debugging messages.
      */
-    @PostMapping(value = "/item-management/delete/{primaryKey}")
+    @DeleteMapping(value = "/items/{primaryKey}")
     public GenericResponseModel deleteItem(
             @PathVariable Long primaryKey
     ) {
@@ -160,7 +157,7 @@ public class OwnerController {
      *
      * @return An MVC model corresponding to all the restaurant's locations.
      */
-    @GetMapping("/location-management/read/all")
+    @GetMapping("/locations/")
     public AllLocationsModel readAllLocations() {
         return locationReadService.getAllLocations();
     }
@@ -170,7 +167,7 @@ public class OwnerController {
      *
      * @return An MVC model corresponding to all the restaurant's locations.
      */
-    @GetMapping("/location-management/read/{id}")
+    @GetMapping("/locations/{id}")
     public LocationModel readLocation(
             @PathVariable Long id
     ) {

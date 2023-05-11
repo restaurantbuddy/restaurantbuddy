@@ -6,8 +6,8 @@ CREATE
 DROP
     USER IF EXISTS 'restaurantbuddy'@'localhost';
 CREATE
-    USER IF NOT EXISTS 'restaurantbuddy'@'localhost' IDENTIFIED BY 'restaurantbuddy';
-GRANT ALL PRIVILEGES ON restaurantbuddy.* TO 'restaurantbuddy'@'localhost' IDENTIFIED BY 'restaurantbuddy';
+    USER IF NOT EXISTS 'restaurantbuddy'@'localhost' IDENTIFIED BY 'developer.cert';
+GRANT ALL PRIVILEGES ON restaurantbuddy.* TO 'restaurantbuddy'@'localhost' IDENTIFIED BY 'developer.cert';
 
 USE restaurantbuddy;
 
