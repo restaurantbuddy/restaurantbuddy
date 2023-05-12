@@ -1,0 +1,121 @@
+@import url(fonts/ubuntu-font-family/fonts.css);
+
+/* Set Default Margin and Padding */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Overall Color Theme */
+:root {
+    --outermost-color: #0B2447;
+    --outer-color: #19376D;
+    --inner-color: #576CBC;
+    --innermost-color: #A5D7E8;
+}
+
+.border-radius {
+    border-radius: 0.25em;
+}
+
+.rounded-corners {
+    border-radius: 0.25em;
+    padding: 0.5em;
+    margin: 0.5em 0;
+}
+
+.outermost-color {
+    background-color: var(--outermost-color);
+}
+
+.outer-color {
+    background-color: var(--outermost-color);
+}
+
+.inner-color {
+    background-color: var(--inner-color);
+}
+
+.innermost-color {
+    background-color: var(--innermost-color);
+}
+
+/* Overall Content */
+
+body {
+    background-color: var(--outermost-color);
+    font-family: "ubuntu", sans-serif;
+}
+
+.main-content {
+    background-color: var(--outer-color);
+    padding: 1em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    padding: 0.25em 0;
+}
+
+/* Header and Navigation */
+
+.title-bar {
+    text-align: center;
+}
+
+header img {
+    width: 100%;
+    border-radius: 0.25em;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+}
+
+nav li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 0.5em;
+}
+
+nav li a {
+    text-decoration: none;
+}
+
+/* Component Styling */
+
+.login-box {
+
+}
+
+.logout-banner {
+    border: 0.0125em solid green;
+    background-color: lightgreen;
+}
+
+/* Footer Content */
+
+footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+footer p, footer a {
+    text-decoration: none;
+    margin: 0.5em 0;
+}
+
+/* Media Queries for Responsive Design */
+
+@media screen and (min-width: 600px) {
+    .main-content {
+        border-radius: 0.25em;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .main-content {
+        margin: auto;
+        max-width: 1024px;
+    }
+}
