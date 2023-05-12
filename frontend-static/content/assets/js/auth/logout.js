@@ -1,0 +1,5 @@
+(function () {
+
+    Cookies.remove('jwtToken');
+
+}());

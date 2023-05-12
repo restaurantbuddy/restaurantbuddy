@@ -1,9 +1,9 @@
 (function () {
 
-    if (Cookies.get('jwtToken')) {
+    let headerElement = document.getElementById("dynamicContent");
+    let request = new XMLHttpRequest();
 
-        let headerElement = document.getElementById("menu");
-        let request = new XMLHttpRequest();
+    if (Cookies.get('jwtToken')) {
 
         request.addEventListener("load", function () {
 
@@ -52,7 +52,24 @@
         request.send();
 
     } else {
-        alert("You need to sign in to view this page!");
+
+        let informationTitleContainer = document.createElement("div");
+        informationTitleContainer.classList.add("innermost-color");
+        informationTitleContainer.classList.add("rounded-corners");
+
+        let informationTitleElement = document.createElement("h2");
+        let informationTitleContent = document.createTextNode("Unauthorized");
+        informationTitleElement.appendChild(informationTitleContent);
+
+        let informationDescriptionElement = document.createElement("p");
+        let informationDescriptionContent = document.createTextNode("This portion of the website looks like it contains restricted content. You can feel free to do so after you are logged into the system.");
+        informationDescriptionElement.appendChild(informationDescriptionContent);
+
+        informationTitleContainer.appendChild(informationTitleElement);
+        informationTitleContainer.appendChild(informationDescriptionElement);
+
+        headerElement.appendChild(informationTitleContainer);
+
     }
 
 }());
