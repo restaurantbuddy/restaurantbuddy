@@ -28,17 +28,17 @@ public class CustomerService {
     /**
      * The LoginRepository instance associated with the service.
      */
-    private LoginRepository loginRepository;
+    private final LoginRepository loginRepository;
 
     /**
      * The ItemRepository instance associated with the service.
      */
-    private ItemRepository itemRepository;
+    private final ItemRepository itemRepository;
 
     /**
      * The PurchaseRepository instance associated with the service.
      */
-    private PurchaseRepository purchaseRepository;
+    private final PurchaseRepository purchaseRepository;
 
     /**
      * Method called by the customer to place an order.
@@ -92,7 +92,7 @@ public class CustomerService {
             purchaseRepository.save(purchase);
 
         } else {
-            throw new RuntimeException("There was an error in retrieving the login!");
+            throw new RuntimeException("There was an error in placing the order!");
         }
     }
 
