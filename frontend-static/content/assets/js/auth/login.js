@@ -22,7 +22,6 @@ import {checkCookieConsent} from "../shared/eu-cookie-prompt.js";
 
                     let jsonResponse = JSON.parse(loginRequest.response);
                     Cookies.set('jwtToken', jsonResponse.jwtToken);
-                    alert("You have been logged in!");
 
                     // If the user is being redirected to the login form from another page,
                     // redirect them back to that page once they have been accepted.
