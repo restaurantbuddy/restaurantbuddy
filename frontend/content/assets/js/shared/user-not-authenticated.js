@@ -1,6 +1,6 @@
 import '../include/js.cookie.min.js';
 
-export function userNotAuthorized(headerElement) {
+export function userNotAuthenticated(headerElement) {
 
     // If the user is not authenticated, change the logout link to a login link
     let authenticationLink = document.getElementById("authenticationLink");
@@ -13,11 +13,11 @@ export function userNotAuthorized(headerElement) {
     informationTitleContainer.classList.add("rounded-corners");
 
     let informationTitleElement = document.createElement("h2");
-    let informationTitleContent = document.createTextNode("Unauthorized");
+    let informationTitleContent = document.createTextNode("Not Logged In");
     informationTitleElement.appendChild(informationTitleContent);
 
     let informationDescriptionElement = document.createElement("p");
-    let informationDescriptionContent = document.createTextNode("Although you are logged into the system, it looks like you're trying to access a portion of the website that you are not allowed to access.");
+    let informationDescriptionContent = document.createTextNode("This portion of the website looks like it contains restricted content. You can feel free to do so after you are logged into the system.");
     informationDescriptionElement.appendChild(informationDescriptionContent);
 
     informationTitleContainer.appendChild(informationTitleElement);
