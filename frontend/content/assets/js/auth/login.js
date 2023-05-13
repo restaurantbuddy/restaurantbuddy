@@ -1,5 +1,6 @@
 import '../include/js.cookie.min.js';
 import {checkCookieConsent} from "../shared/eu-cookie-prompt.js";
+import {urlPath} from '../shared/configuration.js';
 
 (function () {
 
@@ -37,7 +38,7 @@ import {checkCookieConsent} from "../shared/eu-cookie-prompt.js";
 
             });
 
-            loginRequest.open("POST", "http://localhost:8888/api/v1/auth/authenticate");
+            loginRequest.open("POST", `${urlPath}/auth/authenticate`);
             loginRequest.setRequestHeader("Content-Type", "application/json");
             loginRequest.send(JSON.stringify({
                 "username": usernameTextField.value,

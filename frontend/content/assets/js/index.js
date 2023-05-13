@@ -1,6 +1,6 @@
 import '../include/js.cookie.min.js';
-import {userNotAuthorized} from '../shared/user-not-authorized.js';
-import {checkCookieConsent} from "../shared/eu-cookie-prompt.js";
+import {userNotAuthenticated} from 'shared/user-not-authenticated.js';
+import {checkCookieConsent} from "shared/eu-cookie-prompt.js";
 
 (function () {
 
@@ -12,7 +12,7 @@ import {checkCookieConsent} from "../shared/eu-cookie-prompt.js";
 
 
         } else {
-            userNotAuthorized(headerElement);
+            userNotAuthenticated(headerElement);
         }
 
     }

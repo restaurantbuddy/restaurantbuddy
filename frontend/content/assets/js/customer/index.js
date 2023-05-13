@@ -1,6 +1,7 @@
 import '../include/js.cookie.min.js';
 import {userNotAuthenticated} from '../shared/user-not-authenticated.js';
 import {checkCookieConsent} from "../shared/eu-cookie-prompt.js";
+import {urlPath} from '../shared/configuration.js';
 
 (function () {
 
@@ -54,7 +55,7 @@ import {checkCookieConsent} from "../shared/eu-cookie-prompt.js";
 
             });
 
-            request.open("GET", "http://localhost:8888/api/v1/customer/items");
+            request.open("GET", `${urlPath}/customer/items`);
             request.setRequestHeader("Authorization", "Bearer " + Cookies.get("jwtToken"));
             request.send();
 

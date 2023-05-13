@@ -19,12 +19,6 @@ services:
       MARIADB_PASSWORD: restaurantbuddy
       MARIADB_DATABASE: restaurantbuddy
       MARIADB_ROOT_PASSWORD: restaurantbuddy
-  object:
-    image: "minio/minio"
-    restart: always
-    environment:
-      MINIO_ROOT_USER: restaurantbuddy
-      MINIO_ROOT_PASSWORD: restaurantbuddy
   phpmyadmin:
     image: "phpmyadmin:latest"
     restart: always
