@@ -68,7 +68,7 @@ public class CustomerController {
     }
 
     /**
-     * MVC route to view all menu items stored in the database.
+     * MVC route to place an order.
      *
      * @param request The JSON model containing the order to be placed.
      * @return A JSON object containing the menu item.
