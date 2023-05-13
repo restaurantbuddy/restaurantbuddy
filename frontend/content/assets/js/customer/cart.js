@@ -7,7 +7,7 @@ import {urlPath} from '../shared/configuration.js';
 
     function removeItemFromCart(itemId) {
 
-        if(Cookies.get('cart')) {
+        if (Cookies.get('cart')) {
 
             let cart = Cookies.get('cart');
             let cartItems = JSON.parse(cart);
@@ -30,9 +30,9 @@ import {urlPath} from '../shared/configuration.js';
 
         let request = new XMLHttpRequest();
 
-        request.addEventListener("load", function() {
+        request.addEventListener("load", function () {
 
-            if(request.status === 200) {
+            if (request.status === 200) {
 
                 let item = JSON.parse(request.response);
 
@@ -76,7 +76,7 @@ import {urlPath} from '../shared/configuration.js';
 
         if (Cookies.get('jwtToken')) {
 
-            if(Cookies.get('cart')) {
+            if (Cookies.get('cart')) {
 
                 let menuContainerElement = document.createElement("div");
                 menuContainerElement.classList.add("inner-color");
@@ -89,11 +89,67 @@ import {urlPath} from '../shared/configuration.js';
 
                 headerElement.appendChild(menuContainerElement);
 
+                let orderRequestButton = document.createElement("button");
+                let orderRequestButtonText = document.createTextNode("Place Order");
+                orderRequestButton.appendChild(orderRequestButtonText);
+
+                orderRequestButton.addEventListener("click", function () {
+                    placeOrder();
+                });
+
+                headerElement.appendChild(orderRequestButton);
+
             }
 
         } else {
             userNotAuthenticated(headerElement);
         }
+    }
+
+    function placeOrder() {
+
+        if (Cookies.get('jwtToken')) {
+
+            if (Cookies.get('cart')) {
+
+                let cartItems = JSON.parse(Cookies.get('cart'));
+
+                if (cartItems.size <= 0) {
+                    alert("You can't place an empty order!\nYou can add items to your cart by navigating to the homepage and clicking on the items from there.");
+                } else {
+
+                    let orderRequest = new XMLHttpRequest();
+                    orderRequest.addEventListener("load", function () {
+
+                        if (orderRequest.status === 200) {
+
+                            let response = JSON.parse(orderRequest.response)
+                            if (response.successMessage) {
+                                alert(response.successMessage);
+                            }
+                            if (response.errorMessage) {
+                                alert(response.errorMessage);
+                            }
+
+                        }
+
+                    });
+
+                    orderRequest.open("POST", `${urlPath}/customer/order`);
+                    orderRequest.setRequestHeader("Authorization", `Bearer ${Cookies.get("jwtToken")}`);
+                    orderRequest.setRequestHeader("Content-Type", "application/json");
+                    orderRequest.send(JSON.stringify({
+                        "menuItems": cartItems,
+                    }));
+
+                }
+
+            }
+
+        } else {
+            userNotAuthenticated(headerElement);
+        }
+
     }
 
     if (checkCookieConsent() === true) {
