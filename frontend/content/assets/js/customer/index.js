@@ -5,13 +5,31 @@ import {urlPath} from '../shared/configuration.js';
 
 (function () {
 
+    function addItemToCart(itemId) {
+
+        if (!Cookies.get('cart')) {
+
+            let cartItems = [itemId];
+            Cookies.set('cart', JSON.stringify(cartItems));
+
+        } else {
+
+            let cartItems = JSON.parse(Cookies.get('cart'));
+            cartItems.push(itemId);
+
+            Cookies.set('cart', JSON.stringify(cartItems));
+
+        }
+
+    }
+
     if (checkCookieConsent() === true) {
 
         let headerElement = document.getElementById("dynamicContent");
-        let request = new XMLHttpRequest();
 
         if (Cookies.get('jwtToken')) {
 
+            let request = new XMLHttpRequest();
             request.addEventListener("load", function () {
 
                 if (request.status === 200) {
@@ -26,6 +44,7 @@ import {urlPath} from '../shared/configuration.js';
                     items.forEach(item => {
 
                         let itemElement = document.createElement("div");
+                        itemElement.id = item.id;
                         itemElement.classList.add("innermost-color");
                         itemElement.classList.add("rounded-corners");
 
@@ -38,12 +57,20 @@ import {urlPath} from '../shared/configuration.js';
                         itemDescriptionElement.appendChild(itemDescriptionContent);
 
                         let itemPriceElement = document.createElement("p");
-                        let itemPriceContent = document.createTextNode(item.price);
+                        let itemPriceContent = document.createTextNode("$" + item.price);
                         itemPriceElement.appendChild(itemPriceContent);
 
                         itemElement.appendChild(itemTitleElement);
                         itemElement.appendChild(itemDescriptionElement);
                         itemElement.appendChild(itemPriceElement);
+
+                        // When the user clicks on the menu item, we will check to see if they would like to add the
+                        // item to their cart.
+                        itemElement.addEventListener("click", function () {
+                            if (confirm(`Would you like to add the ${item.name} to your cart?`) === true) {
+                                addItemToCart(itemElement.id);
+                            }
+                        });
 
                         menuContainerElement.appendChild(itemElement);
 
