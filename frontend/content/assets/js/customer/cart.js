@@ -21,6 +21,14 @@ import {urlPath} from '../shared/configuration.js';
 
     }
 
+    function clearCart() {
+
+        if (Cookies.get('cart')) {
+            Cookies.remove('cart');
+        }
+
+    }
+
     function fetchItemFromServer(itemId) {
 
         let itemElement = document.createElement("div");
@@ -89,15 +97,30 @@ import {urlPath} from '../shared/configuration.js';
 
                 headerElement.appendChild(menuContainerElement);
 
+                // Add a button to add a new order.
                 let orderRequestButton = document.createElement("button");
                 let orderRequestButtonText = document.createTextNode("Place Order");
                 orderRequestButton.appendChild(orderRequestButtonText);
 
                 orderRequestButton.addEventListener("click", function () {
                     placeOrder();
+                    clearCart();
+                    refreshDisplay();
                 });
 
                 headerElement.appendChild(orderRequestButton);
+
+                // Add a button to clear the shopping cart.
+                let clearCartButton = document.createElement("button");
+                let clearCartButtonText = document.createTextNode("Clear Cart");
+                clearCartButton.appendChild(clearCartButtonText);
+
+                clearCartButton.addEventListener("click", function () {
+                    clearCart();
+                    refreshDisplay();
+                });
+
+                headerElement.appendChild(clearCartButton);
 
             }
 

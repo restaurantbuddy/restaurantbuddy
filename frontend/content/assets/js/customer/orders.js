@@ -10,6 +10,12 @@ import {checkCookieConsent} from "../shared/eu-cookie-prompt.js";
 
         if (Cookies.get('jwtToken')) {
 
+            let orderRequest = new XMLHttpRequest();
+            orderRequest.addEventListener("load", function () {
+
+
+
+            });
 
         } else {
             userNotAuthenticated(headerElement);
