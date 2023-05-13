@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>RestaurantBuddy - Owner Portal</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="icon" href="/assets/icons/favicon.ico"/>
-    <link rel="stylesheet" href="/assets/css/main.css">
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link href="/assets/icons/favicon.ico" rel="icon"/>
+    <link href="/assets/css/main.css" rel="stylesheet">
 <body>
 <div class="main-content">
 
     <header>
-        <img src="/assets/icons/favicon.svg" width="64" height="64" alt="Logo"/>
+        <img alt="Logo" height="64" src="/assets/icons/favicon.svg" width="64"/>
     </header>
 
     <div class="title-bar rounded-corners inner-color">
@@ -31,7 +31,7 @@
     <div class="sub-content inner-color rounded-corners">
         <h2>Restaurant Overview</h2>
         <p>Use the navigation links provided to administer certain portions of the website.</p>
-        <div class="dynamicContent"></div>
+        <div id="dynamicContent"></div>
     </div>
 
     <footer class="rounded-corners inner-color">
@@ -39,11 +39,7 @@
         <p>Copyright &copy; 2023 - Samuel Mace</p>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.5/js.cookie.min.js"
-            integrity="sha512-nlp9/l96/EpjYBx7EP7pGASVXNe80hGhYAUrjeXnu/fyF5Py0/RXav4BBNs7n5Hx1WFhOEOWSAVjGeC3oKxDVQ=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script type="text/javascript" src="/assets/js/owner/index.js"></script>
-
 </div>
+<script src="/assets/js/owner/index.js" type="module"></script>
 </body>
 </html>

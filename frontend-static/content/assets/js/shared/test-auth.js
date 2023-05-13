@@ -1,5 +1,5 @@
 // This JavaScript
-module.exports = function() {
+module.exports = function () {
 
     if (Cookies.get('jwtToken')) {
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>RestaurantBuddy - A Fictitious Chinese Takeout Restaurant</title>
+    <title>RestaurantBuddy Landing Page</title>
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <link href="/assets/icons/favicon.ico" rel="icon"/>
     <link href="/assets/css/main.css" rel="stylesheet">
@@ -18,20 +18,18 @@
         <p>A Fictitious Chinese Takeout Restaurant</p>
     </div>
 
-    <nav class="inner">
-        <ul class="rounded-corners inner-color">
-            <li><a class="styled-link" href="/customer">Home</a></li>
-            <li><a class="styled-link" href="/customer/menu">Menu</a></li>
-            <li><a class="styled-link" href="/customer/cart">Cart</a></li>
-            <li><a class="styled-link" href="/customer/orders">Orders</a></li>
-            <li><a class="styled-link" href="/customer/about">About</a></li>
-            <li><a class="styled-link" href="/auth/logout" id="authenticationLink">Logout</a></li>
-        </ul>
-    </nav>
-
     <div class="sub-content inner-color rounded-corners">
-        <h2>About</h2>
-        <div id="dynamicContent"></div>
+        <h2>Welcome to RestaurantBuddy</h2>
+        <p>Whether you are logging into the system as a customer, employee, or restaurant owner, you can enter your
+            username and password into the fields below:</p>
+        <form class="inner-color rounded-corners">
+            <label for="username">Username:</label>
+            <input id="username" name="username" type="text">
+            <label for="password">Password:</label>
+            <input id="password" name="password" type="password">
+            <br>
+            <input id="submit" type="submit">
+        </form>
     </div>
 
     <footer class="rounded-corners inner-color">
@@ -40,6 +38,6 @@
     </footer>
 
 </div>
-<script src="/assets/js/customer/about.js" type="module"></script>
+<script src="/assets/js/auth/register.js" type="module"></script>
 </body>
 </html>

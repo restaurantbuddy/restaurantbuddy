@@ -24,14 +24,6 @@ import {checkCookieConsent} from "../shared/eu-cookie-prompt.js";
                     Cookies.set('jwtToken', jsonResponse.jwtToken);
                     alert("You have been logged in!");
 
-                    // If the user is being redirected to the login form from another page,
-                    // redirect them back to that page once they have been accepted.
-                    if (Cookies.get('redirect')) {
-                        let url = Cookies.get('redirect');
-                        Cookies.remove('redirect');
-                        window.location.replace(url);
-                    }
-
                 } else {
                     alert("Login unsuccessful!");
                 }

@@ -1,9 +1,20 @@
+import '../include/js.cookie.min.js';
+import {userNotAuthorized} from '../shared/user-not-authorized.js';
+import {checkCookieConsent} from "../shared/eu-cookie-prompt.js";
+
 (function () {
 
-    if (Cookies.get('jwtToken')) {
-        alert("The JWT Token is " + Cookies.get('jwtToken'));
-    } else {
-        alert("You need to sign in to view this page!");
+    if (checkCookieConsent() === true) {
+
+        let headerElement = document.getElementById('dynamicContent');
+
+        if (Cookies.get('jwtToken')) {
+
+
+        } else {
+            userNotAuthorized(headerElement);
+        }
+
     }
 
 }());

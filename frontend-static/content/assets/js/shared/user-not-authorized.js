@@ -1,3 +1,5 @@
+import '../include/js.cookie.min.js';
+
 export function userNotAuthorized(headerElement) {
 
     // If the user is not authenticated, change the logout link to a login link
@@ -22,5 +24,8 @@ export function userNotAuthorized(headerElement) {
     informationTitleContainer.appendChild(informationDescriptionElement);
 
     headerElement.appendChild(informationTitleContainer);
+
+    // In case the user clicks the login button, set a cookie storing the address to return to once the user is logged back in.
+    Cookies.set('redirect', window.location.href);
 
 }

@@ -1,62 +1,67 @@
-import { userNotAuthorized } from '../shared/user-not-authorized.js';
+import '../include/js.cookie.min.js';
+import {userNotAuthorized} from '../shared/user-not-authorized.js';
+import {checkCookieConsent} from "../shared/eu-cookie-prompt.js";
+
 
 (function () {
 
-    let headerElement = document.getElementById("dynamicContent");
-    let request = new XMLHttpRequest();
+    if (checkCookieConsent() === true) {
 
-    if (Cookies.get('jwtToken')) {
+        let headerElement = document.getElementById("dynamicContent");
+        let request = new XMLHttpRequest();
 
-        request.addEventListener("load", function () {
+        if (Cookies.get('jwtToken')) {
 
-            if (request.status === 200) {
+            request.addEventListener("load", function () {
 
-                let jsonResponse = JSON.parse(request.response);
-                let items = jsonResponse.items;
+                if (request.status === 200) {
 
-                let menuContainerElement = document.createElement("div");
-                menuContainerElement.classList.add("inner-color");
-                menuContainerElement.classList.add("rounded-corners");
+                    let jsonResponse = JSON.parse(request.response);
+                    let items = jsonResponse.items;
 
-                items.forEach(item => {
+                    let menuContainerElement = document.createElement("div");
+                    menuContainerElement.classList.add("inner-color");
+                    menuContainerElement.classList.add("rounded-corners");
 
-                    let itemElement = document.createElement("div");
-                    itemElement.classList.add("innermost-color");
-                    itemElement.classList.add("rounded-corners");
+                    items.forEach(item => {
 
-                    let itemTitleElement = document.createElement("p");
-                    let itemTitleContent = document.createTextNode(item.name);
-                    itemTitleElement.appendChild(itemTitleContent);
+                        let itemElement = document.createElement("div");
+                        itemElement.classList.add("innermost-color");
+                        itemElement.classList.add("rounded-corners");
 
-                    let itemDescriptionElement = document.createElement("p");
-                    let itemDescriptionContent = document.createTextNode(item.description);
-                    itemDescriptionElement.appendChild(itemDescriptionContent);
+                        let itemTitleElement = document.createElement("p");
+                        let itemTitleContent = document.createTextNode(item.name);
+                        itemTitleElement.appendChild(itemTitleContent);
 
-                    let itemPriceElement = document.createElement("p");
-                    let itemPriceContent = document.createTextNode(item.price);
-                    itemPriceElement.appendChild(itemPriceContent);
+                        let itemDescriptionElement = document.createElement("p");
+                        let itemDescriptionContent = document.createTextNode(item.description);
+                        itemDescriptionElement.appendChild(itemDescriptionContent);
 
-                    itemElement.appendChild(itemTitleElement);
-                    itemElement.appendChild(itemDescriptionElement);
-                    itemElement.appendChild(itemPriceElement);
+                        let itemPriceElement = document.createElement("p");
+                        let itemPriceContent = document.createTextNode(item.price);
+                        itemPriceElement.appendChild(itemPriceContent);
 
-                    menuContainerElement.appendChild(itemElement);
+                        itemElement.appendChild(itemTitleElement);
+                        itemElement.appendChild(itemDescriptionElement);
+                        itemElement.appendChild(itemPriceElement);
 
-                });
+                        menuContainerElement.appendChild(itemElement);
 
-                headerElement.appendChild(menuContainerElement);
+                    });
 
-            }
+                    headerElement.appendChild(menuContainerElement);
 
-        });
+                }
 
-        request.open("GET", "http://localhost:8888/api/v1/customer/items");
-        request.setRequestHeader("Authorization", "Bearer " + Cookies.get("jwtToken"));
-        request.send();
+            });
 
-    } else {
+            request.open("GET", "http://localhost:8888/api/v1/customer/items");
+            request.setRequestHeader("Authorization", "Bearer " + Cookies.get("jwtToken"));
+            request.send();
 
-        userNotAuthorized(headerElement);
+        } else {
+            userNotAuthorized(headerElement);
+        }
 
     }
 

@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>RestaurantBuddy - Owner Portal</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="icon" href="/assets/icons/favicon.ico"/>
-    <link rel="stylesheet" href="/assets/css/main.css">
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link href="/assets/icons/favicon.ico" rel="icon"/>
+    <link href="/assets/css/main.css" rel="stylesheet">
 <body>
 <div class="main-content">
+
     <header>
-        <img src="/assets/icons/favicon.svg" width="64" height="64" alt="Logo"/>
+        <img alt="Logo" height="64" src="/assets/icons/favicon.svg" width="64"/>
     </header>
+
     <div class="title-bar rounded-corners inner-color">
         <h1>RestaurantBuddy - Owner Portal</h1>
         <p>For Authorized Users Only</p>
     </div>
+
     <nav class="inner">
         <ul class="rounded-corners inner-color">
             <li><a class="styled-link" href="/owner">Overview</a></li>
@@ -27,13 +30,15 @@
 
     <div class="sub-content inner-color rounded-corners">
         <h2>Users</h2>
-        <div class="dynamicContent"></div>
+        <div id="dynamicContent"></div>
     </div>
 
     <footer class="rounded-corners inner-color">
         <p><a href="/">Return to Restaurant Landing Page</a></p>
         <p>Copyright &copy; 2023 - Samuel Mace</p>
     </footer>
+
 </div>
+<script src="/assets/js/owner/users.js" type="module"></script>
 </body>
 </html>
