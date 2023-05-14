@@ -1,5 +1,6 @@
 import '../include/js.cookie.min.js';
 import {userNotAuthenticated} from '../shared/user-not-authenticated.js';
+import {userNotAuthorized} from "../shared/user-not-authorized.js";
 import {checkCookieConsent} from "../shared/eu-cookie-prompt.js";
 import {urlPath} from '../shared/configuration.js';
 
@@ -78,6 +79,8 @@ import {urlPath} from '../shared/configuration.js';
 
                     headerElement.appendChild(menuContainerElement);
 
+                } else {
+                    userNotAuthorized(headerElement);
                 }
 
             });

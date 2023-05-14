@@ -1,9 +1,12 @@
 import '../include/js.cookie.min.js';
 import {userNotAuthenticated} from '../shared/user-not-authenticated.js';
+import {userNotAuthorized} from "../shared/user-not-authorized.js";
 import {checkCookieConsent} from "../shared/eu-cookie-prompt.js";
 import {urlPath} from '../shared/configuration.js';
 
 (function () {
+
+    let headerElement = document.getElementById('dynamicContent');
 
     function removeItemFromCart(itemId) {
 
@@ -68,7 +71,10 @@ import {urlPath} from '../shared/configuration.js';
                         refreshDisplay();
                     }
                 });
+            } else {
+                userNotAuthorized(headerElement);
             }
+
         });
 
         request.open("GET", `${urlPath}/customer/items/${itemId}`);
@@ -79,7 +85,7 @@ import {urlPath} from '../shared/configuration.js';
     }
 
     function refreshDisplay() {
-        let headerElement = document.getElementById('dynamicContent');
+
         headerElement.innerHTML = "";
 
         if (Cookies.get('jwtToken')) {
@@ -154,6 +160,8 @@ import {urlPath} from '../shared/configuration.js';
                                 alert(response.errorMessage);
                             }
 
+                        } else {
+                            userNotAuthorized(headerElement);
                         }
 
                     });
