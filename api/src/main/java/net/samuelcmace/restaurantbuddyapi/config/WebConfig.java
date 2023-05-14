@@ -13,13 +13,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfig implements WebMvcConfigurer {
 
     /**
-     * Method to override the default CORS settings for Spring Boot.
+     * Method to override the default CORS settings for Spring Boot. Since the goal of the API is to remain open for
+     * clients to use, all maps and methods will be granted access to the server's defined API routes.
      *
      * @param registry The registry to be modified.
      */
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**");
+        registry.addMapping("/**").allowedMethods("*");
     }
 
 }

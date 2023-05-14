@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import net.samuelcmace.restaurantbuddyapi.shared.model.item.AllItemsModel;
 import net.samuelcmace.restaurantbuddyapi.shared.model.item.ItemModel;
 
 import java.time.LocalDateTime;
