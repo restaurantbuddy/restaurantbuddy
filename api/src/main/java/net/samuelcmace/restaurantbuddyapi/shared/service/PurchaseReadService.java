@@ -3,6 +3,7 @@ package net.samuelcmace.restaurantbuddyapi.shared.service;
 import lombok.RequiredArgsConstructor;
 import net.samuelcmace.restaurantbuddyapi.database.models.Purchase;
 import net.samuelcmace.restaurantbuddyapi.database.repositories.PurchaseRepository;
+import net.samuelcmace.restaurantbuddyapi.shared.model.item.ItemModel;
 import net.samuelcmace.restaurantbuddyapi.shared.model.purchase.AllPurchasesModel;
 import net.samuelcmace.restaurantbuddyapi.shared.model.purchase.PurchaseModel;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -30,7 +31,7 @@ public class PurchaseReadService {
     private final ItemReadService itemReadService;
 
     /**
-     * Method to retrieve the orders placed by a specific customer.
+     * Method to retrieve the orders placed by the customer logged in.
      *
      * @return A AllPurchasesModel containing the purchases that match the user making the request.
      */
@@ -87,13 +88,19 @@ public class PurchaseReadService {
      * @return A newly-instantiated JSON object.
      */
     private PurchaseModel buildPurchaseModel(Purchase purchase) {
+
+        List<ItemModel> items = new ArrayList<>();
+
+        purchase.getItems().forEach(i -> items.add(itemReadService.buildItemModel(i)));
+
         return PurchaseModel.builder()
                 .id(purchase.getId())
                 .timePlaced(purchase.getTimePlaced())
                 .timeCompleted(purchase.getTimeCompleted())
-                .items(itemReadService.buildAllItemsModel(purchase.getItems()))
+                .items(items)
                 .customerUsername(purchase.getCustomer().getUsername())
                 .build();
+
     }
 
 }
