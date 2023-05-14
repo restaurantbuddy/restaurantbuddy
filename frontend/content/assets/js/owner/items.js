@@ -1,6 +1,7 @@
 import '../include/js.cookie.min.js';
 import {userNotAuthenticated} from '../shared/user-not-authenticated.js';
 import {checkCookieConsent} from "../shared/eu-cookie-prompt.js";
+import {urlPath} from "../shared/configuration.js";
 
 (function () {
 
@@ -10,6 +11,13 @@ import {checkCookieConsent} from "../shared/eu-cookie-prompt.js";
 
         if (Cookies.get('jwtToken')) {
 
+            let itemsRequest = new XMLHttpRequest();
+            itemsRequest.addEventListener("load", function() {
+
+            });
+
+            itemsRequest.open("GET", `${urlPath}/owner/items`)
+            itemsRequest.setRequestHeader("Authorization", `Bearer ${Cookies.get('jwtToken')}`);
 
         } else {
             userNotAuthenticated(headerElement);

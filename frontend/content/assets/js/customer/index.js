@@ -3,6 +3,7 @@ import {userNotAuthenticated} from '../shared/user-not-authenticated.js';
 import {userNotAuthorized} from "../shared/user-not-authorized.js";
 import {checkCookieConsent} from "../shared/eu-cookie-prompt.js";
 import {urlPath} from '../shared/configuration.js';
+import {drawItem} from "../shared/component/item.js";
 
 (function () {
 
@@ -44,32 +45,13 @@ import {urlPath} from '../shared/configuration.js';
 
                     items.forEach(item => {
 
-                        let itemElement = document.createElement("div");
-                        itemElement.id = item.id;
-                        itemElement.classList.add("innermost-color");
-                        itemElement.classList.add("rounded-corners");
-
-                        let itemTitleElement = document.createElement("p");
-                        let itemTitleContent = document.createTextNode(item.name);
-                        itemTitleElement.appendChild(itemTitleContent);
-
-                        let itemDescriptionElement = document.createElement("p");
-                        let itemDescriptionContent = document.createTextNode(item.description);
-                        itemDescriptionElement.appendChild(itemDescriptionContent);
-
-                        let itemPriceElement = document.createElement("p");
-                        let itemPriceContent = document.createTextNode("$" + item.price);
-                        itemPriceElement.appendChild(itemPriceContent);
-
-                        itemElement.appendChild(itemTitleElement);
-                        itemElement.appendChild(itemDescriptionElement);
-                        itemElement.appendChild(itemPriceElement);
+                        let itemElement = drawItem(item.id, item.name, item.description, item.price);
 
                         // When the user clicks on the menu item, we will check to see if they would like to add the
                         // item to their cart.
                         itemElement.addEventListener("click", function () {
                             if (confirm(`Would you like to add the ${item.name} to your cart?`) === true) {
-                                addItemToCart(itemElement.id);
+                                addItemToCart(itemElement.getAttribute("data-item"));
                             }
                         });
 
@@ -90,7 +72,9 @@ import {urlPath} from '../shared/configuration.js';
             request.send();
 
         } else {
+
             userNotAuthenticated(headerElement);
+
         }
 
     }

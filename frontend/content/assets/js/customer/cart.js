@@ -3,6 +3,7 @@ import {userNotAuthenticated} from '../shared/user-not-authenticated.js';
 import {userNotAuthorized} from "../shared/user-not-authorized.js";
 import {checkCookieConsent} from "../shared/eu-cookie-prompt.js";
 import {urlPath} from '../shared/configuration.js';
+import {drawItem} from "../shared/component/item.js";
 
 (function () {
 
@@ -18,7 +19,10 @@ import {urlPath} from '../shared/configuration.js';
             let cartItemIndex = cartItems.indexOf(itemId);
             cartItems.splice(cartItemIndex, 1);
 
-            Cookies.set('cart', JSON.stringify(cartItems));
+            if (cartItems.length === 0)
+                Cookies.remove('cart');
+            else
+                Cookies.set('cart', JSON.stringify(cartItems));
 
         }
 
@@ -30,58 +34,6 @@ import {urlPath} from '../shared/configuration.js';
             Cookies.remove('cart');
         }
 
-    }
-
-    function fetchItemFromServer(itemId) {
-
-        let itemElement = document.createElement("div");
-        itemElement.id = itemId;
-        itemElement.classList.add("innermost-color");
-        itemElement.classList.add("rounded-corners");
-
-        let request = new XMLHttpRequest();
-
-        request.addEventListener("load", function () {
-
-            if (request.status === 200) {
-
-                let item = JSON.parse(request.response);
-
-                let itemTitleElement = document.createElement("p");
-                let itemTitleContent = document.createTextNode(item.name);
-                itemTitleElement.appendChild(itemTitleContent);
-
-                let itemDescriptionElement = document.createElement("p");
-                let itemDescriptionContent = document.createTextNode(item.description);
-                itemDescriptionElement.appendChild(itemDescriptionContent);
-
-                let itemPriceElement = document.createElement("p");
-                let itemPriceContent = document.createTextNode("$" + item.price);
-                itemPriceElement.appendChild(itemPriceContent);
-
-                itemElement.appendChild(itemTitleElement);
-                itemElement.appendChild(itemDescriptionElement);
-                itemElement.appendChild(itemPriceElement);
-
-                // When the user clicks on the menu item, we will check to see if they would like to remove the
-                // item from their cart.
-                itemElement.addEventListener("click", function () {
-                    if (confirm(`Would you like remove add the ${item.name} from your cart?`) === true) {
-                        removeItemFromCart(itemElement.id);
-                        refreshDisplay();
-                    }
-                });
-            } else {
-                userNotAuthorized(headerElement);
-            }
-
-        });
-
-        request.open("GET", `${urlPath}/customer/items/${itemId}`);
-        request.setRequestHeader("Authorization", `Bearer ${Cookies.get("jwtToken")}`);
-        request.send();
-
-        return itemElement;
     }
 
     function refreshDisplay() {
@@ -98,7 +50,37 @@ import {urlPath} from '../shared/configuration.js';
 
                 let cartItems = JSON.parse(Cookies.get('cart'));
                 cartItems.forEach(item => {
-                    menuContainerElement.appendChild(fetchItemFromServer(item));
+
+                    let request = new XMLHttpRequest();
+
+                    request.addEventListener("load", function () {
+
+                        if (request.status === 200) {
+
+                            let item = JSON.parse(request.response);
+                            let itemElement = drawItem(item.id, item.name, item.description, item.price);
+
+                            // When the user clicks on the menu item, we will check to see if they would like to remove the
+                            // item from their cart.
+                            itemElement.addEventListener("click", function () {
+                                if (confirm(`Would you like remove add the ${item.name} from your cart?`) === true) {
+                                    removeItemFromCart(itemElement.getAttribute("data-item"));
+                                    refreshDisplay();
+                                }
+                            });
+
+                            menuContainerElement.append(itemElement);
+
+                        } else {
+                            userNotAuthorized(headerElement);
+                        }
+
+                    });
+
+                    request.open("GET", `${urlPath}/customer/items/${item}`);
+                    request.setRequestHeader("Authorization", `Bearer ${Cookies.get("jwtToken")}`);
+                    request.send();
+
                 });
 
                 headerElement.appendChild(menuContainerElement);
@@ -128,11 +110,16 @@ import {urlPath} from '../shared/configuration.js';
 
                 headerElement.appendChild(clearCartButton);
 
+            } else {
+                alert("It looks like your cart is empty.\nYou can navigate to the homepage to start shopping for items.");
             }
 
         } else {
+
             userNotAuthenticated(headerElement);
+
         }
+
     }
 
     function placeOrder() {
