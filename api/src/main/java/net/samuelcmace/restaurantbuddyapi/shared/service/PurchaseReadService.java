@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * MVC service associated with reading purchase-related inforamtion.
+ * MVC service associated with reading purchase-related information.
  */
 @Service
 @RequiredArgsConstructor
@@ -63,6 +63,15 @@ public class PurchaseReadService {
      */
     public AllPurchasesModel getDailyPurchases() {
         return buildPurchasesModels(purchaseRepository.findByDatePlaced(LocalDate.now()));
+    }
+
+    /**
+     * Method to retrieve all orders still open.
+     *
+     * @return A JSON model containing all open orders (that still need to be fulfilled by the store).
+     */
+    public AllPurchasesModel getOpenPurchases() {
+        return buildPurchasesModels(purchaseRepository.findOpenOrders());
     }
 
     /**

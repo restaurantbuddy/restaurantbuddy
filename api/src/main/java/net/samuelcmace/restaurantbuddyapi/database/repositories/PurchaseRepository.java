@@ -32,4 +32,12 @@ public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
     @Query(value = "SELECT PURCHASE.* FROM PURCHASE WHERE DATE(PURCHASE.PURCHASE_PLACEMENT_TIME) = ?1", nativeQuery = true)
     List<Purchase> findByDatePlaced(LocalDate datePlaced);
 
+    /**
+     * Custom JPQL query to fetch all orders that have not yet been completed.
+     *
+     * @return A set containing all orders that remain open.
+     */
+    @Query("select purchase from Purchase purchase where purchase.timeCompleted is null")
+    List<Purchase> findOpenOrders();
+
 }
