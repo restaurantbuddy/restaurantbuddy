@@ -20,16 +20,37 @@
 
     <div class="sub-content inner-color rounded-corners">
         <h2>Welcome to RestaurantBuddy</h2>
-        <p>Whether you are logging into the system as a customer, employee, or restaurant owner, you can enter your
-            username and password into the fields below:</p>
-        <form class="inner-color rounded-corners">
+        <p>Thank you for choosing to dine with RestaurantBuddy. We first have to ask you a few questions to get started
+            with your customer profile. Then, you can proceed to browse our inventory and make purchases.</p>
+        <form class="innermost-color rounded-corners register-box">
+            <label for="firstname">First Name:</label>
+            <input id="firstname" name="firstname" type="text">
+            <label for="lastname">Last Name:</label>
+            <input id="lastname" name="lastname" type="text">
+            <label for="email">Email Address:</label>
+            <input id="email" name="email" type="email">
+            <label for="phone">Phone Number:</label>
+            <input id="phone" name="phone" type="tel">
+            <label for="address">Address:</label>
+            <input id="address" name="address" type="text">
+            <label for="city">City:</label>
+            <input id="city" name="city" type="text">
+            <label for="state">State:</label>
+            <input id="state" name="state" type="text">
+            <label for="zip">Zip Code:</label>
+            <input id="zip" name="zip" type="text">
             <label for="username">Username:</label>
             <input id="username" name="username" type="text">
+            <label for="confirmUsername">Confirm Username:</label>
+            <input id="confirmUsername" name="confirmUsername" type="text">
             <label for="password">Password:</label>
             <input id="password" name="password" type="password">
+            <label for="confirmPassword">Confirm Password:</label>
+            <input id="confirmPassword" name="confirmPassword" type="password">
             <br>
             <input id="submit" type="submit">
         </form>
+        <p class="innermost-color rounded-corners">Already a user? <a href="/auth/login">Click here to login.</a></p>
     </div>
 
     <footer class="rounded-corners inner-color">

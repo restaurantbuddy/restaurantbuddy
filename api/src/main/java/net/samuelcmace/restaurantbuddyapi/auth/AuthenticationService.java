@@ -157,6 +157,12 @@ public class AuthenticationService {
 
     }
 
+    /**
+     * Method to delete a user from the system.
+     *
+     * @param request The user deletion request JSON object sent from the client.
+     * @return A generic response model containing information about whether the operation succeeded.
+     */
     public GenericResponseModel delete(DeletionRequest request) {
 
         String responseMessage = "";

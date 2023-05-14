@@ -1,5 +1,6 @@
 package net.samuelcmace.restaurantbuddyapi.shared.service;
 
+import lombok.RequiredArgsConstructor;
 import net.samuelcmace.restaurantbuddyapi.database.models.Purchase;
 import net.samuelcmace.restaurantbuddyapi.database.repositories.PurchaseRepository;
 import net.samuelcmace.restaurantbuddyapi.shared.model.purchase.AllPurchasesModel;
@@ -15,17 +16,18 @@ import java.util.List;
  * MVC service associated with reading purchase-related inforamtion.
  */
 @Service
+@RequiredArgsConstructor
 public class PurchaseReadService {
 
     /**
      * The PurchaseRepository instance associated with the service.
      */
-    private PurchaseRepository purchaseRepository;
+    private final PurchaseRepository purchaseRepository;
 
     /**
      * The instance of ItemReadService associated with the instance.
      */
-    private ItemReadService itemReadService;
+    private final ItemReadService itemReadService;
 
     /**
      * Method to retrieve the orders placed by a specific customer.

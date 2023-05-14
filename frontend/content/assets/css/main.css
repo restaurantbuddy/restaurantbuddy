@@ -85,7 +85,21 @@ nav li a {
 /* Component Styling */
 
 .login-box {
+    display: grid;
+    grid-template-columns: 6em 15em;
+}
 
+.login-box * {
+    margin: 0.25em;
+}
+
+.register-box {
+    display: grid;
+    grid-template-columns: 10em 15em;
+}
+
+.register-box * {
+    margin: 0.25em;
 }
 
 .logout-banner {
