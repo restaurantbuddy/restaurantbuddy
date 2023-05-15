@@ -105,7 +105,7 @@ public class User implements UserDetails {
      * Field representing the possible owner associated with the user
      * (if the user is an owner, this field could be null).
      */
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", unique = true)
     private Owner owner;
 
@@ -113,7 +113,7 @@ public class User implements UserDetails {
      * Field representing the possible employee associated with the user
      * (if the user is an employee; this field could be null).
      */
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", unique = true)
     private Employee employee;
 
@@ -121,7 +121,7 @@ public class User implements UserDetails {
      * Field representing the possible customer associated with the user
      * (if the user is a customer, this field could be null).
      */
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", unique = true)
     private Customer customer;
 
