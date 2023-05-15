@@ -11,6 +11,7 @@ import {checkCookieConsent} from "../shared/eu-cookie-prompt.js";
         if (Cookies.get('jwtToken')) {
 
 
+
         } else {
             userNotAuthenticated(headerElement);
         }

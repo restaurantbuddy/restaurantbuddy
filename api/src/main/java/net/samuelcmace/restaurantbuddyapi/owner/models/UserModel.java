@@ -71,9 +71,4 @@ public class UserModel {
      */
     private String username;
 
-    /**
-     * The login password associated with the user.
-     */
-    private String password;
-
 }

@@ -111,7 +111,6 @@ public class OwnerService {
                 .zip(user.getZip())
                 .roles(roles)
                 .username(user.getUsername())
-                .password(user.getPassword())
                 .build();
 
     }
@@ -166,6 +165,7 @@ public class OwnerService {
         } else {
             throw new Exception("Error: The requested primary key is not present in the database! The model could not be updated.");
         }
+
     }
 
     /**
