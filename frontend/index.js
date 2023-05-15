@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 
-const port = 8080;
+const port = 80;
 const app = new express();
 
 app.use(express.urlencoded({extended: true}));
