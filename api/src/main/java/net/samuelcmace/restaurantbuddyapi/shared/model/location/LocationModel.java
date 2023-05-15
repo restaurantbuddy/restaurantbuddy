@@ -15,22 +15,32 @@ import lombok.NoArgsConstructor;
 public class LocationModel {
 
     /**
-     * Field containing the restaurant's address.
+     * Field containing the primary key of the restaurant location.
+     */
+    private Long id;
+
+    /**
+     * Field containing the restaurant location's name.
+     */
+    private String name;
+
+    /**
+     * Field containing the restaurant location's address.
      */
     private String address;
 
     /**
-     * Field containing the restaurant's city.
+     * Field containing the restaurant location's city.
      */
     private String city;
 
     /**
-     * Field containing the state in which the restaurant is located.
+     * Field containing the state in which the restaurant location is located.
      */
     private String state;
 
     /**
-     * Field containing the zip code of the restaurant.
+     * Field containing the zip code of the restaurant location.
      */
     private String zip;
 

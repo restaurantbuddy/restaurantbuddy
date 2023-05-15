@@ -13,10 +13,7 @@ import net.samuelcmace.restaurantbuddyapi.auth.models.registration.newuser.Regis
 import net.samuelcmace.restaurantbuddyapi.auth.models.registration.newuser.RegisterNewOwnerRequest;
 import net.samuelcmace.restaurantbuddyapi.shared.model.GenericResponseModel;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * MVC controller responsible for managing application authentication.
@@ -50,7 +47,7 @@ public class AuthenticationController {
      * @param request The JSON request from the client.
      * @return A JSON response object that will (if successful) contain the JWT token.
      */
-    @PostMapping("/register/customer/existing")
+    @PatchMapping("/register/customer/existing")
     public ResponseEntity<AuthenticationResponse> registerExistingCustomer(
             @RequestBody RegisterExistingCustomerRequest request
     ) {
@@ -76,7 +73,7 @@ public class AuthenticationController {
      * @param request The JSON request from the client.
      * @return A JSON response object that will (if successful) contain the JWT token.
      */
-    @PostMapping("/register/employee/existing")
+    @PatchMapping("/register/employee/existing")
     public ResponseEntity<AuthenticationResponse> registerExistingEmployee(
             @RequestBody RegisterExistingEmployeeRequest request
     ) {
@@ -102,7 +99,7 @@ public class AuthenticationController {
      * @param request The JSON request from the client.
      * @return A JSON response object that will (if successful) contain the JWT token.
      */
-    @PostMapping("/register/owner/existing")
+    @PatchMapping("/register/owner/existing")
     public ResponseEntity<AuthenticationResponse> registerExistingOwner(
             @RequestBody RegisterExistingOwnerRequest request
     ) {
@@ -115,7 +112,7 @@ public class AuthenticationController {
      * @param request The JSON request from the client.
      * @return A JSON response object containing details about the operation.
      */
-    @PostMapping("/delete/user")
+    @DeleteMapping("/delete/user")
     public ResponseEntity<GenericResponseModel> deleteUser(
             @RequestBody UserDeletionRequest request
     ) {
@@ -128,7 +125,7 @@ public class AuthenticationController {
      * @param request The JSON request from the client.
      * @return A JSON response object containing details about the operation.
      */
-    @PostMapping("/delete/role")
+    @PatchMapping("/delete/role")
     public ResponseEntity<GenericResponseModel> deleteRole(
             @RequestBody RoleDeletionRequest request
     ) {

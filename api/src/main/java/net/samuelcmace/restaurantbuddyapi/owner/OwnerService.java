@@ -2,14 +2,18 @@ package net.samuelcmace.restaurantbuddyapi.owner;
 
 import lombok.RequiredArgsConstructor;
 import net.samuelcmace.restaurantbuddyapi.database.models.Item;
+import net.samuelcmace.restaurantbuddyapi.database.models.Location;
 import net.samuelcmace.restaurantbuddyapi.database.models.Menu;
 import net.samuelcmace.restaurantbuddyapi.database.models.User;
 import net.samuelcmace.restaurantbuddyapi.database.repositories.ItemRepository;
+import net.samuelcmace.restaurantbuddyapi.database.repositories.LocationRepository;
 import net.samuelcmace.restaurantbuddyapi.database.repositories.MenuRepository;
 import net.samuelcmace.restaurantbuddyapi.database.repositories.UserRepository;
 import net.samuelcmace.restaurantbuddyapi.owner.models.AllUsersModel;
 import net.samuelcmace.restaurantbuddyapi.owner.models.UserModel;
+import net.samuelcmace.restaurantbuddyapi.shared.model.GenericResponseModel;
 import net.samuelcmace.restaurantbuddyapi.shared.model.item.ItemModel;
+import net.samuelcmace.restaurantbuddyapi.shared.model.location.LocationModel;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +42,11 @@ public class OwnerService {
      * The MenuRepository instance used by the service.
      */
     private final MenuRepository menuRepository;
+
+    /**
+     * The LocationRepository instance used by the service.
+     */
+    private final LocationRepository locationRepository;
 
     /**
      * Method to query all users in the database.
@@ -140,6 +149,7 @@ public class OwnerService {
      * @throws Exception Thrown if the primary key is not present in the database.
      */
     public void updateItem(ItemModel itemModel) throws Exception {
+
         Optional<Item> jpaItem = itemRepository.findById(itemModel.getId());
 
         if (jpaItem.isPresent()) {
@@ -203,6 +213,99 @@ public class OwnerService {
 
         // Finally, if the JPA entity contains any more entities that the model does not have, remove them.
         item.getMenus().removeIf(menu -> itemModel.getMenus().contains(menu.getName()));
+    }
+
+    /**
+     * Method to add a new location to the restaurant.
+     *
+     * @param newLocation The location supplied in JSON format from the client.
+     * @return A GenericResponseModel indicating whether the operation succeeded.
+     */
+    public GenericResponseModel addNewLocation(LocationModel newLocation) {
+
+        try {
+
+            Location location = Location.builder()
+                    .name(newLocation.getName())
+                    .address(newLocation.getName())
+                    .city(newLocation.getCity())
+                    .state(newLocation.getState())
+                    .zip(newLocation.getZip())
+                    .build();
+
+            this.locationRepository.save(location);
+
+            return GenericResponseModel.builder().successMessage("The new location " + newLocation.getName() + " was saved to the database!").build();
+
+        } catch (Exception e) {
+
+            return GenericResponseModel.builder().errorMessage(e.getLocalizedMessage()).build();
+
+        }
+
+    }
+
+    /**
+     * Method to update an existing location in the database.
+     *
+     * @param locationModel The location model sent from the client.
+     * @return A GenericResponseModel indicating whether the operation succeeded.
+     */
+    public GenericResponseModel updateLocation(LocationModel locationModel) {
+
+        try {
+
+            Optional<Location> locationQuery = this.locationRepository.findById(locationModel.getId());
+
+            if (locationQuery.isPresent()) {
+
+                Location location = locationQuery.get();
+
+                location.setName(locationModel.getName());
+                location.setAddress(locationModel.getAddress());
+                location.setCity(locationModel.getCity());
+                location.setState(locationModel.getState());
+                location.setZip(locationModel.getZip());
+
+                this.locationRepository.save(location);
+
+                return GenericResponseModel.builder().successMessage("The location with the primary key of " + locationModel.getId() + " was successfully persisted to the database!").build();
+
+            } else {
+
+                return GenericResponseModel.builder().errorMessage("A location with the specified primary key of " + locationModel.getId() + " could not be found!").build();
+
+            }
+
+        } catch (Exception e) {
+
+            return GenericResponseModel.builder().errorMessage(e.getLocalizedMessage()).build();
+
+        }
+
+    }
+
+    /**
+     * Method to delete the specified location from the database.
+     *
+     * @param id The ID corresponding to the primary key in question.
+     * @return A GenericResponseModel indicating whether the operation succeeded.
+     */
+    public GenericResponseModel deleteLocation(Long id) {
+
+        Optional<Location> locationQuery = this.locationRepository.findById(id);
+
+        if (locationQuery.isPresent()) {
+
+            this.locationRepository.delete(locationQuery.get());
+            return GenericResponseModel.builder().successMessage("The location with the primary key of " + id + " was deleted successfully!").build();
+
+        } else {
+
+            return GenericResponseModel.builder().errorMessage("The location with the primary key of " + id + " does not exist!").build();
+
+        }
+
     }
 
 }

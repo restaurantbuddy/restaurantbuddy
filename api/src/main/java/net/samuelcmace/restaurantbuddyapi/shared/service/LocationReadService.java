@@ -32,12 +32,7 @@ public class LocationReadService {
         List<LocationModel> locationMVCModels = new ArrayList<>();
 
         for (Location location : locations) {
-            locationMVCModels.add(LocationModel.builder()
-                    .address(location.getAddress())
-                    .city(location.getCity())
-                    .state(location.getState())
-                    .zip(location.getZip())
-                    .build());
+            locationMVCModels.add(buildLocationModel(location));
         }
 
         return AllLocationsModel.builder().locations(locationMVCModels).build();
@@ -55,13 +50,7 @@ public class LocationReadService {
 
         // If the location is empty, return an empty LocationModel.
         if (locationQuery.isPresent()) {
-            Location location = locationQuery.get();
-
-            return LocationModel.builder()
-                    .address(location.getAddress())
-                    .city(location.getCity())
-                    .state(location.getState())
-                    .zip(location.getZip()).build();
+            return buildLocationModel(locationQuery.get());
         }
 
         // Otherwise, return an empty model to the client.
@@ -69,6 +58,22 @@ public class LocationReadService {
             return LocationModel.builder().build();
         }
 
+    }
+
+    /**
+     * Method to build a location MVC model out of a supplied Location JPA object.
+     *
+     * @param location The JPA Location object in question.
+     * @return The newly-generated MVC Location object.
+     */
+    private LocationModel buildLocationModel(Location location) {
+        return LocationModel.builder()
+                .id(location.getId())
+                .name(location.getName())
+                .address(location.getAddress())
+                .city(location.getCity())
+                .state(location.getState())
+                .zip(location.getZip()).build();
     }
 
 }

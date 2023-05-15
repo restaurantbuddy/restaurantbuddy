@@ -31,6 +31,12 @@ public class Location {
     private Long id;
 
     /**
+     * Field representing the name of the location.
+     */
+    @Column(name = "LOCATION_NAME", nullable = false)
+    private String name;
+
+    /**
      * Field representing the address of the location (assuming a US-based address).
      */
     @Column(name = "LOCATION_ADDRESS", nullable = false)

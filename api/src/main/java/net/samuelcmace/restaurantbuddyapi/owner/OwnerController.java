@@ -41,7 +41,7 @@ public class OwnerController {
      *
      * @return A JSON object containing a boolean indicating whether the user is authenticated as an owner.
      */
-    @GetMapping("/")
+    @GetMapping("")
     public GenericResponseModel index() {
         return GenericResponseModel.builder().successMessage("Controller: " + Owner.TABLE_NAME).build();
     }
@@ -84,9 +84,7 @@ public class OwnerController {
      * @return A JSON object containing the menu item.
      */
     @GetMapping("/items/{id}")
-    public ItemModel readMenuItemById(
-            @PathVariable Long id
-    ) {
+    public ItemModel readMenuItemById(@PathVariable Long id) {
         return itemReadService.findMenuItem(id);
     }
 
@@ -97,18 +95,12 @@ public class OwnerController {
      * @return A generic JSON model containing any relevant success or error messages.
      */
     @PostMapping(value = "/items")
-    public GenericResponseModel addItem(
-            @RequestBody ItemModel request
-    ) {
+    public GenericResponseModel addItem(@RequestBody ItemModel request) {
         try {
             ownerService.createItem(request);
-            return GenericResponseModel.builder()
-                    .successMessage("Object created successfully!")
-                    .build();
+            return GenericResponseModel.builder().successMessage("Object created successfully!").build();
         } catch (Exception e) {
-            return GenericResponseModel.builder()
-                    .errorMessage(e.getLocalizedMessage())
-                    .build();
+            return GenericResponseModel.builder().errorMessage(e.getLocalizedMessage()).build();
         }
     }
 
@@ -119,18 +111,12 @@ public class OwnerController {
      * @return A generic JSON response model containing any relevant error or debugging messages.
      */
     @PutMapping(value = "/items")
-    public GenericResponseModel updateItem(
-            @RequestBody ItemModel request
-    ) {
+    public GenericResponseModel updateItem(@RequestBody ItemModel request) {
         try {
             ownerService.updateItem(request);
-            return GenericResponseModel.builder()
-                    .successMessage("Object updated successfully!")
-                    .build();
+            return GenericResponseModel.builder().successMessage("Object updated successfully!").build();
         } catch (Exception e) {
-            return GenericResponseModel.builder()
-                    .errorMessage(e.getLocalizedMessage())
-                    .build();
+            return GenericResponseModel.builder().errorMessage(e.getLocalizedMessage()).build();
         }
     }
 
@@ -140,10 +126,8 @@ public class OwnerController {
      * @param primaryKey The primary key that corresponds to the item to be deleted.
      * @return A generic JSON response model containing any relevant error or debugging messages.
      */
-    @DeleteMapping(value = "/items/{primaryKey}")
-    public GenericResponseModel deleteItem(
-            @PathVariable Long primaryKey
-    ) {
+    @DeleteMapping("/items/{primaryKey}")
+    public GenericResponseModel deleteItem(@PathVariable Long primaryKey) {
         try {
             ownerService.deleteItem(primaryKey);
             return GenericResponseModel.builder().successMessage("Operation succeeded!").build();
@@ -157,7 +141,7 @@ public class OwnerController {
      *
      * @return An MVC model corresponding to all the restaurant's locations.
      */
-    @GetMapping("/locations/")
+    @GetMapping("/locations")
     public AllLocationsModel readAllLocations() {
         return locationReadService.getAllLocations();
     }
@@ -168,10 +152,41 @@ public class OwnerController {
      * @return An MVC model corresponding to all the restaurant's locations.
      */
     @GetMapping("/locations/{id}")
-    public LocationModel readLocation(
-            @PathVariable Long id
-    ) {
+    public LocationModel readLocation(@PathVariable Long id) {
         return locationReadService.getLocation(id);
+    }
+
+    /**
+     * MVC route to add a new restaurant location.
+     *
+     * @param newLocation An MVC model containing information about the restaurant location to be added.
+     * @return A GenericResponseModel indicating whether the operation succeeded.
+     */
+    @PostMapping("/locations")
+    public GenericResponseModel addNewLocation(@RequestBody LocationModel newLocation) {
+        return ownerService.addNewLocation(newLocation);
+    }
+
+    /**
+     * MVC method to update an existing location in the database with new location details.
+     *
+     * @param location The new location information sent from the client.
+     * @return A GenericResponseModel indicating whether the operation succeeded.
+     */
+    @PutMapping("/locations")
+    public GenericResponseModel updateLocation(@RequestBody LocationModel location) {
+        return ownerService.updateLocation(location);
+    }
+
+    /**
+     * MVC method to delete the specified location from the database.
+     *
+     * @param id The primary key corresponding to the location to be deleted.
+     * @return A GenericResponseModel indicating whether the operation succeeded.
+     */
+    @DeleteMapping("/locations/{id}")
+    public GenericResponseModel updateLocation(@PathVariable Long id) {
+        return ownerService.deleteLocation(id);
     }
 
 }

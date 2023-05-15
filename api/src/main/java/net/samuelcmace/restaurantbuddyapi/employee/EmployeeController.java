@@ -30,7 +30,7 @@ public class EmployeeController {
      *
      * @return A JSON object containing a boolean indicating whether the user is authenticated as an employee.
      */
-    @GetMapping("/")
+    @GetMapping("")
     public GenericResponseModel index() {
         return GenericResponseModel.builder().successMessage("Controller: " + Employee.TABLE_NAME).build();
     }
