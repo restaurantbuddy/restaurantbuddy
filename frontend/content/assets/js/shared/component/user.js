@@ -4,6 +4,7 @@ export function drawUser(user) {
     userElement.classList.add("innermost-color");
     userElement.classList.add("rounded-corners");
     userElement.setAttribute("data-user", user.id);
+    userElement.setAttribute("data-user-username", user.username);
 
     let userFullNameElement = document.createElement("p");
     let userFullNameContent = document.createTextNode(`${user.firstName} ${user.lastName}`);
@@ -45,11 +46,12 @@ export function drawUser(user) {
     userElement.appendChild(userRolesElement);
 
     user.roles.forEach(role => {
-        if (user.roles.slice(-1) === role) {
-            userRolesContent.textContent += +"and " + role;
+        if (user.roles[user.roles.length - 1] === role) {
+            userRolesContent.textContent += "and " + role;
         } else {
             userRolesContent.textContent += role + ", ";
         }
+        userElement.setAttribute("data-is-" + role, "true");
     });
 
     let userUsernameElement = document.createElement("p");
