@@ -8,6 +8,9 @@ USE restaurantbuddy;
 INSERT INTO OWNER
 VALUES (1, 1);
 
+INSERT INTO EMPLOYEE
+VALUES (1, 0.00, 1);
+
 -- Dummy Menu Items
 INSERT INTO ITEM (ITEM_ID, ITEM_NAME, ITEM_DESCRIPTION, ITEM_COST)
 VALUES (1, 'Peking Roasted Duck', 'Tortor at risus viverra adipiscing at in tellus integer feugiat.', 20.99);
