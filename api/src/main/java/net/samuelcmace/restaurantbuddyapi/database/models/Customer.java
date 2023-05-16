@@ -9,6 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * JPA mapper entity associated with the CUSTOMER table in the database.
@@ -40,6 +41,12 @@ public class Customer implements UserDetails {
     @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", nullable = false, unique = true)
     private User user;
+
+    /**
+     * Set representing the customer's purchases.
+     */
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "customer")
+    private List<Purchase> purchases;
 
     /**
      * Retrieves the roles associated with the user for authorization purposes.
