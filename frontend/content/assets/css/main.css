@@ -56,6 +56,13 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0.25em 0;
 }
 
+a {
+    padding: 0.25em;
+    border: 0.125em;
+    background-color: var(--innermost-color);
+    border-radius: 0.125em;
+}
+
 /* Header and Navigation */
 
 .title-bar {

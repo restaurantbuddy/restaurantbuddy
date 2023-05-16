@@ -74,7 +74,6 @@ public class CustomerService {
             Purchase purchase = Purchase.builder()
                     .customer(associatedCustomer)
                     .timePlaced(LocalDateTime.now())
-                    .items(menuItems)
                     .build();
 
             for (Long item : request.getMenuItems()) {
