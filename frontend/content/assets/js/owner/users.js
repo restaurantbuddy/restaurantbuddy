@@ -3,6 +3,7 @@ import {userNotAuthenticated} from '../shared/user-not-authenticated.js';
 import {checkCookieConsent} from "../shared/eu-cookie-prompt.js";
 import {urlPath} from "../shared/configuration.js";
 import {drawUser} from "../shared/component/user.js";
+import {userNotAuthorized} from "../shared/user-not-authorized.js";
 
 (function () {
 
@@ -18,17 +19,10 @@ import {drawUser} from "../shared/component/user.js";
 
                 if (roleAddRequest.status === 200) {
 
-                    let jsonResponse = JSON.parse(roleAddRequest.response);
-                    alert(jsonResponse);
+                    alert("Operation Succeeded!");
 
-                    if (jsonResponse.successMessage) {
-                        alert(jsonResponse.successMessage);
-                    } else if (jsonResponse.errorMessage) {
-                        alert(jsonResponse.errorMessage);
-                    }
-
-                } else if (roleDeletionRequest.status === 403) {
-                    alert("Although you are logged into the system, it looks like you're trying to access a portion of the website that you are not allowed to access.");
+                } else {
+                    alert("It looks like there was an error with the system.\nOperation failed!");
                 }
 
             });
@@ -58,16 +52,11 @@ import {drawUser} from "../shared/component/user.js";
                 if (roleDeletionRequest.status === 200) {
 
                     let jsonResponse = JSON.parse(roleDeletionRequest.response);
-                    alert(jsonResponse);
 
-                    if (jsonResponse.successMessage) {
-                        alert(jsonResponse.successMessage);
-                    } else if (jsonResponse.errorMessage) {
-                        alert(jsonResponse.errorMessage);
-                    }
+                    alert("Operation Succeeded!");
 
-                } else if (roleDeletionRequest.status === 403) {
-                    alert("Although you are logged into the system, it looks like you're trying to access a portion of the website that you are not allowed to access.");
+                } else {
+                    alert("It looks like there was an error with the system.\nOperation failed!");
                 }
 
             });
@@ -76,8 +65,7 @@ import {drawUser} from "../shared/component/user.js";
             roleDeletionRequest.setRequestHeader("Authorization", `Bearer ${Cookies.get('jwtToken')}`);
             roleDeletionRequest.setRequestHeader("Content-Type", "application/json");
             roleDeletionRequest.send(JSON.stringify({
-                "username": username,
-                "role": roleName.toUpperCase()
+                "username": username, "role": roleName.toUpperCase()
             }));
 
         }
@@ -104,6 +92,7 @@ import {drawUser} from "../shared/component/user.js";
 
                         // Add a button to toggle the customer role.
                         let toggleCustomerRoleButton = document.createElement("button");
+                        toggleCustomerRoleButton.classList.add("fancy-button");
                         let toggleCustomerRoleContent = document.createTextNode("");
 
                         if (userElement.getAttribute("data-is-customer") === "true") {
@@ -126,6 +115,7 @@ import {drawUser} from "../shared/component/user.js";
                         userElement.appendChild(toggleCustomerRoleButton);
 
                         let toggleEmployeeRoleButton = document.createElement("button");
+                        toggleEmployeeRoleButton.classList.add("fancy-button");
                         let toggleEmployeeRoleContent = document.createTextNode("");
 
                         if (userElement.getAttribute("data-is-employee") === "true") {
@@ -148,6 +138,7 @@ import {drawUser} from "../shared/component/user.js";
                         userElement.appendChild(toggleEmployeeRoleButton);
 
                         let toggleOwnerRoleButton = document.createElement("button");
+                        toggleOwnerRoleButton.classList.add("fancy-button");
                         let toggleOwnerRoleContent = document.createTextNode("");
 
                         if (userElement.getAttribute("data-is-owner") === "true") {
@@ -175,6 +166,8 @@ import {drawUser} from "../shared/component/user.js";
 
                     headerElement.appendChild(userContainerElement);
 
+                } else {
+                    userNotAuthorized(headerElement);
                 }
 
             });

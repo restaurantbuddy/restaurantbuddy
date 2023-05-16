@@ -41,16 +41,11 @@ export function drawUser(user) {
     userElement.appendChild(userRegionElement);
 
     let userRolesElement = document.createElement("p");
-    let userRolesContent = document.createTextNode("Roles: ");
+    let userRolesContent = document.createTextNode("Roles: " + user.roles);
     userRolesElement.appendChild(userRolesContent);
     userElement.appendChild(userRolesElement);
 
     user.roles.forEach(role => {
-        if (user.roles[user.roles.length - 1] === role) {
-            userRolesContent.textContent += "and " + role;
-        } else {
-            userRolesContent.textContent += role + ", ";
-        }
         userElement.setAttribute("data-is-" + role, "true");
     });
 

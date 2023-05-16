@@ -3,6 +3,7 @@ import {userNotAuthenticated} from "../shared/user-not-authenticated.js";
 import {checkCookieConsent} from "../shared/eu-cookie-prompt.js";
 import {urlPath} from "../shared/configuration.js";
 import {drawOrder} from "../shared/component/order.js";
+import {userNotAuthorized} from "../shared/user-not-authorized.js";
 
 (function () {
 
@@ -32,6 +33,8 @@ import {drawOrder} from "../shared/component/order.js";
 
                     headerElement.appendChild(purchasesContainerElement);
 
+                } else {
+                    userNotAuthorized(headerElement);
                 }
 
             });

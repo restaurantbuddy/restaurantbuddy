@@ -2,6 +2,7 @@ import '../include/js.cookie.min.js';
 import {checkCookieConsent} from "../shared/eu-cookie-prompt.js";
 import {buildLocation} from "../shared/component/location.js";
 import {urlPath} from "../shared/configuration.js";
+import {userNotAuthorized} from "../shared/user-not-authorized.js";
 
 (function () {
 
@@ -33,6 +34,8 @@ import {urlPath} from "../shared/configuration.js";
 
                 headerElement.appendChild(locationsContainerElement);
 
+            } else {
+                userNotAuthorized(headerElement);
             }
 
         });

@@ -19,10 +19,7 @@ import {drawItem} from "../shared/component/item.js";
             let cartItemIndex = cartItems.indexOf(itemId);
             cartItems.splice(cartItemIndex, 1);
 
-            if (cartItems.length === 0)
-                Cookies.remove('cart');
-            else
-                Cookies.set('cart', JSON.stringify(cartItems));
+            if (cartItems.length === 0) Cookies.remove('cart'); else Cookies.set('cart', JSON.stringify(cartItems));
 
         }
 
@@ -87,6 +84,7 @@ import {drawItem} from "../shared/component/item.js";
 
                 // Add a button to add a new order.
                 let orderRequestButton = document.createElement("button");
+                orderRequestButton.classList.add("fancy-button");
                 let orderRequestButtonText = document.createTextNode("Place Order");
                 orderRequestButton.appendChild(orderRequestButtonText);
 
@@ -100,6 +98,7 @@ import {drawItem} from "../shared/component/item.js";
 
                 // Add a button to clear the shopping cart.
                 let clearCartButton = document.createElement("button");
+                clearCartButton.classList.add("fancy-button");
                 let clearCartButtonText = document.createTextNode("Clear Cart");
                 clearCartButton.appendChild(clearCartButtonText);
 
