@@ -1,0 +1,757 @@
+openapi: "3.0.3"
+info:
+  title: "RestaurantBuddy API"
+  description: "A Self-Contained Containerized Approach to Restaurant Menu and Ordering Software"
+  version: "0.0.1"
+
+paths:
+
+  /about/status:
+    get:
+      summary: "Test route to determine whether the server is online. This route does not require authentication."
+      operationId: "getStatus"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/GenericResponseModel"
+
+  /about/locations:
+    get:
+      summary: "Route to fetch a JSON model containing details about the restaurant's locations. This route does not require authentication."
+      operationId: "getLocations"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/AllLocationsModel"
+
+  /auth/register/customer/new:
+    post:
+      summary: "Route to register a new user as a customer."
+      operationId: "registerNewCustomer"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterNewCustomerRequest"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/AuthenticationResponse"
+
+  /auth/register/customer/existing:
+    patch:
+      summary: "[EXPERIMENTAL] Route to add the role of customer to an existing user."
+      operationId: "registerExistingCustomer"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterExistingCustomerRequest"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/AuthenticationResponse"
+
+  /auth/register/employee/new:
+    post:
+      summary: "[EXPERIMENTAL] Route to register a new user with the employee role."
+      operationId: "registerNewEmployee"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterNewEmployeeRequest"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/AuthenticationResponse"
+
+  /auth/register/employee/existing:
+    patch:
+      summary: "[EXPERIMENTAL] Route to add the role of employee to an existing user."
+      operationId: "registerExistingEmployee"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterExistingEmployeeRequest"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/AuthenticationResponse"
+
+  /auth/register/owner/new:
+    post:
+      summary: "[EXPERIMENTAL] Route to register a new user with the owner role."
+      operationId: "registerNewOwner"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterNewOwnerRequest"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/AuthenticationResponse"
+
+  /auth/register/owner/existing:
+    patch:
+      summary: "[EXPERIMENTAL] Route to add the role of owner to an existing user."
+      operationId: "registerExistingOwner"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterExistingOwnerRequest"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/AuthenticationResponse"
+
+  /auth/delete/user:
+    delete:
+      summary: "[EXPERIMENTAL] Route to delete a user from the system."
+      operationId: "deleteUser"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserDeletionRequest"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/GenericResponseModel"
+
+  /auth/delete/role:
+    patch:
+      summary: "[EXPERIMENTAL] Route to take away a certain role from a user."
+      operationId: "deleteRole"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RoleDeletionRequest"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/GenericResponseModel"
+
+  /auth/authenticate:
+    post:
+      summary: "Route to generate a JWT token for the client to use in requests that require authentication."
+      operationId: "authenticate"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthenticationRequest"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/AuthenticationResponse"
+
+  /customer:
+    get:
+      summary: "Route to test whether the user is authorized access to the customer controller."
+      operationId: "index"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/GenericResponseModel"
+
+  /customer/items:
+    get:
+      summary: "Route to fetch information on all menu items offered by the restaurant."
+      operationId: "readAllItems"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/AllItemsModel"
+
+  /customer/items/{primaryKey}:
+    get:
+      summary: "Route to query information about a certain menu item."
+      operationId: "readMenuItemById"
+      parameters:
+        - name: "primaryKey"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/ItemModel"
+
+  /customer/order:
+    post:
+      summary: "Route to place an order under the customer currently accessing the system."
+      operationId: "placeOrder"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OrderModel"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/GenericResponseModel"
+
+  /customer/orders:
+    get:
+      summary: "Method to fetch details regarding all orders placed in the past."
+      operationId: "getAllOrders"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/AllPurchasesModel"
+
+  /employee:
+    get:
+      summary: "Route to test whether the currently authenticated user has access to the employee controller."
+      operationId: "index"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/GenericResponseModel"
+
+  /employee/orders/open:
+    get:
+      summary: "Route to fetch the details on all orders that have yet to be completed."
+      operationId: "getOpenOrders"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/AllPurchasesModel"
+
+  /employee/orders/{orderId}:
+    patch:
+      summary: "Route to complete an order by primary key. The completion time will then be assigned to the order and will be reflected on the customer's order page."
+      operationId: "completeOrder"
+      parameters:
+        - name: "orderId"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/GenericResponseModel"
+
+  /owner:
+    get:
+      summary: "Route to test whether the currently authenticated user is authorized to access the owner controller."
+      operationId: "index"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/GenericResponseModel"
+
+  /owner/users:
+    get:
+      summary: "Route to query the details on all users in the system."
+      operationId: "listAllUsers"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/AllUsersModel"
+
+  /owner/users/{id}:
+    get:
+      summary: "[EXPERIMENTAL] Route to query details on a specific user in the system."
+      operationId: "listUserById"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/UserModel"
+
+  /owner/items:
+    get:
+      summary: "Route to query the details of all menu items offered by the restaurant."
+      operationId: "readAllItems"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/AllItemsModel"
+    post:
+      summary: "[EXPERIMENTAL] Route to add a new menu item to the restaurant's offering."
+      operationId: "addItem"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ItemModel"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/GenericResponseModel"
+    put:
+      summary: "[EXPERIMENTAL] Route to update an existing menu item offered by the restaurant."
+      operationId: "updateItem"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ItemModel"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/GenericResponseModel"
+
+  /owner/items/{id}:
+    get:
+      summary: "Route to query the details of a specific menu item offered by the restaurant."
+      operationId: "readMenuItemById"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/ItemModel"
+
+  /owner/items/{primaryKey}:
+    delete:
+      summary: "[EXPERIMENTAL] Route to delete a menu item from the restaurant's offering."
+      operationId: "deleteItem"
+      parameters:
+        - name: "primaryKey"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/GenericResponseModel"
+
+  /owner/locations:
+    get:
+      summary: "Route to query details on all of the restaurant's locations."
+      operationId: "readAllLocations"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/AllLocationsModel"
+    post:
+      summary: "[EXPERIMENTAL] Route to add a new location to the restaurant."
+      operationId: "addNewLocation"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LocationModel"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/GenericResponseModel"
+    put:
+      summary: "[EXPERIMENTAL] Route to add a update an existing restaurant location."
+      operationId: "updateLocation"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LocationModel"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/GenericResponseModel"
+
+  /owner/locations/{id}:
+    get:
+      summary: "Route to query details on all a specific restaurant location."
+      operationId: "readLocation"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/LocationModel"
+    delete:
+      summary: "[EXPERIMENTAL] Route to delete an existing restaurant location."
+      operationId: "updateLocation"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/GenericResponseModel"
+
+components:
+  schemas:
+    GenericResponseModel:
+      type: "object"
+      properties:
+        successMessage:
+          type: "string"
+        errorMessage:
+          type: "string"
+    LocationModel:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int64"
+        name:
+          type: "string"
+        address:
+          type: "string"
+        city:
+          type: "string"
+        state:
+          type: "string"
+        zip:
+          type: "string"
+    AllLocationsModel:
+      type: "object"
+      properties:
+        locations:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/LocationModel"
+    RegisterNewCustomerRequest:
+      type: "object"
+      properties:
+        firstName:
+          type: "string"
+        lastName:
+          type: "string"
+        email:
+          type: "string"
+        phone:
+          type: "string"
+        address:
+          type: "string"
+        city:
+          type: "string"
+        state:
+          type: "string"
+        zip:
+          type: "string"
+        password:
+          type: "string"
+        username:
+          type: "string"
+    AuthenticationResponse:
+      type: "object"
+      properties:
+        jwtToken:
+          type: "string"
+        errorMessage:
+          type: "string"
+    RegisterExistingCustomerRequest:
+      type: "object"
+      properties:
+        username:
+          type: "string"
+    RegisterNewEmployeeRequest:
+      type: "object"
+      properties:
+        salary:
+          type: "number"
+          format: "double"
+        firstName:
+          type: "string"
+        lastName:
+          type: "string"
+        email:
+          type: "string"
+        phone:
+          type: "string"
+        address:
+          type: "string"
+        city:
+          type: "string"
+        state:
+          type: "string"
+        zip:
+          type: "string"
+        password:
+          type: "string"
+        username:
+          type: "string"
+    RegisterExistingEmployeeRequest:
+      type: "object"
+      properties:
+        salary:
+          type: "number"
+          format: "double"
+        username:
+          type: "string"
+    RegisterNewOwnerRequest:
+      type: "object"
+      properties:
+        firstName:
+          type: "string"
+        lastName:
+          type: "string"
+        email:
+          type: "string"
+        phone:
+          type: "string"
+        address:
+          type: "string"
+        city:
+          type: "string"
+        state:
+          type: "string"
+        zip:
+          type: "string"
+        password:
+          type: "string"
+        username:
+          type: "string"
+    RegisterExistingOwnerRequest:
+      type: "object"
+      properties:
+        username:
+          type: "string"
+    UserDeletionRequest:
+      type: "object"
+      properties:
+        username:
+          type: "string"
+    RoleDeletionRequest:
+      type: "object"
+      properties:
+        role:
+          type: "string"
+        username:
+          type: "string"
+    AuthenticationRequest:
+      type: "object"
+      properties:
+        username:
+          type: "string"
+        password:
+          type: "string"
+    ItemModel:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int64"
+        name:
+          type: "string"
+        price:
+          type: "number"
+          format: "double"
+        description:
+          type: "string"
+        image:
+          type: "string"
+        menus:
+          type: "array"
+          items:
+            type: "string"
+    AllItemsModel:
+      type: "object"
+      properties:
+        items:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/ItemModel"
+    OrderModel:
+      type: "object"
+      properties:
+        menuItems:
+          type: "array"
+          items:
+            type: "integer"
+            format: "int64"
+    PurchaseModel:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int64"
+        timePlaced:
+          type: "string"
+          format: "date-time"
+        timeCompleted:
+          type: "string"
+          format: "date-time"
+        customerUsername:
+          type: "string"
+        items:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/ItemModel"
+    AllPurchasesModel:
+      type: "object"
+      properties:
+        purchases:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/PurchaseModel"
+    UserModel:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int64"
+        firstName:
+          type: "string"
+        lastName:
+          type: "string"
+        email:
+          type: "string"
+        phone:
+          type: "string"
+        address:
+          type: "string"
+        city:
+          type: "string"
+        state:
+          type: "string"
+        zip:
+          type: "string"
+        roles:
+          type: "array"
+          items:
+            type: "string"
+        username:
+          type: "string"
+    AllUsersModel:
+      type: "object"
+      properties:
+        users:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/UserModel"
