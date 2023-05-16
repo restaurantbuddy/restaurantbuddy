@@ -1,0 +1,158 @@
+\documentclass[letterpaper,11pt]{../templates/texMemo}
+
+% Configure Document Class Properties
+\memoto{Anthony Kroes, Career Experience Instructor}
+\memofrom{Samuel Mace, Software Developer Student \emph{\textbf{SM}}}
+\memosubject{Career Experience Project -- Feasability Proposal}
+\memodate{\today}
+\logo{\includegraphics[width=0.3\textwidth]{../templates/nwtc-logo.jpg}}
+
+% Change Paragraph Indentation to Business Format
+\setlength{\parindent}{0pt}
+\usepackage{parskip}
+
+% Disable Section Numbering
+\setcounter{secnumdepth}{0}
+
+% Disable Page Numbering
+% \usepackage{nopageno}
+
+% Add Draft Watermark
+% \usepackage{draftwatermark}
+
+% Increase Table Padding
+\def\arraystretch{1.25}
+
+% Configure Bibliography and Hyperlinks in Document
+\usepackage[backend=biber]{biblatex}
+\addbibresource{../main.bib}
+\usepackage[hidelinks]{hyperref}
+
+% Enable the Use of Note, Caution, and Warning Boxes
+\usepackage{tcolorbox,fontawesome5}
+\newenvironment{notebox}
+{\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title={\faIcon{info-circle}\hspace{2.5mm}\textbf{Note:}}]}
+{\end{tcolorbox}}
+\newenvironment{cautionbox}
+{\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black,title={\faIcon{exclamation-triangle}\hspace{2.5mm}\textbf{Caution:}}]}
+{\end{tcolorbox}}
+\newenvironment{warningbox}
+{\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title={\faIcon{bomb}\hspace{2.5mm}\textbf{Warning:}}]}
+{\end{tcolorbox}}
+
+\begin{document}
+
+    \maketitle
+
+
+    \section{Project Overview}
+    With the onset of the COVID-19 pandemic, nearly every restaurant nowadays needs some way to manage online ordering. Traditionally, remote orders have been placed over the telephone. However, by utilizing software and web technologies, human error can be greatly reduced in the order taking process.
+
+    By creating a full-stack web application to manage orders, I can not only create a solution to this problem, but can also apply the skills that I learned in my Software Developer program to solve a problem in the real world. In addition, I will gain more experience working with the technologies and concepts introduced at NWTC as well as to explore a few other frameworks within those technologies that would greatly aid my job search.
+
+    The product that I intend to create throughout the course of my Career Experience class will not be a fully-featured rich web application. However, it will fully-functional and should satisfy the basic needs of a small-business restaurant after being configured properly.
+
+
+    \section{Project Scope}
+    Listed below are the program outcomes for the software developer program listed on the NWTC website \parencite{nwtc_software_developer_2022}:
+
+    \begin{itemize}
+        \item Design software systems
+        \item Integrate database technology
+        \item Develop software applications
+        \item Develop technical documentation
+    \end{itemize}
+
+    The project that I propose to work on for my Career Experience class will cover all of these program outcomes in the ways listed below.
+
+    \subsection{Design software systems}
+    From both my C\# and Java classes, I have learned about object-oriented programming design. I have learned not only the concepts of classes, inheritance, and polymorphism; but I have also been able to apply these skills to create full-scale applications.
+
+    To apply these skills to my project, I will be using the Java Spring framework for the backend API of my web server \parencite{spring_project_2022}. This will allow me to apply the Model View Controller (or MVC) design patterns that I learned from my ASP.NET class, while also allowing me to polish my skills in the Java programming language. Spring is a widely-used framework out in the industry, and I think it would be a valuable skill for me to learn.
+
+    \subsection{Integrate database technology}
+    From my Database Development and SQL classes, I learned the concepts of good relational database design as well as SQL -- the standard language for interacting with these databases. My classes primarily focused on the Microsoft SQL Server environment, but the concepts that I learned are more-or-less standard across all relational database environments.
+
+    Because of this, I will be using the MariaDB database as the database technology of choice for my project. Since MariaDB is fully open-source, it is more-modular and easier for me to test on my home computer. It is also easier for others to test if deployed through the use of Docker, which I plan on using as the deployment mechanism of choice for this project \parencite{docker_website_2022}.
+
+    \subsection{Develop software applications}
+    In many of my classes at NWTC, I have learned how to create user-friendly software applications -- whether through a web or desktop interface. In the context of web interfaces, have learned the basics of HTML, CSS, and JavaScript. For desktop applications, I have learned the basics of WinForms, Windows Presentation Foundation (or WPF), as well as JavaFX framework.
+
+    To address the need for a software interface for my API, I plan on creating a web-based frontend that can be accessed on nearly any platform (regardless of operating system). I plan on using React to build the interface of my application \parencite{react_website_2022}. As a well-established frontend framework, I believe that React is suited for this task.
+
+    If time permits, I would also like to create a mobile application to interact with the API using Kotlin -- a skill taught in the Mobile Application Development class. Due to the time constraint of 16 weeks, however, I may not be able to implement this and create a quality product in the other areas of the project.
+
+    \subsection{Develop technical documentation}
+    Both from the software development classes I have participated in as well as documentation tools I explored on my own, I have learned how to create both informative and well-formatted technical documentation.
+
+    \subsubsection{Skills}
+    To complete the documentation papers required in my Database Development class, I learned the basics of this tool called {\LaTeX} \parencite{latex_website_2022}. Contrary to traditional word processors, documents created in {\LaTeX} are written in plain, unformatted text (along with {\LaTeX} commands) and compiled into PDF documents using an IDE (such as Overleaf, a simple web-based {\LaTeX} IDE \parencite{overleaf_website_2022}).
+
+    From my second C\# class, I learned the importance of proper code commenting. This knowledge became quite useful, when I explored the Doxygen documentation generator tool -- which takes these code comment strings and automatically generates HTML and {\LaTeX} documentation from them \parencite{doxygen_website_2022}.
+
+    In my second C\# class, I learned the basics of UML diagramming. One tool that I learned since then is known as PlantUML \parencite{plantuml_website_2022}. Like {\LaTeX} documents that are "compiled," PlantUML documents are also created from plaintext. In contrast to {\LaTeX}, though, PlantUML documents compile into diagrams.
+
+    \subsubsection{Application}
+    To put into practice these skills that I have learned, I plan on using Doxygen as the base for my project documentation. It will pick up the code comments that I create in Java (JavaDoc comments) and create a well-formatted HTML document -- with the ability to import CSS templates created by the community.
+
+    Since Doxygen allows the importing of Markdown documents, I can create additional markdown documentation as needed to explain difficult parts of the code and import the diagrams that I created using PlantUML.
+
+    In addition, I can create PDF documents to aid end users on how to setup and use the final product. I can use the skills that I learned in creating {\LaTeX} documents to facilitate this.
+
+
+    \section{Deliverables}
+    At the end of the project, the following core components of the project -- the owner, employee, and customer portions of the website -- should have implemented the deliverables listed below.
+
+    \subsection{Owner Website}
+    \begin{itemize}
+        \item Log into the website (1 admin account)
+        \item Add menu items to the website
+        \item Create employee accounts and modify their information
+    \end{itemize}
+
+    \subsection{Employee Website}
+    \begin{itemize}
+        \item Log into the website (with the accounts created by the owner)
+        \item View and manage orders sent in by the customers
+    \end{itemize}
+
+    \subsection{Customer Website}
+    \begin{itemize}
+        \item Login and sign-up for a user account
+        \item View and place orders based on the available menu items.
+    \end{itemize}
+
+    \begin{notebox}
+        If time allows, the mobile app proposal would encapsulate the same functionality that the customer website would accomplish -- and would do so using the same methods (since the backend would be a standard API).
+    \end{notebox}
+
+
+    \section{Proposed Timeline}
+    Since the class that I'm doing this project for is in an 16-week format, and my workload is more heavily-balanced towards the first 8-weeks, I would like to complete this project in the second 8-weeks if it is okay with the instructor. Listed below is my calendar for when I plan on finishing which components of the application.
+
+    \begin{tabular}{r l}
+        \emph{Week 1} & Infrastructure and Tech Stack Setup                 \\
+        \emph{Week 2} & Database Development and Design with MariaDB        \\
+        \emph{Week 3} & Owner Portion of Website -- Frontend and Backend    \\
+        \emph{Week 4} & Employee Portion of Website -- Frontend and Backend \\
+        \emph{Week 5} & Customer Portion of Website -- Frontend and Backend \\
+        \emph{Week 6} & Customer App Interface (If Time Allows)             \\
+        \emph{Week 7} & Refactoring, Polishing, and Documenting             \\
+        \emph{Week 8} & Last Finishing Touches and Submission               \\
+    \end{tabular}
+
+    \begin{notebox}
+        Although I am planning on doing documentation on Week 7, I am also planning on documenting my work throughout the course of the project. I intend to use Week 7 as a means to polish the entire project for submission -- including the documentation.
+    \end{notebox}
+
+
+    \section{Summary}
+    By completing this restaurant menu-ordering application for my career experience class, not only will I be able to polish the skills that I learned at NWTC, but I will also be able to apply them to solve a real-world problem. Although I have used APIs throughout the course of my software developer program, completing this project will allow me to create and use an API in a real-world context. By creating a restaurant-themed database for this project, I will be able to apply my database creation and management skills in a full-stack web application. By using the AJAX-based technologies built into JavaScript, I will be able to create an intuitive user interface for my API using the React framework. Finally, the various documentation tools that I have learned throughout the course of my program will greatly aid me in creating both informative and easy-to-read documentation for the end product.
+
+    I understand that there are a lot of moving parts for the project. I plan on using the Docker tool discussed earlier to make testing and deploying the project easier both for myself and the instructor \parencite{docker_website_2022}. Please let me know if you have any further questions.
+
+    \newpage
+
+    \printbibliography
+
+\end{document}

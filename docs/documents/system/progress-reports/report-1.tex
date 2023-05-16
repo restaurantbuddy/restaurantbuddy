@@ -1,0 +1,148 @@
+\documentclass[letterpaper,11pt]{../../templates/texMemo}
+
+% Set Variables for texMemo Document Class
+\memoto{Anthony Kroes, Career Experience Instructor}
+\memofrom{Samuel Mace, Software Developer Student \emph{\textbf{SM}}}
+\memosubject{Career Experience Project -- Progress Report 1}
+\memodate{April 5, 2023}
+
+\logo{\includegraphics[width=0.3\textwidth]{../../templates/nwtc-logo.jpg}}
+
+% Set Paragraph Indentation Rules to Standard Business Formatting
+\usepackage{nopageno}
+\usepackage{parskip}
+
+% Disable Section Numbering
+\setcounter{secnumdepth}{0}
+
+% Increase Table Padding
+\def\arraystretch{1.25}
+
+% Set Font to Sans-Serif
+% \usepackage{helvet}
+% \renewcommand{\familydefault}{\sfdefault}
+
+% Enable BibLaTeX Citation Management
+\usepackage[backend=biber]{biblatex}
+\addbibresource{main.bib}
+
+% Enable BibLaTeX Internal References
+\usepackage[hidelinks]{hyperref}
+
+% Enable the Use of Note, Caution, and Warning Boxes
+\usepackage{tcolorbox,fontawesome5}
+\newenvironment{notebox}
+{\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title={\faIcon{info-circle}\hspace{2.5mm}\textbf{Note:}}]}
+{\end{tcolorbox}}
+\newenvironment{cautionbox}
+{\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black,title={\faIcon{exclamation-triangle}\hspace{2.5mm}\textbf{Caution:}}]}
+{\end{tcolorbox}}
+\newenvironment{warningbox}
+{\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title={\faIcon{bomb}\hspace{2.5mm}\textbf{Warning:}}]}
+{\end{tcolorbox}}
+
+\begin{document}
+
+    \maketitle
+
+
+    \section{Purpose}
+    The purpose of this document is to inform the instructor on what work \textit{has been done}, what \textit{is being done}, what \textit{needs to be done}, as well as clarify any of the complications that come up as they arise regarding the capstone project. This is the first in a series of progress reports regarding the capstone project.
+
+
+    \section{Project Overview}
+    The \textit{RestaurantBuddy} full-stack web application will be a basic, self-contained piece of software used to run a restaurant business. It will not be full-featured and customizable in every aspect. However, it should address the needs of the following parties:
+
+    \subsection{Restaurant Owner}
+    \begin{itemize}
+        \item Add items to the restaurant's menu offering.
+        \item Hire and fire employees at the owner's discretion.
+    \end{itemize}
+
+    \subsection{Employee}
+    \begin{itemize}
+        \item Be able to view orders that the customer places as they come in (real-time data without page refreshing).
+        \item Be able to complete orders.
+    \end{itemize}
+
+    \subsection{Customer}
+    \begin{itemize}
+        \item Be able to view the menu that the restaurant offers.
+        \item Be able to view information about the menu items.
+        \item Be able to add menu items to their ``basket.''
+        \item Be able to place an order containing the items in the customer's ``basket.''
+    \end{itemize}
+
+    \begin{notebox}
+        As a side-note, each customer will have a login (but not every login will be associated with a customer). Each party will be able to log into certain portions of the website that they are allowed to access (for example, a customer will be able to place orders but won't be able to fire employees). If a login attempt fails, an error message will be sent back from the API.
+    \end{notebox}
+
+
+    \section{Work Completed}
+    \begin{tabular}{|r l|}
+        \hline
+        \emph{March 20} & Setup of Project Files      \\
+        \emph{March 21} & Setup of Docker Compose     \\
+        \emph{March 31} & Rudimentary Database Design \\
+        \hline
+    \end{tabular}
+
+
+    \section{Work in Progress}
+
+    \begin{tabular}{|r l|}
+        \hline
+        \emph{ETA: April 5}  & Polish Database Design      \\
+        \emph{ETA: April 12} & Setup of Authentication API \\
+        \hline
+    \end{tabular}
+
+    \subsection{Comments}
+    These past couple of weeks, I successfully came up with a rudimentary deployment environment using Docker Compose. This tool is not only responsible for creating a valid deployment environment for my code, but also enables the different components of my software to remain isolated (for the sake of security), but talk to the outside world as needed.
+
+    I have my app setup to automatically spin-up four \textit{containers} (as they are called) which will be able to talk to each other internally by referencing each other's container names. For the pieces of software that need to talk to the outside world, these ports can be forwarded to the host. For example, the database may need to remain internal, but the API and web interface need to remain publicly-accessible.
+
+    For this application, I chose MariaDB as the container technology of choice. It integrates quite well with the Docker platform and is well-known in the industry. Most-importantly, it is open-source in nature and will integrate with the software I am building quite well. I just finished working on the basic design of the database and will revise it as needed.
+
+    My next step is to implement the authentication API -- which is a crucial aspect to the application. To do this, I am learning about password-hashing algorithms such as Blowfish and how I can use them to securely store passwords in a database (by making them as difficult as possible to decrypt).
+
+
+    \section{Work Remaining}
+    \begin{tabular}{|r l|}
+        \hline
+        \emph{ETA: April 12} & Setup of Restaurant Owner API Routes (Spring Boot) \\
+        \emph{ETA: April 12} & Setup of Restaurant Owner Views (Next.JS)          \\
+        \hline
+        \emph{ETA: April 19} & Setup of Employee API Routes (Spring Boot)         \\
+        \emph{ETA: April 19} & Setup of Employee Views (Next.JS)                  \\
+        \hline
+        \emph{ETA: April 26} & Setup of Customer API Routes (Spring Boot)         \\
+        \emph{ETA: April 26} & Setup of Customer Views (Next.JS)                  \\
+        \hline
+    \end{tabular}
+
+    \subsection{Comments}
+    Once I get the authentication API up-and-running, it will be time to move on to creating the API routs (for the business logic) and views (for the user interaction) for the various parties that will be interacting with the application. As decided in the design phase of the project, these views will be de-coupled from the business logic to allow for greater interoperability with external applications.
+
+
+    \section{Complications}
+    My greatest complication for the project has nothing to do with the project itself, but rather with the applications will be interacting with it. One such application will be an Android app that I will be completing in a different class having system requirements that I did not take into consideration when I originally drafted the project idea.
+
+    One of the requirements for the mobile client is integration with the Firebase API. The original intent of the mobile app would be for it to directly interface with the API (rather than going through a third-party) in order to reduce complexity.
+
+    \subsection{Possible Solutions}
+    One way that I could go about solving this problem would be to host the application on a cloud service (for example, AWS \parencite{aws_2023}, Google Cloud \parencite{google_cloud_2023}, or DigitalOcean \parencite{digitalocean_2023}) and have the two frameworks interact with each other.
+
+    Another way that I could integrate Firebase into the mobile client (and perhaps this is the simpler option) would be to add separate features to the mobile client that wouldn't be accessible through the web client. This particular Firebase backend then wouldn't have to interact with the API in any way.
+
+
+    \section{Conclusion}
+    Whichever way I decide to go with additional client integration (including Firebase integration) into the application, my highest priority at the current moment is creating a secure authentication API (with Blowfish-style password hashing). I will then try to roll out a documented API that satisfies the business requirements of each of the three parties.
+
+    Once I have any given written to my satisfaction, I can test it using an API testing tool such as cURL \parencite{curl_2023}, Postman \parencite{postman_2023}, or Swagger UI \parencite{swagger_ui_2023}.
+
+    \newpage
+
+    \printbibliography
+
+\end{document}

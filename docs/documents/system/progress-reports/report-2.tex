@@ -1,0 +1,141 @@
+\documentclass[letterpaper,11pt]{../../templates/texMemo}
+
+% Set Variables for texMemo Document Class
+\memoto{Anthony Kroes, Career Experience Instructor}
+\memofrom{Samuel Mace, Software Developer Student \emph{\textbf{SM}}}
+\memosubject{Career Experience Project -- Progress Report 2}
+\memodate{May 1, 2023}
+
+\logo{\includegraphics[width=0.3\textwidth]{../../templates/nwtc-logo.jpg}}
+
+% Set Paragraph Indentation Rules to Standard Business Formatting
+\usepackage{nopageno}
+\usepackage{parskip}
+
+% Disable Section Numbering
+\setcounter{secnumdepth}{0}
+
+% Increase Table Padding
+\def\arraystretch{1.25}
+
+% Set Font to Sans-Serif
+% \usepackage{helvet}
+% \renewcommand{\familydefault}{\sfdefault}
+
+% Enable BibLaTeX Citation Management
+\usepackage[backend=biber]{biblatex}
+\addbibresource{main.bib}
+
+% Enable BibLaTeX Internal References
+\usepackage[hidelinks]{hyperref}
+
+% Enable the Use of Note, Caution, and Warning Boxes
+\usepackage{tcolorbox,fontawesome5}
+\newenvironment{notebox}
+{\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title={\faIcon{info-circle}\hspace{2.5mm}\textbf{Note:}}]}
+{\end{tcolorbox}}
+\newenvironment{cautionbox}
+{\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black,title={\faIcon{exclamation-triangle}\hspace{2.5mm}\textbf{Caution:}}]}
+{\end{tcolorbox}}
+\newenvironment{warningbox}
+{\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title={\faIcon{bomb}\hspace{2.5mm}\textbf{Warning:}}]}
+{\end{tcolorbox}}
+
+\begin{document}
+
+    \maketitle
+
+
+    \section{Purpose}
+    The purpose of this document is to inform the instructor on what work \textit{has been done}, what \textit{is being done}, what \textit{needs to be done}, as well as clarify any of the complications that come up as they arise regarding the capstone project. This is the second in a series of progress reports regarding the capstone project.
+
+
+    \section{Project Overview}
+    The \textit{RestaurantBuddy} full-stack web application will be a basic, self-contained piece of software used to run a restaurant business. It will not be full-featured and customizable in every aspect. However, it should address the needs of the following parties:
+
+    \subsection{Restaurant Owner}
+    \begin{itemize}
+        \item Add items to the restaurant's menu offering.
+        \item Hire and fire employees at the owner's discretion.
+    \end{itemize}
+
+    \subsection{Employee}
+    \begin{itemize}
+        \item Be able to view orders that the customer places as they come in (real-time data without page refreshing).
+        \item Be able to complete orders.
+    \end{itemize}
+
+    \subsection{Customer}
+    \begin{itemize}
+        \item Be able to view the menu that the restaurant offers.
+        \item Be able to view information about the menu items.
+        \item Be able to add menu items to their ``basket.''
+        \item Be able to place an order containing the items in the customer's ``basket.''
+    \end{itemize}
+
+    \begin{notebox}
+        As a side-note, each customer will have a login (but not every login will be associated with a customer). Each party will be able to log into certain portions of the website that they are allowed to access (for example, a customer will be able to place orders but won't be able to fire employees). If a login attempt fails, an error message will be sent back from the API.
+    \end{notebox}
+
+
+    \section{Work Completed}
+    \begin{tabular}{|r l|}
+        \hline
+        \emph{March 20} & Setup of Project Files                              \\
+        \emph{March 21} & Setup of Docker Compose                             \\
+        \hline
+        \emph{March 31} & Rudimentary Database Design                         \\
+        \emph{April 24} & Polish Database Design                              \\
+        \hline
+        \emph{April 24} & Java Database Design using the Java Persistence API \\
+        \emph{April 24} & Base Setup of Authentication API (Java)             \\
+        \hline
+        \emph{May 1}    & Base Setup of Customer Views (Next.JS)              \\
+        \emph{May 1}    & Base Setup of Employee Views (Next.JS)              \\
+        \emph{May 1}    & Base Setup of Restaurant Owner Views (Next.JS)      \\
+        \hline
+    \end{tabular}
+
+
+    \section{Work in Progress}
+
+    \begin{tabular}{|r l|}
+        \hline
+        \emph{May 8}  & Refinement of Authentication API (Java)        \\
+        \emph{May 16} & Refinement of Customer Views (Next.JS)         \\
+        \emph{May 16} & Refinement of Employee Views (Next.JS)         \\
+        \emph{May 16} & Refinement of Restaurant Owner Views (Next.JS) \\
+        \hline
+    \end{tabular}
+
+    \subsection{Comments}
+    Although I have a good start on the frontend interface for the RestaurantBuddy API, the refinement process will be ongoing until the project is completed. This process mainly consists of integrating and adapting the API into the frontend, as well as tweaking the styling.
+
+    Additionally, although I have a good start on token based authentication using the Spring Security framework and JSON Web Tokens (or JWT), I still need to restrict access to certain controllers based on the user that is logged in. As of right now, any user who is authenticated is able to access any controller on the API.
+
+
+    \section{Work Remaining}
+    \begin{tabular}{|r l|}
+        \hline
+        \emph{ETA: May 16} & Setup of Restaurant Owner API Routes (Spring Boot) \\
+        \emph{ETA: May 16} & Setup of Employee API Routes (Spring Boot)         \\
+        \emph{ETA: May 16} & Setup of Customer API Routes (Spring Boot)         \\
+        \hline
+    \end{tabular}
+
+    \subsection{Comments}
+    Fortunately, the work that I have yet to begin is the most straightforward. Basic MVC-style routing is something I have done before in the ASP.NET class, so it should not be too difficult. However, it will require writing a great deal of code, so that is one consideration.
+
+
+    \section{Complications}
+    As of right now, the main complication I have is understanding the Spring Security ecosystem. Most of what I have learned about Spring Security has been gleaned from following YouTube tutorials on the topic. Although these tutorials have been helpful (and I have been able to adapt what I have made in these tutorials to use in my project), certain gaps remain in my knowledge -- including role-based route authorization. I plan to address this knowledge gap by consulting the documentation sources that I have found to be helpful on the topic up to this point.
+
+
+    \section{Conclusion}
+    Although progress on the RestaurantBuddy application has slowed down for the middle part of the semester, it has sped up these past couple of weeks as I have been able to integrate what I have learned in tutorials into my capstone project. Although I don't expect the application to have the same feature set that I previously anticipated, I do expect to be able to implement most of the features that I had originally envisioned.
+
+    \newpage
+
+    \printbibliography
+
+\end{document}

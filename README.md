@@ -1,17 +1,23 @@
-RestaurantBuddy Systems Documentation
---------------------------------------------------
+# RestaurantBuddy
 
-| Document Properties      | Values         |
+A Self-Contained Containerized Approach to Restaurant Menu and Ordering Software
+
+| About this Document      |                |
 |--------------------------|----------------|
 | Author:                  | Samuel Mace    |
 | Project License:         | MIT            |
 | Originally Created Date: | March 24, 2023 |
-| Last Modified Date:      | April 19, 2023 |
+| Last Modified Date:      | May 16, 2023   |
 
-# Purpose and Project Introduction
+## Purpose and Project Introduction
 
 The purpose of this application will be twofold -- to serve as an introduction to full stack web application and
 deployment as well as to solve a business problem out in industry.
+
+## Licensing and Contributions
+
+Usage of this project is subject to the terms of the MIT license found in the project. Pull requests and contributions
+to the project are accepted, but they will also be subject to the terms of the MIT license.
 
 ## Technologies
 
@@ -23,11 +29,7 @@ this project:
 
 - HTML5
 - CSS3
-- Bootstrap 5
 - JavaScript/ECMAScript6
-- Node.JS
-- React
-- Next.JS
 
 ### Backend (API)
 
@@ -38,15 +40,20 @@ this project:
 ### Database
 
 - MariaDB
-- phpMyAdmin (optional)
+
+### Testing Mechanisms
+
+- Node.JS
 
 ### Deployment Mechanisms
 
 - Docker Compose
+- Apache HTTPd Web Server
+- phpMyAdmin
 
-# Requirements
+## Requirements (Goals for the Project)
 
-## Business Requirements
+### Business Requirements
 
 The primary purpose of the RestaurantBuddy full-stack web application is to provide a basic restaurant management
 application for a local small business. The entire application should be fairly easy for any restaurant owner to
@@ -57,19 +64,19 @@ With that said, the restaurant application will not be as fully-featured as othe
 the base of the project is completed, it should provide a well-documented foundation upon which additional features can
 be added as the need arises.
 
-## User Requirements
+### User Requirements
 
-### Owner
+#### Owner
 
 - Add additional employees (logins)
 - Add additional menu items
 
-### Employee
+#### Employee
 
 - View orders that customers place in real-time
 - Complete orders after they are done being made
 
-### Customer
+#### Customer
 
 - Signup for a new user account
 - View inventory offered by the restaurant
@@ -77,34 +84,34 @@ be added as the need arises.
 - Add items to the cart
 - Complete order and provide payment details (with the possibility of adding Stripe integration later down the line)
 
-### All Parties
+#### All Parties
 
 - Login to the application
 - Have access to only the areas of the application which they are permitted to have access
 - Have a basic, but visually-appealing frontend to the application
 
-## Functional Requirements
+### Functional Requirements
 
-### Authentication and Authorization
+#### Authentication and Authorization
 
 The application will necessitate the need of authentication and authorization implementation in the application. The
 authentication process will be responsible for verifying the credentials of any given user in question (and will
 generate a JWT token to be used later). The authorization process, on the other hand, will be responsible for
 determining which users are allowed to access specific services as well as which JWT tokens are issued to which users.
 
-#### Authentication
+##### Authentication
 
 During the authentication process, any user in question will be responsible for supplying the username and password to
 the application. The application will then be responsible for generating a valid JWT token and supplying that to the
 client to be passed in the header of all subsequent API requests.
 
-#### Authorization
+##### Authorization
 
 The authorization portion of the application will be responsible for managing _who_ will be able to access _what_ within
 the API. This will be extracted from the API token every time the user makes a request to the API. These tokens will be
 stored in the memory of the API (and will thus be deleted when the API application quits).
 
-## Nonfunctional Requirements
+### Nonfunctional Requirements
 
 The primary nonfunctional requirement of the application is the de-coupled nature of the full-stack web application. The
 application will be based upon three layers: the database, the API (backend), and the frontend. This design will allow

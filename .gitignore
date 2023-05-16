@@ -1,4 +1,7 @@
 # IntelliJ Project Files
 *.idea
 
+# Doxygen Build Output
+/docs/api/build/
+
 .DS_Store

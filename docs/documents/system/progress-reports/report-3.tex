@@ -1,0 +1,148 @@
+\documentclass[letterpaper,11pt]{../../templates/texMemo}
+
+% Set Variables for texMemo Document Class
+\memoto{Anthony Kroes, Career Experience Instructor}
+\memofrom{Samuel Mace, Software Developer Student \emph{\textbf{SM}}}
+\memosubject{Career Experience Project -- Progress Report 3}
+\memodate{May 16, 2023}
+
+\logo{\includegraphics[width=0.3\textwidth]{../../templates/nwtc-logo.jpg}}
+
+% Set Paragraph Indentation Rules to Standard Business Formatting
+\usepackage{nopageno}
+\usepackage{parskip}
+
+% Disable Section Numbering
+\setcounter{secnumdepth}{0}
+
+% Increase Table Padding
+\def\arraystretch{1.25}
+
+% Set Font to Sans-Serif
+% \usepackage{helvet}
+% \renewcommand{\familydefault}{\sfdefault}
+
+% Enable BibLaTeX Citation Management
+\usepackage[backend=biber]{biblatex}
+\addbibresource{main.bib}
+
+% Enable BibLaTeX Internal References
+\usepackage[hidelinks]{hyperref}
+
+% Enable the Use of Note, Caution, and Warning Boxes
+\usepackage{tcolorbox,fontawesome5}
+\newenvironment{notebox}
+{\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title={\faIcon{info-circle}\hspace{2.5mm}\textbf{Note:}}]}
+{\end{tcolorbox}}
+\newenvironment{cautionbox}
+{\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black,title={\faIcon{exclamation-triangle}\hspace{2.5mm}\textbf{Caution:}}]}
+{\end{tcolorbox}}
+\newenvironment{warningbox}
+{\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title={\faIcon{bomb}\hspace{2.5mm}\textbf{Warning:}}]}
+{\end{tcolorbox}}
+
+\begin{document}
+
+    \maketitle
+
+
+    \section{Purpose}
+    The purpose of this document is to inform the instructor on what work \textit{has been done}, what \textit{is being done}, what \textit{needs to be done}, as well as clarify any of the complications that come up as they arise regarding the capstone project. This is the third and final report in a series of progress reports regarding the capstone project.
+
+
+    \section{Project Overview}
+    The \textit{RestaurantBuddy} full-stack web application will be a basic, self-contained piece of software used to run a restaurant business. It will not be full-featured and customizable in every aspect. However, it should address the needs of the following parties:
+
+    \subsection{Restaurant Owner}
+    \begin{itemize}
+        \item Add items to the restaurant's menu offering.
+        \item Hire and fire employees at the owner's discretion.
+    \end{itemize}
+
+    \subsection{Employee}
+    \begin{itemize}
+        \item Be able to view orders that the customer places as they come in (real-time data without page refreshing).
+        \item Be able to complete orders.
+    \end{itemize}
+
+    \subsection{Customer}
+    \begin{itemize}
+        \item Be able to view the menu that the restaurant offers.
+        \item Be able to view information about the menu items.
+        \item Be able to add menu items to their ``basket.''
+        \item Be able to place an order containing the items in the customer's ``basket.''
+    \end{itemize}
+
+    \begin{notebox}
+        As a side-note, each customer will have a login (but not every login will be associated with a customer). Each party will be able to log into certain portions of the website that they are allowed to access (for example, a customer will be able to place orders but won't be able to fire employees). If a login attempt fails, an error message will be sent back from the API.
+    \end{notebox}
+
+
+    \section{Work Completed}
+    \begin{tabular}{|r l|}
+        \hline
+        \emph{March 20} & Setup of Project Files                              \\
+        \emph{March 21} & Setup of Docker Compose                             \\
+        \hline
+        \emph{March 31} & Rudimentary Database Design                         \\
+        \emph{April 24} & Polish Database Design                              \\
+        \hline
+        \emph{April 24} & Java Database Design using the Java Persistence API \\
+        \emph{April 24} & Base Setup of Authentication API (Java)             \\
+        \hline
+        \emph{May 1}    & Base Setup of Customer Views (AJAX)                 \\
+        \emph{May 1}    & Base Setup of Employee Views (AJAX)                 \\
+        \emph{May 1}    & Base Setup of Restaurant Owner Views (AJAX)         \\
+        \hline
+        \emph{May 3}    & Refinement of Authentication API (Java)             \\
+        \hline
+        \emph{May 5}    & Setup of Restaurant Owner API Routes (Spring Boot)  \\
+        \emph{May 5}    & Setup of Employee API Routes (Spring Boot)          \\
+        \emph{May 5}    & Setup of Customer API Routes (Spring Boot)          \\
+        \hline
+        \emph{May 13}   & Refinement of Customer Views (AJAX)                 \\
+        \emph{May 14}   & Refinement of Employee Views (AJAX)                 \\
+        \emph{May 16}   & Refinement of Restaurant Owner Views (AJAX)         \\
+        \hline
+    \end{tabular}
+
+    \subsection{Comments}
+    Although I was able to accomplish most of the goals of the project, some of the features that I had originally indented on adding will not be contained in the project. Although the owner dashboard provides the restaurant owner an overview of the restaurant's items, users, and locations; these values still need to be updated using the database (and cannot be updated through the dashboard).
+
+    To address this problem, I have included an instance of phpMyAdmin with the project that will be linked to the database to be able to add/remove items, users, and locations as the restaurant owner sees fit. Instructions on how to access this portal will be provided in project overview video.
+
+
+    \section{Looking Back on the Project}
+    Although I had to learn some new technologies along the way throughout the course of this project, the following classes that I took at NWTC gave me a solid foundation to work from:
+
+    \begin{itemize}
+        \item Database Design and Development and SQL
+        \item Java and ASP.NET
+        \item Website Coding and JavaScript
+    \end{itemize}
+
+    \subsection{Database Work}
+    Every good application begins with a good way to store it's data. This project was no exception. By narrowing down the requirements of the project and pinpointing key data that the application would need to store, I was able to come up with a solid and robust project database to work with. When I needed to make changes later down the line, these changes were easy to integrate into the existing project.
+
+    \subsection{API (Backend)}
+    Although I didn't explicitly use ASP.NET in the project, a lot of the MVC (or model-view-controller) design patterns were used extensively throughout the development of the API. I used JSON models to pass data between the client and sever. I also used controllers to listen for requests on certain API routes. All of these were implemented using the Spring MVC framework provided by Spring Boot.
+
+    Furthermore, the Java classes that I took at NWTC provided me a solid foundation to work with Spring Boot. Although I had to follow a couple of tutorials to get started with topics such as security and database persistence (using Spring Security and Spring Data JPA), I was able to easily adapt what I learned in these tutorials to work in my project due to my solid foundation in Java.
+
+    \subsection{Frontend (AJAX)}
+    When coding the frontend of the project, the skills that I learned in Website Coding and JavaScript served to aid me in completing this project. I was able to create well-structured HTML documents. I was able to style them so that they are both visually-appealing and mobile-friendly, using styling techniques I learned when coding CSS. Most importantly, the skills I learned in JavaScript (and AJAX) provided me a way interact with my backend API.
+
+    \subsection{Technical Difficulties}
+    Although I had a solid foundation to start the project, this isn't to say the entire project was smooth sailing. First of all, one of the important aspects of the project was authentication and authorization -- two key topics not addressed during my classes at NWTC. Thankfully, though, I was able to find resources online to help me understand these topics and create boilerplate code that I could adapt into my project.
+
+    Although I had originally planned on using the Next.JS framework in the development of the frontend application, I eventually refrained from doing this due to time constraints during the last couple weeks of the project. Thankfully, I found that vanilla JavaScript (combined with AJAX) accomplished most of the needs of my project quite well. The primary issue is the screen ``flickering'' caused by AJAX requests.
+
+
+    \section{Conclusion}
+    Although there have been many technical challenges throughout the course of the project, these challenges have served to help me both in improving my technical skills and applying them to a real-world project. This project will remain an excellent showcase of my coding ability something to showcase when interviewing for future positions.
+
+    \newpage
+
+    \printbibliography
+
+\end{document}
