@@ -1,0 +1,78 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api
+spec:
+  selector:
+    app: api
+  ports:
+  - port: 8888
+    targetPort: 8888
+    name: http
+  type: LoadBalancer
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: api
+  labels:
+    name: api
+spec:
+  containers:
+  - name: api
+    image: docker.io/samuelcmace/restaurantbuddy-api:latest
+    # resources:
+    #   limits:
+    #     memory: "4Gi"
+    #     cpu: "2"
+    ports:
+      - containerPort: 8888
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: database
+spec:
+  selector:
+    app: database
+  ports:
+  - port: 3306
+    targetPort: 3306
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: database
+spec:
+  selector:
+    matchLabels:
+      app: database
+  strategy: 
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: database
+    spec:
+      containers:
+      - name: database
+        image: mariadb:latest
+        # resources:
+        #   limits:
+        #     memory: "4Gi"
+        #     cpu: "2"
+        env:
+        - name: MARIADB_USER
+          value: restaurantbuddy
+        - name: MARIADB_PASSWORD
+          value: restaurantbuddy
+        - name: MARIADB_DATABASE
+          value: restaurantbuddy
+        - name: MARIADB_ROOT_PASSWORD
+          value: restaurantbuddy
+        ports:
+          - containerPort: 3306
