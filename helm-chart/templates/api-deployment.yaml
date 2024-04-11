@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: api
 spec:
-  replicas: 1
+  replicas: {{ .Values.api.replicas }}
   selector:
     matchLabels:
       app: api
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: docker.io/samuelcmace/restaurantbuddy-api:latest
+        image: "{{ .Values.api.image }}"
         resources:
         ports:
         - containerPort: 8888
