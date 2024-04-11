@@ -2,21 +2,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api
+  name: frontend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: api
+      app: frontend
   template:
     metadata:
       labels:
-        app: api
+        app: frontend
     spec:
       containers:
-      - name: api
-        image: docker.io/samuelcmace/restaurantbuddy-api:latest
+      - name: frontend
+        image: docker.io/samuelcmace/restaurantbuddy-frontend:latest
         resources:
         ports:
-        - containerPort: 8888
-  
+        - containerPort: 80

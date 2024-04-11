@@ -1,0 +1,38 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: database
+  template:
+    metadata:
+      labels:
+        app: database
+    spec:
+      containers:
+        - name: database
+          image: docker.io/library/mariadb:latest
+          resources:
+          env:
+            - name: MARIADB_USER
+              value: restaurantbuddy
+            - name: MARIADB_PASSWORD
+              value: restaurantbuddy
+            - name: MARIADB_DATABASE
+              value: restaurantbuddy
+            - name: MARIADB_ROOT_PASSWORD
+              value: restaurantbuddy
+          ports:
+            - containerPort: 3306
+        - name: phpmyadmin
+          image: docker.io/library/phpmyadmin:latest
+          resources:
+          env:
+            - name: PMA_HOST
+              value: database
+          ports:
+            - containerPort: 80
