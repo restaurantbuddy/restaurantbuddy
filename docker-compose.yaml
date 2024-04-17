@@ -23,6 +23,6 @@ services:
     image: "phpmyadmin:latest"
     restart: always
     environment:
-      PMA_ARBITRARY: 1
+      PMA_HOST: database
     ports:
       - "8080:80"

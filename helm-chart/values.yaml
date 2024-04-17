@@ -1,0 +1,11 @@
+
+frontend:
+  replicas: 3
+  image: docker.io/samuelcmace/restaurantbuddy-frontend:latest
+api:
+  replicas: 3
+  image: docker.io/samuelcmace/restaurantbuddy-api:latest
+database:
+  image: docker.io/library/mariadb:latest
+phpmyadmin:
+  image: docker.io/library/phpmyadmin:latest
